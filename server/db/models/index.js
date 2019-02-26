@@ -1,3 +1,4 @@
+const db = require('../db')
 const {User, Order, OrderItem, Product} = require('./')
 
 /**
@@ -20,6 +21,7 @@ Order.hasMany(OrderItem)
  * instead of: const User = require('../db/models/user')
  */
 module.exports = {
+  db,
   User,
   Order,
   OrderItem,
