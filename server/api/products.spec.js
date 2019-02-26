@@ -55,11 +55,3 @@ describe('Product routes', () => {
     })
   }) // end describe ('/api/products')
 }) // end describe('Product routes')
-
-const testFailure = {
-  name: 1,
-  description: null,
-  price: -10,
-  imageUrl: null,
-  stock: -100
-}
