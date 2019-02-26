@@ -1,18 +1,79 @@
 'use strict'
 
 const db = require('../server/db')
-const {User} = require('../server/db/models')
+const {User, Product} = require('../server/db/models')
+
+const products = [
+  {
+    name: 'Jade',
+    description:
+      'Crassula ovata, commonly known as jade plant, lucky plant, money plant or money tree, is a succulent plant with small pink or white flowers. It is native to South Africa and Mozambique, and is common as a houseplant worldwide.',
+    imageUrl: 'images/jade.png',
+    price: 5.25
+  },
+  {
+    name: 'Paddle',
+    description:
+      'What is a paddle plant? Also known as flapjack paddle plant (Kalanchoe thyrsiflora), this succulent kalanchoe plant has with thick, rounded, paddle-shaped leaves. The plant is also known as red pancake because the leaves frequently take on a reddish or deep pink tint during the winter.',
+    imageUrl: 'images/paddle.png',
+    price: 5.25
+  },
+  {
+    name: 'Green Prince',
+    description: 'Succulent Echeveria Green Prince',
+    imageUrl: 'images/green-prince.png',
+    price: 5.25
+  },
+  {
+    name: 'Snake Plant',
+    description:
+      "Viper's Bowstring Hemp- Sansevieria trifasciata is a species of flowering plant in the family Asparagaceae, native to tropical West Africa from Nigeria east to the Congo. It is most commonly known as the snake plant, mother-in-law's tongue, and viper's bowstring hemp, among other names",
+    imageUrl: 'images/snake-plant.png',
+    price: 5.25
+  },
+  {
+    name: 'Flat Cactus',
+    description: 'Lorem Ipsum Flat Cactus',
+    imageUrl: 'images/flat-cactus.png',
+    price: 5.25
+  },
+  {
+    name: 'Spiral Cactus',
+    description: 'Lorem Ipsum Spiral Cactus',
+    imageUrl: 'images/spiral-cactus.png',
+    price: 5.25
+  },
+  {
+    name: 'Paddle Blue Pot',
+    description: 'Lorem Ipsum Paddle Blue Bot',
+    imageUrl: 'images/ paddle-blue-pot.png',
+    price: 5.25
+  },
+  {
+    name: 'Green Prince Pink Pot',
+    description: ' Lorem Ipsum Green Prince Pink Pot',
+    imageUrl: 'images/green-prince-pink-pot.png',
+    price: 5.25
+  },
+  {
+    name: 'Green White Pot',
+    description: 'Lorem Ipsum Green White Pot',
+    imageUrl: 'images/green-white-pot.png',
+    price: 5.25
+  }
+]
 
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
-  const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123'}),
-    User.create({email: 'murphy@email.com', password: '123'})
-  ])
+  await Promise.all(
+    products.map(product => {
+      return Product.create(product)
+    })
+  )
 
-  console.log(`seeded ${users.length} users`)
+  console.log(`seeded ${products.length} products`)
   console.log(`seeded successfully`)
 }
 
