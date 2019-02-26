@@ -12,7 +12,10 @@ const Product = db.define('product', {
   },
   price: {
     type: Sequelize.DECIMAL(10, 2),
-    allowNull: false
+    allowNull: false,
+    validate: {
+      min: 0
+    }
   },
   imageUrl: {
     type: Sequelize.STRING,
