@@ -4,11 +4,11 @@ const db = require('../db')
 const Order = db.define('order', {
   purchaseDate: {
     type: Sequelize.DATE,
-    defaultValue: Date.now()
+    //defaultValue: Date.now()
   },
   shippingStatus: {
     type: Sequelize.ENUM('Shipping In Progress', 'Delivered'),
-    defaultValue: 'Shipping in Progress'
+    //defaultValue: 'Shipping in Progress'
   }
 })
 
