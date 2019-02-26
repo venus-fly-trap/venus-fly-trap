@@ -42,7 +42,7 @@ describe('Product routes', () => {
     })
 
     it('fails when model definitions are violated', async () => {
-      testProduct.description = null
+      testProduct.name = null
       let result, error
       try {
         result = await testProduct.validate()
