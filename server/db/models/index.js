@@ -1,7 +1,5 @@
-const User = require('./User')
-const Order = require('./Order')
-const OrderItem = require('./OrderItem')
-const Product = require('./Product')
+const {User, Order, OrderItem, Product} = require('./')
+
 /**
  * If we had any associations to make, this would be a great place to put them!
  * ex. if we had another model called BlogPost, we might say:
