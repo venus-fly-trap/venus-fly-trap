@@ -37,8 +37,7 @@ class Cart extends React.Component {
               className="remove"
               onClick={() => this.handleRemoveButton(orderItem.product.id)}
             >
-              {' '}
-              Remove{' '}
+              Remove
             </button>
           </div>
         ))}
