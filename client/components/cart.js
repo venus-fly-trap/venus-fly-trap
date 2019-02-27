@@ -6,7 +6,7 @@ import {fetchCartItems} from '../store'
 class Cart extends React.Component {
   constructor(props) {
     super(props)
-    
+
     this.handleRemoveButton = this.handleRemoveButton.bind(this)
   }
 
@@ -15,7 +15,7 @@ class Cart extends React.Component {
   }
 
   handleRemoveButton(orderItemId) {
-    this.props.removeOrderItem(orderItemId)
+    //this.props.removeOrderItem(orderItemId)
   }
 
   render() {
@@ -27,11 +27,14 @@ class Cart extends React.Component {
         {cart.map(orderItem => (
           <div key={orderItem.product.id}>
             <img src={orderItem.product.imageUrl} />
-            <Link to={`/products/${orderItem.product.id}`}>
-              {orderItem.product.name}
-            </Link>
-            <p>{orderItem.product.price}</p>
-            <p>{orderItem.product.quantity}</p>
+            <br />
+            <h4>
+              <Link to={`/products/${orderItem.product.id}`}>
+                {orderItem.product.name}
+              </Link>
+            </h4>
+            <p>Price: ${orderItem.product.price}</p>
+            <p>Quantity: {orderItem.quantity}</p>
             <button
               type="button"
               className="remove"
@@ -56,10 +59,10 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchCart: () => {
       dispatch(fetchCartItems())
-    },
-    removeOrderItem: () => {
-      dispatch() //TODO check in
     }
+    // removeOrderItem: () => {
+    //   dispatch() //TODO check in
+    // }
   }
 }
 
