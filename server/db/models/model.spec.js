@@ -3,6 +3,9 @@
 const {expect} = require('chai')
 const db = require('../index')
 const User = db.model('user')
+const Order = db.model('order')
+const OrderItem = db.model('orderModel')
+const Product = db.model('product')
 
 describe('User model', () => {
   beforeEach(() => {
@@ -31,3 +34,21 @@ describe('User model', () => {
     }) // end describe('correctPassword')
   }) // end describe('instanceMethods')
 }) // end describe('User model')
+
+describe('Order model', () => {
+  beforeEach(() => {
+    return db.sync({force: true})
+  })
+}) //end describe ('Order model')
+
+describe('OrderItem model', () => {
+  beforeEach(() => {
+    return db.sync({force: true})
+  })
+}) //end describe ('OrderItem model')
+
+describe('Product model', () => {
+  beforeEach(() => {
+    return db.sync({force: true})
+  })
+}) //end describe ('Product model')
