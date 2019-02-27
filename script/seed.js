@@ -63,9 +63,43 @@ const products = [
   }
 ]
 
+const users = [
+  {
+    username: 'cody',
+    password: '123',
+    email: 'cody@email.com'
+  },
+  {
+    username: 'lily',
+    password: '123',
+    email: 'lily@email.com'
+  },
+  {
+    username: 'marilyn',
+    password: '123',
+    email: 'marilyn@email.com'
+  },
+  {
+    username: 'kirsten',
+    password: '123',
+    email: 'kirsten@email.com'
+  },
+  {
+    username: 'jamila',
+    password: '123',
+    email: 'jamila@email.com'
+  }
+]
+
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
+
+  await Promise.all(
+    users.map(user => {
+      return User.create(user)
+    })
+  )
 
   await Promise.all(
     products.map(product => {
@@ -73,6 +107,7 @@ async function seed() {
     })
   )
 
+  console.log(`seeded ${users.length} users`)
   console.log(`seeded ${products.length} products`)
   console.log(`seeded successfully`)
 }
