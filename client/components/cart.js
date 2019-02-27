@@ -13,7 +13,6 @@ class Cart extends React.Component {
   }
 
   handleClick(orderItemId) {
-    event.preventDefault()
     this.props.removeOrderItem(orderItemId)
   }
 
@@ -32,7 +31,7 @@ class Cart extends React.Component {
             <p>{orderItem.product.price}</p>
             <p>{orderItem.product.quantity}</p>
             <button
-              type="submit"
+              type="button"
               className="remove"
               onClick={() => this.handleClick(orderItem.product.id)}
             >
