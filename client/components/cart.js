@@ -6,13 +6,15 @@ import {fetchCartItems} from '../store'
 class Cart extends React.Component {
   constructor(props) {
     super(props)
+    
+    this.handleRemoveButton = this.handleRemoveButton.bind(this)
   }
 
   componentDidMount() {
     this.props.fetchCart()
   }
 
-  handleClick(orderItemId) {
+  handleRemoveButton(orderItemId) {
     this.props.removeOrderItem(orderItemId)
   }
 
@@ -33,7 +35,7 @@ class Cart extends React.Component {
             <button
               type="button"
               className="remove"
-              onClick={() => this.handleClick(orderItem.product.id)}
+              onClick={() => this.handleRemoveButton(orderItem.product.id)}
             >
               {' '}
               Remove{' '}
