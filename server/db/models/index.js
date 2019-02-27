@@ -1,7 +1,7 @@
-const User = require('./user')
-const Product = require('./product')
-const OrderItem = require('./orderItem')
-const Order = require('./order')
+const User = require('./User')
+const Product = require('./Product')
+const OrderItem = require('./OrderItem')
+const Order = require('./Order')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
