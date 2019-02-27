@@ -20,12 +20,12 @@ class Cart extends React.Component {
 
   render() {
     const cart = this.props.cart
-
+    console.log('CART', cart)
     return (
       <div>
         {/* {console.log("TESTING")} */}
         {cart.map(orderItem => (
-          <div key={orderItem.product.id}>
+          <div key={orderItem.id}>
             <img src={orderItem.product.imageUrl} />
             <br />
             <h4>
