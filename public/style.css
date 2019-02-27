@@ -1,5 +1,27 @@
-body {
+* {
   font-family: sans-serif;
+}
+
+body {
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+}
+
+main:before {
+  content: ' ';
+  display: block;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.6;
+  background-image: url('https://images.roomstogo.com/images/product/ot_acc_99089229_succulents~Succulents-With-Wood-Bowl.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 a {
@@ -10,9 +32,39 @@ label {
   display: block;
 }
 
+/* NAVBAR */
+nav {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  background-color: #4d9e83;
+  z-index: 2;
+  padding: 5px 10px;
+}
+
 nav a {
-  display: inline-block;
-  margin: 1em;
+  color: #e2e2e2;
+  padding: 6px;
+  transition: 0.5s;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #e9f1f7;
+}
+
+nav .right {
+  margin-left: auto;
+}
+
+/* nav .store-nav {
+  
+} */
+
+/* NAV END */
+
+h1 {
+  color: #e2e2e2;
 }
 
 form div {
