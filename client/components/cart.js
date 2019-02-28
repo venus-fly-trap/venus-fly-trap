@@ -7,7 +7,7 @@ class Cart extends React.Component {
   constructor(props) {
     super(props)
 
-    this.handleRemoveButton = this.handleRemoveButton.bind(this)
+    this.removeHandler = this.removeHandler.bind(this)
   }
 
   componentDidMount() {
