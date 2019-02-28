@@ -36,7 +36,7 @@ const AuthForm = props => {
         <p>
           <i>Don't have an account yet?</i>{' '}
           <button type="button">
-            <a href="/signup">Click here to Sign Up!</a>
+            <a href="/signup">Click Here to Sign Up!</a>
           </button>
         </p>
       </div>
