@@ -5,8 +5,9 @@ import {fetchOneProduct, fetchCartItems, addCartItem, me} from '../store'
 class OneProduct extends React.Component {
   constructor(props) {
     super(props)
-
     this.handleAddToCart = this.handleAddToCart.bind(this)
+    this.isUserLoggedIn = this.isUserLoggedIn.bind(this)
+    this.redirectToLogin = this.redirectToLogin.bind(this)
   }
 
   componentDidMount() {
@@ -20,13 +21,28 @@ class OneProduct extends React.Component {
     this.props.addItem({productId, orderId})
   }
 
+  isUserLoggedIn() {
+    const user = this.props.user
+    if (Object.keys(user).length) return true
+    else return false
+  }
+
+  redirectToLogin() {
+    const history = this.props.history
+    history.push('/login')
+  }
+
   render() {
     const product = this.props.product
-
+    const buttonClickAction = this.isUserLoggedIn()
+      ? this.handleAddToCart
+      : this.redirectToLogin
     return (
       <div>
         {product.name}
-        <button onClick={this.handleAddToCart}>Add to Cart</button>
+        <button type="button" onClick={buttonClickAction}>
+          Add to Cart
+        </button>
       </div>
     )
   }
