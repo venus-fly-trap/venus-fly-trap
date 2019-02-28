@@ -34,7 +34,7 @@ const AuthForm = props => {
           {error && error.response && <div> {error.response.data} </div>}
         </form>
         <p>
-          <i>Don't have an account yet?</i>{' '}
+          <i>Don't have an account yet?</i>
           <button type="button">
             <a href="/signup">Click Here to Sign Up!</a>
           </button>
@@ -58,7 +58,7 @@ const AuthForm = props => {
             <input name="password" type="password" />
           </div>
           <div>
-            <button type="submit">{displayName}</button>{' '}
+            <button type="submit">{displayName}</button>
             <button type="button" className="googleOAuth">
               <a href="/auth/google">{displayName} with Google</a>
             </button>
