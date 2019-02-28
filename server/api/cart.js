@@ -40,15 +40,13 @@ function isAuthenticated(req, res, next) {
 }
 
 //delete an item on the current cart
-router.delete('/:productId', isAuthenticated, async (req, res, next) => {
+router.delete('/:productId', /*isAuthenticated,*/ async (req, res, next) => {
   try {
     await OrderItem.destroy({
       where: {
-        product: {
-          id: req.params.id
-        }
+        productId: req.params.productId
       }
-    }) //please check if I am picturing the orderItem db table correctly
+    })
   } catch (error) {
     next(error)
   }
