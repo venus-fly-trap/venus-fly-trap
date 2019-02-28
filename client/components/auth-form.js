@@ -34,7 +34,6 @@ const AuthForm = props => {
           {error && error.response && <div> {error.response.data} </div>}
         </form>
         <p>
-          <i>Don't have an account yet?</i>
           <button type="button">
             <a href="/signup">Click Here to Sign Up!</a>
           </button>
