@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {fetchCartItems} from '../store'
+import {fetchCartItems, deleteCartItem} from '../store'
 
 class Cart extends React.Component {
   constructor(props) {
@@ -14,34 +14,34 @@ class Cart extends React.Component {
     this.props.fetchCart()
   }
 
-  handleRemoveButton(orderItemId) {
-    //this.props.removeOrderItem(orderItemId)
+  removeHandler(productIdToRemove) {
+    this.props.deleteCartItem(productIdToRemove)
   }
 
   render() {
     const cart = this.props.cart
     return (
       <div>
-        {/* {cart.map(orderItem => (
-          <div key={orderItem.id}>
-            <img src={orderItem.product.imageUrl} />
+        {cart.map(cartItem => (
+          <div key={cartItem.id}>
+            <img src={cartItem.product.imageUrl} />
             <br />
             <h4>
-              <Link to={`/products/${orderItem.product.id}`}>
-                {orderItem.product.name}
+              <Link to={`/products/${cartItem.product.id}`}>
+                {cartItem.product.name}
               </Link>
             </h4>
-            <p>Price: ${orderItem.product.price / 100}</p>
-            <p>Quantity: {orderItem.quantity}</p>
+            <p>Price: ${cartItem.product.price / 100}</p>
+            <p>Quantity: {cartItem.quantity}</p>
             <button
               type="button"
               className="remove"
-              onClick={() => this.handleRemoveButton(orderItem.product.id)}
+              onClick={() => this.removeHandler(cartItem.product.id)}
             >
               Remove
             </button>
           </div>
-        ))} */}
+        ))}
       </div>
     )
   }
@@ -57,10 +57,10 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchCart: () => {
       dispatch(fetchCartItems())
+    },
+    deleteCartItem: productIdToRemove => {
+      dispatch(deleteCartItem(productIdToRemove))
     }
-    // removeOrderItem: () => {
-    //   dispatch() //TODO check in
-    // }
   }
 }
 
