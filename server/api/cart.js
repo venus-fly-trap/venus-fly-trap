@@ -1,16 +1,29 @@
 const router = require('express').Router()
-const {Order, OrderItem} = require('../db/models')
+const {Order, OrderItem, Product} = require('../db/models')
 module.exports = router
 
-router.get('/', async (req, res, next) => {
+//for showing OrderItems in cart
+router.get('/unpurchased', async (req, res, next) => {
   try {
-    //const orderId
+    const userId = req.user.id
 
-    const cartItems = await OrderItem.findAll({
+    const cartItems = await Order.findOne({
       where: {
-        //orderId
+        purchased: false,
+        userId
       }
     })
+
+    res.json(cartItems)
+  } catch (error) {
+    next(error)
+  }
+})
+
+//orderItems for cart
+router.get('/', async (req, res, next) => {
+  try {
+    const cartItems = await OrderItem.findAll()
 
     res.json(cartItems)
   } catch (error) {
@@ -22,15 +35,16 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const productId = req.body.productId
-    // const userId = req.user.id
-    //use orderId
-    const cartItem = await OrderItem.create({productId, userId})
+    const orderId = req.body.orderId
+
+    const cartItem = await OrderItem.create({productId, orderId})
     res.json(cartItem)
   } catch (error) {
     next(error)
   }
 })
 
+//for order history
 router.get('/history', async (req, res, next) => {
   try {
     const userId = req.user.id
