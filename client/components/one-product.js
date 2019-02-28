@@ -28,6 +28,7 @@ class OneProduct extends React.Component {
   }
 
   redirectToLogin() {
+    alert('You must be signed in to shop!')
     const history = this.props.history
     history.push('/login')
   }
