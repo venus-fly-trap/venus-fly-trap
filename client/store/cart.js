@@ -31,6 +31,7 @@ export const fetchCartItems = () => {
   }
 }
 
+//ids are orderId and productId
 export const addCartItem = ids => {
   return async dispatch => {
     try {

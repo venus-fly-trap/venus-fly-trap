@@ -9,9 +9,8 @@ const OrderItem = db.define(
       type: Sequelize.INTEGER,
       defaultValue: 1
     },
-    purchased: {
-      type: Sequelize.BOOLEAN,
-      defaultValue: false
+    price: {
+      type: Sequelize.INTEGER
     }
   },
   {

@@ -20,11 +20,9 @@ class Cart extends React.Component {
 
   render() {
     const cart = this.props.cart
-    console.log('CART', cart)
     return (
       <div>
-        {/* {console.log("TESTING")} */}
-        {cart.map(orderItem => (
+        {/* {cart.map(orderItem => (
           <div key={orderItem.id}>
             <img src={orderItem.product.imageUrl} />
             <br />
@@ -33,7 +31,7 @@ class Cart extends React.Component {
                 {orderItem.product.name}
               </Link>
             </h4>
-            <p>Price: ${orderItem.product.price}</p>
+            <p>Price: ${orderItem.product.price / 100}</p>
             <p>Quantity: {orderItem.quantity}</p>
             <button
               type="button"
@@ -43,7 +41,7 @@ class Cart extends React.Component {
               Remove
             </button>
           </div>
-        ))}
+        ))} */}
       </div>
     )
   }

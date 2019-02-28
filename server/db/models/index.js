@@ -6,14 +6,8 @@ const Order = require('./order')
 Order.belongsTo(User)
 User.hasMany(Order)
 
-OrderItem.belongsTo(User)
-User.hasMany(OrderItem)
-
-Order.belongsTo(OrderItem)
-OrderItem.hasMany(Order)
-
-OrderItem.belongsTo(Product)
-Product.hasMany(OrderItem)
+Product.belongsToMany(Order, {through: OrderItem})
+Order.belongsToMany(Product, {through: OrderItem})
 
 // Product.belongsTo(Category)
 // Category.hasMany(Product)
