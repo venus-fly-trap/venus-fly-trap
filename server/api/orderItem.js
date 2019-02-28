@@ -23,7 +23,9 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    const cartItem = await OrderItem.create(req.body)
+    const productId = req.body.productId
+    const userId = req.body.userId
+    const cartItem = await OrderItem.create({productId, userId})
     res.json(cartItem)
   } catch (error) {
     next(error)
