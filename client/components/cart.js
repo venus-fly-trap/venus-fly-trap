@@ -19,9 +19,10 @@ class Cart extends React.Component {
   }
 
   render() {
-    const cart = this.props.cart
-    return (
-      <div>
+    if (this.props.cart.id) {
+      const cart = this.props.cart.activeCart
+
+      return ( <div>
         {cart.map(cartItem => (
           <div key={cartItem.id}>
             <img src={cartItem.product.imageUrl} />
@@ -42,14 +43,15 @@ class Cart extends React.Component {
             </button>
           </div>
         ))}
-      </div>
-    )
+       </div>
+      )
+    }
   }
 }
 
 const mapStateToProps = state => {
   return {
-    cart: state.cart
+    cart: state.cart.activeCart
   }
 }
 

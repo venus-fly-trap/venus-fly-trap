@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchOneProduct, fetchCartItems, addCartItem, me} from '../store'
+import {fetchOneProduct, addCartItem, fetchCartItems} from '../store'
 
 class OneProduct extends React.Component {
   constructor(props) {
@@ -11,12 +11,13 @@ class OneProduct extends React.Component {
 
   componentDidMount() {
     this.props.fetchProduct()
-    this.props.getUser()
+    this.props.fetchCart()
   }
 
   handleAddToCart() {
     const productId = this.props.product.id
-    const orderId = this.props.cart.id //REPLACE WITH cart !!!!!!
+    const orderId = this.props.order.id
+
     this.props.addItem({productId, orderId})
   }
 
@@ -35,8 +36,7 @@ class OneProduct extends React.Component {
 const mapStateToProps = state => {
   return {
     product: state.product.selectedProduct,
-    user: state.user,
-    cart: state.cart
+    order: state.cart.activeCart
   }
 }
 
@@ -52,8 +52,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     addItem: ids => {
       dispatch(addCartItem(ids))
     },
-    getUser: () => {
-      dispatch(me())
+    fetchCart: () => {
+      dispatch(fetchCartItems())
     }
   }
 }
