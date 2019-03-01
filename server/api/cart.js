@@ -31,6 +31,28 @@ router.post('/', async (req, res, next) => {
   }
 })
 
+//utility function for delete route
+function isAuthenticated(req, res, next) {
+  if (req.user.authenticated) {
+    return next()
+  }
+  res.redirect('/')
+}
+
+//delete an item on the current cart
+router.delete('/:productId', /*isAuthenticated,*/ async (req, res, next) => {
+  try {
+    await OrderItem.destroy({
+      where: {
+        productId: req.params.productId
+      }
+    })
+  } catch (error) {
+    next(error)
+  }
+})
+
+//grab order history
 router.get('/history', async (req, res, next) => {
   try {
     const userId = req.user.id
