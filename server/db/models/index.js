@@ -7,7 +7,7 @@ Order.belongsTo(User)
 User.hasMany(Order)
 
 Product.belongsToMany(Order, {through: OrderItem})
-Order.belongsToMany(Product, {through: OrderItem})
+Order.belongsToMany(Product, {through: OrderItem, as: 'activeCart'})
 
 // Product.belongsTo(Category)
 // Category.hasMany(Product)
