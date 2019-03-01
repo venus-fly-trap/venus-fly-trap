@@ -19,34 +19,32 @@ class Cart extends React.Component {
   }
 
   render() {
-
     if (this.props.cart.id) {
       const cart = this.props.cart.activeCart
 
-      return ( <div>
-        {cart.map(cartItem => (
-          <div key={cartItem.id}>
-            <img src={cartItem.product.imageUrl} />
-            <br />
-            <h4>
-              <Link to={`/products/${cartItem.product.id}`}>
-                {cartItem.product.name}
-              </Link>
-            </h4>
-            <p>Price: ${cartItem.product.price / 100}</p>
-            <p>Quantity: {cartItem.quantity}</p>
-            <button
-              type="button"
-              className="remove"
-              onClick={() => this.removeHandler(cartItem.product.id)}
-            >
-              Remove
-            </button>
-          </div>
-        ))}
-       </div>
+      return (
+        <div>
+          {cart.map(cartItem => (
+            <div key={cartItem.id}>
+              <img src={cartItem.imageUrl} />
+              <br />
+              <h4>
+                <Link to={`/products/${cartItem.id}`}>{cartItem.name}</Link>
+              </h4>
+              <p>Price: ${cartItem.price / 100}</p>
+              <p>Quantity: {cartItem.quantity}</p>
+              <button
+                type="button"
+                className="remove"
+                onClick={() => this.removeHandler(cartItem.id)}
+              >
+                Remove
+              </button>
+            </div>
+          ))}
+        </div>
       )
-    }
+    } else return <div />
   }
 }
 
