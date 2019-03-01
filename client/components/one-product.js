@@ -17,6 +17,7 @@ class OneProduct extends React.Component {
   handleAddToCart() {
     const productId = this.props.product.id
     const orderId = this.props.order.id
+
     this.props.addItem({productId, orderId})
   }
 
@@ -44,6 +45,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     fetchProduct: () => {
       const productId = ownProps.match.params.productId
       dispatch(fetchOneProduct(productId))
+    },
+    fetchCart: () => {
+      dispatch(fetchCartItems())
     },
     addItem: ids => {
       dispatch(addCartItem(ids))

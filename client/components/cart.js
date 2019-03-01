@@ -1,28 +1,50 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {fetchCartItems} from '../store'
+import {fetchCartItems, deleteCartItem} from '../store'
 
 class Cart extends React.Component {
   constructor(props) {
     super(props)
 
-    this.handleRemoveButton = this.handleRemoveButton.bind(this)
+    this.removeHandler = this.removeHandler.bind(this)
   }
 
   componentDidMount() {
     this.props.fetchCart()
   }
 
-  handleRemoveButton(orderItemId) {
-    //this.props.removeOrderItem(orderItemId)
+  removeHandler(productIdToRemove) {
+    this.props.deleteCartItem(productIdToRemove)
   }
 
   render() {
     if (this.props.cart.id) {
       const cart = this.props.cart.activeCart
 
-      return <div>{cart.map(orderItem => <h1>{orderItem.name}</h1>)}</div>
+      return ( <div>
+        {cart.map(cartItem => (
+          <div key={cartItem.id}>
+            <img src={cartItem.product.imageUrl} />
+            <br />
+            <h4>
+              <Link to={`/products/${cartItem.product.id}`}>
+                {cartItem.product.name}
+              </Link>
+            </h4>
+            <p>Price: ${cartItem.product.price / 100}</p>
+            <p>Quantity: {cartItem.quantity}</p>
+            <button
+              type="button"
+              className="remove"
+              onClick={() => this.removeHandler(cartItem.product.id)}
+            >
+              Remove
+            </button>
+          </div>
+        ))}
+       </div>
+      )
     }
   }
 }
@@ -37,6 +59,9 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchCart: () => {
       dispatch(fetchCartItems())
+    },
+    deleteCartItem: productIdToRemove => {
+      dispatch(deleteCartItem(productIdToRemove))
     }
   }
 }
