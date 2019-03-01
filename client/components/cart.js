@@ -19,6 +19,7 @@ class Cart extends React.Component {
   }
 
   render() {
+
     if (this.props.cart.id) {
       const cart = this.props.cart.activeCart
 
