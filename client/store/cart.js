@@ -22,7 +22,10 @@ const cartState = {
 const getCartItems = activeCart => ({type: GET_CART, activeCart})
 const getHistory = history => ({type: GET_HISTORY, history})
 
-const removeCartItem = productIdToRemove => ({type: REMOVE_CART_ITEM, roductIdToRemove})
+const removeCartItem = productIdToRemove => ({
+  type: REMOVE_CART_ITEM,
+  roductIdToRemove
+})
 
 /**
  * THUNK CREATORS
@@ -61,8 +64,9 @@ export const fetchCartHistory = () => {
     } catch (error) {
       console.error(error)
     }
+  }
 }
-  
+
 export const deleteCartItem = productIdToRemove => {
   return async dispatch => {
     try {

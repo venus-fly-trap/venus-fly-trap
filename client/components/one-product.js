@@ -53,7 +53,8 @@ class OneProduct extends React.Component {
 const mapStateToProps = state => {
   return {
     product: state.product.selectedProduct,
-    order: state.cart.activeCart
+    order: state.cart.activeCart,
+    user: state.user
   }
 }
 
@@ -68,9 +69,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     addItem: ids => {
       dispatch(addCartItem(ids))
-    },
-    fetchCart: () => {
-      dispatch(fetchCartItems())
     }
   }
 }
