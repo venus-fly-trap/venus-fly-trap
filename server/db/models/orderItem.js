@@ -9,7 +9,6 @@ const OrderItem = db.define('orderItem', {
   },
   price: {
     type: Sequelize.INTEGER
-    }
   },
 })
 
