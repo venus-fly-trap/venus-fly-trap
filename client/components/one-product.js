@@ -1,33 +1,50 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchOneProduct, addCartItem, fetchOrder} from '../store'
+import {fetchOneProduct, addCartItem, fetchCartItems} from '../store'
 
 class OneProduct extends React.Component {
   constructor(props) {
     super(props)
-
     this.handleAddToCart = this.handleAddToCart.bind(this)
+    this.isUserLoggedIn = this.isUserLoggedIn.bind(this)
+    this.redirectToLogin = this.redirectToLogin.bind(this)
   }
 
   componentDidMount() {
     this.props.fetchProduct()
-    this.props.fetchOrder()
+    this.props.fetchCart()
   }
 
   handleAddToCart() {
     const productId = this.props.product.id
     const orderId = this.props.order.id
-    console.log(orderId)
+
     this.props.addItem({productId, orderId})
+  }
+
+  isUserLoggedIn() {
+    const user = this.props.user
+    if (Object.keys(user).length) return true
+    else return false
+  }
+
+  redirectToLogin() {
+    alert('You must be signed in to shop!')
+    const history = this.props.history
+    history.push('/login')
   }
 
   render() {
     const product = this.props.product
-
+    const buttonClickAction = this.isUserLoggedIn()
+      ? this.handleAddToCart
+      : this.redirectToLogin
     return (
       <div>
         {product.name}
-        <button onClick={this.handleAddToCart}>Add to Cart</button>
+        <button type="button" onClick={buttonClickAction}>
+          Add to Cart
+        </button>
       </div>
     )
   }
@@ -36,7 +53,8 @@ class OneProduct extends React.Component {
 const mapStateToProps = state => {
   return {
     product: state.product.selectedProduct,
-    order: state.cart.order
+    order: state.cart.activeCart,
+    user: state.user
   }
 }
 
@@ -46,11 +64,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       const productId = ownProps.match.params.productId
       dispatch(fetchOneProduct(productId))
     },
+    fetchCart: () => {
+      dispatch(fetchCartItems())
+    },
     addItem: ids => {
       dispatch(addCartItem(ids))
-    },
-    fetchOrder: () => {
-      dispatch(fetchOrder())
     }
   }
 }

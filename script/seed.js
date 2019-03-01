@@ -9,57 +9,57 @@ const products = [
     description:
       'Crassula ovata, commonly known as jade plant, lucky plant, money plant or money tree, is a succulent plant with small pink or white flowers. It is native to South Africa and Mozambique, and is common as a houseplant worldwide.',
     imageUrl: 'images/jade.png',
-    price: 5.25
+    price: 525
   },
   {
     name: 'Paddle',
     description:
       'What is a paddle plant? Also known as flapjack paddle plant (Kalanchoe thyrsiflora), this succulent kalanchoe plant has with thick, rounded, paddle-shaped leaves. The plant is also known as red pancake because the leaves frequently take on a reddish or deep pink tint during the winter.',
     imageUrl: 'images/paddle.png',
-    price: 5.25
+    price: 525
   },
   {
     name: 'Green Prince',
     description: 'Succulent Echeveria Green Prince',
     imageUrl: 'images/green-prince.png',
-    price: 5.25
+    price: 525
   },
   {
     name: 'Snake Plant',
     description:
       "Viper's Bowstring Hemp- Sansevieria trifasciata is a species of flowering plant in the family Asparagaceae, native to tropical West Africa from Nigeria east to the Congo. It is most commonly known as the snake plant, mother-in-law's tongue, and viper's bowstring hemp, among other names",
     imageUrl: 'images/snake-plant.png',
-    price: 5.25
+    price: 525
   },
   {
     name: 'Flat Cactus',
     description: 'Lorem Ipsum Flat Cactus',
     imageUrl: 'images/flat-cactus.png',
-    price: 5.25
+    price: 525
   },
   {
     name: 'Spiral Cactus',
     description: 'Lorem Ipsum Spiral Cactus',
     imageUrl: 'images/spiral-cactus.png',
-    price: 5.25
+    price: 525
   },
   {
     name: 'Paddle Blue Pot',
     description: 'Lorem Ipsum Paddle Blue Bot',
     imageUrl: 'images/ paddle-blue-pot.png',
-    price: 5.25
+    price: 525
   },
   {
     name: 'Green Prince Pink Pot',
     description: ' Lorem Ipsum Green Prince Pink Pot',
     imageUrl: 'images/green-prince-pink-pot.png',
-    price: 5.25
+    price: 525
   },
   {
     name: 'Green White Pot',
     description: 'Lorem Ipsum Green White Pot',
     imageUrl: 'images/green-white-pot.png',
-    price: 5.25
+    price: 525
   }
 ]
 

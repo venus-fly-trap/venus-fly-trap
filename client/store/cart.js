@@ -5,35 +5,38 @@ import axios from 'axios'
  * ACTION TYPES
  */
 const GET_CART = 'GET_CART'
-const GET_ORDER = 'GET_ORDER'
+const GET_HISTORY = 'GET_HISTORY'
+const REMOVE_CART_ITEM = 'REMOVE_CART_ITEM'
 
 /**
  * INITIAL STATE
  */
 const cartState = {
-  orderItems: [],
-  order: {}
+  activeCart: {},
+  orderHistory: []
 }
 
 /**
  * ACTION CREATORS
  */
-const getCartItems = cart => ({type: GET_CART, cart})
-const getOrder = order => ({type: GET_ORDER, order})
+const getCartItems = activeCart => ({type: GET_CART, activeCart})
+const getHistory = history => ({type: GET_HISTORY, history})
+
+const removeCartItem = productIdToRemove => ({
+  type: REMOVE_CART_ITEM,
+  roductIdToRemove
+})
 
 /**
  * THUNK CREATORS
  */
 
-export const fetchCartItems = orderId => {
+export const fetchCartItems = () => {
   return async dispatch => {
     try {
       const {data} = await axios.get('/api/cart')
-      const correctCart = data.filter(item =>
-        console.log(orderId, item.orderId)
-      )
-      console.log(correctCart)
-      dispatch(getCartItems(correctCart))
+
+      dispatch(getCartItems(data))
     } catch (error) {
       console.error(error)
     }
@@ -46,18 +49,29 @@ export const addCartItem = ids => {
     try {
       await axios.post('/api/cart', ids)
 
-      dispatch(fetchCartItems(ids.orderId))
+      dispatch(fetchCartItems())
     } catch (error) {
       console.error(error)
     }
   }
 }
 
-export const fetchOrder = () => {
+export const fetchCartHistory = () => {
   return async dispatch => {
     try {
-      const {data} = await axios.get('/api/cart/unpurchased')
-      dispatch(getOrder(data))
+      const {data} = await axios.get('/api/cart/history')
+      dispatch(getHistory(data))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
+
+export const deleteCartItem = productIdToRemove => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.delete(`/api/cart/${productIdToRemove}`)
+      dispatch(removeCartItem(data))
     } catch (error) {
       console.error(error)
     }
@@ -70,9 +84,16 @@ export const fetchOrder = () => {
 export default function(state = cartState, action) {
   switch (action.type) {
     case GET_CART:
-      return {...state, cart: action.cart}
-    case GET_ORDER:
-      return {...state, order: action.order}
+      return {...state, activeCart: action.activeCart}
+    case GET_HISTORY:
+      return {...state, orderHistory: action.history}
+    case REMOVE_CART_ITEM: {
+      //check to make sure i am accessing the combined reducers correctly.
+      const updatedCart = state.filter(cartItem => {
+        return cartItem.product.id !== action.productIdToRemove
+      })
+      return {updatedCart}
+    }
     default:
       return state
   }
