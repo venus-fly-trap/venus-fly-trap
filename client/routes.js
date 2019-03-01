@@ -9,7 +9,7 @@ import {
   AllProducts,
   OneProduct,
   Cart,
-  CheckoutPage
+  CheckoutReview
 } from './components'
 import {me} from './store'
 
@@ -32,7 +32,7 @@ class Routes extends Component {
         <Route path="/cart" component={Cart} />
         <Route exact path="/products" component={AllProducts} />
         <Route path="/products/:productId" component={OneProduct} />
-        <Route path="/checkout" component={CheckoutPage} />
+        <Route path="/review" component={CheckoutReview} />
 
         {isLoggedIn && (
           <Switch>
