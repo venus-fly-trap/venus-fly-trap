@@ -6,19 +6,33 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {Elements, StripeProvider} from 'react-stripe-elements'
 import CheckoutForm from './CheckoutForm'
+import CheckoutReview from './CheckoutReview'
+import CheckoutSuccess from './CheckoutSuccess'
+
 // import {STRIPE_API_KEY} from '../secrets'
 
 class CheckoutMain extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      showResults: false
+      // showResults: false
+      displayPayment: false,
+      displayReview: false
     }
-    this.clickHandler = this.clickHandler.bind(this)
+    // this.clickHandler = this.clickHandler.bind(this)
+    this.displayPayment = this.displayPayment.bind(this)
+    this.displayReview = this.displayReview.bind(this)
   }
 
-  clickHandler() {
-    this.setState({showResults: true})
+  // clickHandler() {
+  //   this.setState({showResults: true})
+  // }
+  displayPayment() {
+    this.setState({displayPayment: true})
+  }
+
+  displayReview() {
+    this.setState({displayReview: true})
   }
 
   render() {
@@ -27,7 +41,38 @@ class CheckoutMain extends Component {
         <StripeProvider apiKey="pk_test_TYooMQauvdEDq54NiTphI7jx">
           <div className="checkout">
             <br />
-            <Link to="/products"> Back to Shopping </Link>
+            <div className="container">
+              <ul className="progressbar">
+                <li className="active">Cart</li>
+                <li>Payment</li>
+                <li>Review Order</li>
+                <li>Confirmation</li>
+              </ul>
+            </div>
+            <br />
+            <br />
+            <div className="container">
+              <button type="button">
+                {' '}
+                <Link to="/products"> Back to Shopping </Link>{' '}
+              </button>
+              <button type="button">
+                {' '}
+                <Link to="/cart"> Edit Cart </Link>{' '}
+              </button>
+              <button type="button" onClick={this.displayReview}>
+                {' '}
+                Review Order{' '}
+              </button>
+              <button type="button" onClick={this.displayReview}>
+                {' '}
+                Finalize Order{' '}
+              </button>
+            </div>
+            <br />
+            {this.state.displayPayment ? <CheckoutForm /> : null}
+            {this.state.displayPayment ? <CheckoutReview /> : null}
+            {this.state.displayPayment ? <CheckoutSuccess /> : null}
             <Elements>
               <CheckoutForm />
             </Elements>
