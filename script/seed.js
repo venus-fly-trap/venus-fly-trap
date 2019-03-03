@@ -46,7 +46,7 @@ const products = [
   {
     name: 'Paddle Blue Pot',
     description: 'Lorem Ipsum Paddle Blue Bot',
-    imageUrl: 'images/ paddle-blue-pot.png',
+    imageUrl: 'images/paddle-blue-pot.png',
     price: 525
   },
   {

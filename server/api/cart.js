@@ -8,17 +8,12 @@ router.get('/', async (req, res, next) => {
   try {
     const userId = req.user.id
 
-    const cart = await Order.findOne(
-      {
-        include: [{model: Product, as: 'activeCart'}]
-      },
-      {
-        where: {
-          purchased: false,
-          userId
-        }
+    const cart = await Order.findOne({
+      where: {
+        purchased: false,
+        userId
       }
-    )
+    })
     res.json(cart)
   } catch (error) {
     next(error)
@@ -30,6 +25,7 @@ router.post('/', async (req, res, next) => {
   try {
     const productId = req.body.productId
     const orderId = req.body.orderId
+    const quantity = req.body.quantity
 
     const cartItem = await OrderItem.create({productId, orderId})
 
