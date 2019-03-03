@@ -3,7 +3,7 @@ const router = require('express').Router()
 const {Order, OrderItem, Product} = require('../db/models')
 module.exports = router
 
-//our cart w/ unpurchased items
+//our cart w/ unpurchased items. Is an object
 router.get('/', async (req, res, next) => {
   try {
     const userId = req.user.id
@@ -39,6 +39,25 @@ router.post('/', async (req, res, next) => {
   }
 })
 
+router.put('/:productId', async (req, res, next) => {
+  try {
+    await OrderItem.update(
+      {
+        quantity: quantity++
+      },
+      {
+        where: {
+          productId: req.params.productId
+        }
+      }
+    )
+
+    res.sendStatus(204)
+  } catch (error) {
+    next(error)
+  }
+})
+
 //utility function for delete route
 function isAuthenticated(req, res, next) {
   if (req.user.authenticated) {
@@ -57,6 +76,8 @@ router.delete(
           productId: req.params.productId
         }
       })
+
+      res.sendStatus(204)
     } catch (error) {
       next(error)
     }

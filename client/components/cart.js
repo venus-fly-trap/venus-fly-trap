@@ -7,15 +7,16 @@ class Cart extends React.Component {
   constructor(props) {
     super(props)
 
-    this.removeHandler = this.removeHandler.bind(this)
+    this.removeItem = this.removeItem.bind(this)
   }
 
   componentDidMount() {
     this.props.fetchCart()
   }
 
-  removeHandler(productIdToRemove) {
-    this.props.deleteCartItem(productIdToRemove)
+  removeItem(evt) {
+    const productId = evt.target.id
+    this.props.deleteCartItem(productId)
   }
 
   render() {
@@ -34,9 +35,9 @@ class Cart extends React.Component {
               <p>Price: ${cartItem.price / 100}</p>
               <p>Quantity: {cartItem.quantity}</p>
               <button
-                type="button"
                 className="remove"
-                onClick={() => this.removeHandler(cartItem.id)}
+                id={cartItem.id}
+                onClick={this.removeItem}
               >
                 Remove
               </button>
@@ -50,7 +51,7 @@ class Cart extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    cart: state.cart.activeCart
+    cart: state.cart
   }
 }
 
