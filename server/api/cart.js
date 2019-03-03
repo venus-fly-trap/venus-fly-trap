@@ -76,6 +76,8 @@ router.delete(
           productId: req.params.productId
         }
       })
+
+      res.sendStatus(204)
     } catch (error) {
       next(error)
     }
