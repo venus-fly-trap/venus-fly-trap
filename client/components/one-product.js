@@ -22,15 +22,18 @@ class OneProduct extends React.Component {
   }
 
   handleAddToCart() {
+    const product = this.props.product
     const productId = this.props.product.id
     const orderId = this.props.order.id
 
-    this.props.addItem({productId, orderId})
+    this.props.addItem({productId, orderId}, product)
   }
 
   handleRemoveFromCart() {
     const productId = this.props.product.id
-    this.props.deleteCartItem(productId)
+    const orderId = this.props.order.id
+
+    this.props.deleteCartItem(productId, orderId)
   }
 
   isUserLoggedIn() {
@@ -59,7 +62,7 @@ class OneProduct extends React.Component {
       const buttonClickAction = this.isUserLoggedIn()
         ? this.handleAddToCart
         : this.redirectToLogin
-      
+
       return (
         <div>
           <div className="detailed-container">
@@ -117,11 +120,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     fetchCart: () => {
       dispatch(fetchCartItems())
     },
-    addItem: ids => {
-      dispatch(addCartItem(ids))
+    addItem: (ids, product) => {
+      dispatch(addCartItem(ids, product))
     },
-    deleteCartItem: productIdToRemove => {
-      dispatch(deleteCartItem(productIdToRemove))
+    deleteCartItem: (productId, orderId) => {
+      dispatch(deleteCartItem(productId, orderId))
     }
   }
 }

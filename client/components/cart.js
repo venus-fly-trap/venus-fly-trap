@@ -15,8 +15,10 @@ class Cart extends React.Component {
   }
 
   removeItem(evt) {
-    const productId = evt.target.id
-    this.props.deleteCartItem(productId)
+    const productId = Number(evt.target.id)
+    const orderId = this.props.cart.id
+
+    this.props.deleteCartItem(productId, orderId)
   }
 
   render() {
@@ -66,8 +68,8 @@ const mapDispatchToProps = dispatch => {
     fetchCart: () => {
       dispatch(fetchCartItems())
     },
-    deleteCartItem: productIdToRemove => {
-      dispatch(deleteCartItem(productIdToRemove))
+    deleteCartItem: (productId, orderId) => {
+      dispatch(deleteCartItem(productId, orderId))
     }
   }
 }
