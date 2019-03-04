@@ -1,6 +1,11 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchOneProduct, addCartItem, fetchCartItems} from '../store'
+import {
+  fetchOneProduct,
+  addCartItem,
+  fetchCartItems,
+  deleteCartItem
+} from '../store'
 
 class OneProduct extends React.Component {
   constructor(props) {
@@ -8,6 +13,7 @@ class OneProduct extends React.Component {
     this.handleAddToCart = this.handleAddToCart.bind(this)
     this.isUserLoggedIn = this.isUserLoggedIn.bind(this)
     this.redirectToLogin = this.redirectToLogin.bind(this)
+    this.handleRemoveFromCart = this.handleRemoveFromCart.bind(this)
   }
 
   componentDidMount() {
@@ -20,6 +26,11 @@ class OneProduct extends React.Component {
     const orderId = this.props.order.id
 
     this.props.addItem({productId, orderId})
+  }
+
+  handleRemoveFromCart() {
+    const productId = this.props.product.id
+    this.props.deleteCartItem(productId)
   }
 
   isUserLoggedIn() {
@@ -35,25 +46,59 @@ class OneProduct extends React.Component {
   }
 
   render() {
-    const product = this.props.product
-    const buttonClickAction = this.isUserLoggedIn()
-      ? this.handleAddToCart
-      : this.redirectToLogin
-    return (
-      <div>
-        {product.name}
-        <button type="button" onClick={buttonClickAction}>
-          Add to Cart
-        </button>
-      </div>
-    )
+    if (this.props.order.id) {
+      const product = this.props.product
+      const inCart = this.props.order.activeCart.filter(
+        item => item.id === product.id
+      )
+
+      const buttonClickAction = this.isUserLoggedIn()
+        ? this.handleAddToCart
+        : this.redirectToLogin
+      return (
+        <div>
+          <div className="detailed-container">
+            <img src={product.imageUrl} />
+            <div className="about">
+              <h1>{product.name}</h1>
+              <hr />
+              {inCart.length === 0 ? (
+                <button type="button" name="add" onClick={buttonClickAction}>
+                  Add to Cart
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  className="remove"
+                  onClick={this.handleRemoveFromCart}
+                >
+                  Remove from Cart
+                </button>
+              )}
+              <p>
+                <b>Stock</b>: {product.stock}
+              </p>
+              <p>
+                <b>Price</b>: ${product.price / 100}
+              </p>
+              <p>
+                <b>Description</b>:
+              </p>
+              {product.description}
+            </div>
+          </div>
+        </div>
+      )
+    } else {
+      return <div />
+    }
   }
 }
 
 const mapStateToProps = state => {
   return {
     product: state.product.selectedProduct,
-    order: state.cart.activeCart,
+    order: state.cart,
     user: state.user
   }
 }
@@ -69,6 +114,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     addItem: ids => {
       dispatch(addCartItem(ids))
+    },
+    deleteCartItem: productIdToRemove => {
+      dispatch(deleteCartItem(productIdToRemove))
     }
   }
 }

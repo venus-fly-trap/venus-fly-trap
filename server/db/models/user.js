@@ -8,8 +8,8 @@ const User = db.define('user', {
     unique: true,
     allowNull: false,
     validate: {
-      notEmpty: true,
-      len: [4, 15]
+      notEmpty: true
+      // len: [4, 15] I am commenting this out bc Google Oauth sometimes only returns an email (we don't have access to name). In that case, as backup, we will set username as email, which can be longer than 15 characters sometimes.
     }
   },
   password: {
@@ -35,6 +35,10 @@ const User = db.define('user', {
     validate: {
       isEmail: true
     }
+  },
+  googleId: {
+    type: Sequelize.STRING,
+    allowNull: true
   }
 })
 
