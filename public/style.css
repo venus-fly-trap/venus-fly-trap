@@ -162,6 +162,7 @@ table {
   border-radius: 5px;
   background-color: rgb(100, 161, 100);
   color: white;
+}
 
 /* START - stripe css */
 .StripeElement {
@@ -309,7 +310,7 @@ table {
 
 /* START - landing page image and button*/
 
-/* One product view*/
+/* ONE PRODUCT VIEW*/
 .detailed-container {
   display: flex;
   flex-flow: row wrap;
@@ -335,7 +336,7 @@ table {
   flex: 2 0 60%;
 }
 
-/* ALL STUDENTS PAGE */
+/* ALL PRODUCTS PAGE */
 .products-container {
   max-width: 900px;
   display: flex;
