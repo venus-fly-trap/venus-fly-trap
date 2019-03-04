@@ -84,7 +84,7 @@ class CheckoutReview extends React.Component {
                     onClick={this.handleCheckoutButton}
                     id="checkOutButton"
                   >
-                    Checkout ❯<i className="fa fa-angle-right" />
+                    Checkout ❯ <i className="fa fa-angle-right" />
                   </button>
                 </td>
               </tr>

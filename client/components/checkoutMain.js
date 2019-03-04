@@ -106,6 +106,10 @@ class CheckoutMain extends Component {
             <Elements>
               <CheckoutForm />
             </Elements>
+            <button type="button">
+              {' '}
+              <h3 onClick={this.displayReview}> Checkout </h3>{' '}
+            </button>
           </div>
         </StripeProvider>
       </div>

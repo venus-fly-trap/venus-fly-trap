@@ -29,8 +29,12 @@ export class CheckoutForm extends React.Component {
     return (
       <div className="checkout">
         <br />
-        <h3>PAYMENT</h3>
+        <h2>Payment Information</h2>
+        <br />
+        <br />
+        <h2>Proceed To Checkout</h2>
 
+        {/* 
         <div className="card">
           <form action="#">
             <label>Credit Card Number </label>
@@ -57,7 +61,8 @@ export class CheckoutForm extends React.Component {
         <CardElement />
         <button type="button" onClick={this.submit}>
           Submit
-        </button>
+        </button> */}
+
         <br />
       </div>
     )
