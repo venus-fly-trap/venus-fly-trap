@@ -199,7 +199,7 @@ table {
 
 .container {
   width: 600px;
-  margin: 100px auto;
+  margin: auto;
 }
 .progressbar {
   counter-reset: step;
@@ -325,10 +325,7 @@ table {
 /* START - landing page image and button*/
 
 /* ONE PRODUCT VIEW*/
-<<<<<<<
-  head
-  =======>>>>>>>71542e517f0eb40382370c50d7497e9ae48c0489
-  .detailed-container {
+.detailed-container {
   display: flex;
   flex-flow: row wrap;
   align-items: flex-start;
