@@ -8,57 +8,62 @@ const products = [
     name: 'Jade',
     description:
       'Crassula ovata, commonly known as jade plant, lucky plant, money plant or money tree, is a succulent plant with small pink or white flowers. It is native to South Africa and Mozambique, and is common as a houseplant worldwide.',
-    imageUrl: 'images/jade.png',
+    imageUrl: 'https://i.imgur.com/7bKsgIq.png',
     price: 525
   },
   {
     name: 'Paddle',
     description:
       'What is a paddle plant? Also known as flapjack paddle plant (Kalanchoe thyrsiflora), this succulent kalanchoe plant has with thick, rounded, paddle-shaped leaves. The plant is also known as red pancake because the leaves frequently take on a reddish or deep pink tint during the winter.',
-    imageUrl: 'images/paddle.png',
+    imageUrl: 'https://i.imgur.com/bjQWuJs.png',
     price: 525
   },
   {
     name: 'Green Prince',
-    description: 'Succulent Echeveria Green Prince',
-    imageUrl: 'images/green-prince.png',
+    description:
+      'Succulent Echeveria Green Prince. Very royal. Requires pampering, and always be sure to address it as Your Majesty.',
+    imageUrl: 'https://i.imgur.com/qM8yorU.png',
     price: 525
   },
   {
     name: 'Snake Plant',
     description:
       "Viper's Bowstring Hemp- Sansevieria trifasciata is a species of flowering plant in the family Asparagaceae, native to tropical West Africa from Nigeria east to the Congo. It is most commonly known as the snake plant, mother-in-law's tongue, and viper's bowstring hemp, among other names",
-    imageUrl: 'images/snake-plant.png',
+    imageUrl: 'https://i.imgur.com/GW4YIdA.png',
     price: 525
   },
   {
     name: 'Flat Cactus',
-    description: 'Lorem Ipsum Flat Cactus',
-    imageUrl: 'images/flat-cactus.png',
+    description: 'This cactus is pretty flat.',
+    imageUrl: 'https://i.imgur.com/QEPBkmZ.png',
     price: 525
   },
   {
     name: 'Spiral Cactus',
-    description: 'Lorem Ipsum Spiral Cactus',
-    imageUrl: 'images/spiral-cactus.png',
+    description:
+      'This plant likes piña cooladas, and getting caught in the rain. It is not into yoga and it has half a brain. It also loves making love at midnight in the dunes on the cape. It is definitely the one you have been looking for.',
+    imageUrl: 'https://i.imgur.com/ZyUFsHz.png',
     price: 525
   },
   {
     name: 'Paddle Blue Pot',
-    description: 'Lorem Ipsum Paddle Blue Bot',
-    imageUrl: 'images/ paddle-blue-pot.png',
+    description:
+      'Will raise me up? Will you help me down? Will you get me right out of this godforsaken town? Will you make it all a little less cold? (I can do that, oh ohhh yeah I can do that)',
+    imageUrl: 'https://i.imgur.com/h77fA3S.png',
     price: 525
   },
   {
     name: 'Green Prince Pink Pot',
-    description: ' Lorem Ipsum Green Prince Pink Pot',
-    imageUrl: 'images/green-prince-pink-pot.png',
+    description:
+      "Will you cater to every fantasy I got? Will you hose me down with holy water if I get to hot (hot)? Will you take me places I've never known? (I can do that, oh ohhh yeah I can do that)",
+    imageUrl: 'https://i.imgur.com/5In3LIi.png',
     price: 525
   },
   {
-    name: 'Green White Pot',
-    description: 'Lorem Ipsum Green White Pot',
-    imageUrl: 'images/green-white-pot.png',
+    name: 'Green Prince White Pot',
+    description:
+      "I know the territory, I've been around, it'll all turn to dust and we'll all fall down. Sooner or later you'll be screwin around (I won't do that, no nooo I won't do that)",
+    imageUrl: 'https://i.imgur.com/Wj3YGNw.png',
     price: 525
   }
 ]

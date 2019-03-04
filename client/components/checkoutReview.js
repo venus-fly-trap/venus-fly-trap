@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import {fetchCartItems} from '../store'
 
 class CheckoutReview extends React.Component {
@@ -21,6 +22,7 @@ class CheckoutReview extends React.Component {
 
   render() {
     const cart = this.props.cart.activeCart
+    
     if (cart) {
       const totalPrice = cart.reduce(
         (accum, current) => accum + current.price,

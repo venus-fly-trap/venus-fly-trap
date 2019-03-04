@@ -1,5 +1,6 @@
 * {
   font-family: sans-serif;
+  color: #2a2a2a;
 }
 
 body {
@@ -7,6 +8,7 @@ body {
   padding: 0;
   margin: 0;
   width: 100vw;
+  font-size: 10pt;
 }
 
 main:before {
@@ -19,7 +21,7 @@ main:before {
   height: 100%;
   z-index: -1;
   opacity: 0.6;
-  background-image: url('https://images.roomstogo.com/images/product/ot_acc_99089229_succulents~Succulents-With-Wood-Bowl.jpeg');
+  /* background-image: url('https://images.roomstogo.com/images/product/ot_acc_99089229_succulents~Succulents-With-Wood-Bowl.jpeg'); */
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -37,7 +39,7 @@ nav {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
-  background-color: #4d9e83;
+  background-color: #282828;
   z-index: 2;
   padding: 5px 10px;
 }
@@ -83,7 +85,7 @@ nav .right {
 
 /* NAV END */
 
-h1 {
+nav h1 {
   color: #e2e2e2;
 }
 
@@ -159,4 +161,241 @@ table {
   border-radius: 5px;
   background-color: rgb(100, 161, 100);
   color: white;
+
+/* START - stripe css */
+.StripeElement {
+  box-sizing: border-box;
+
+  height: 40px;
+
+  padding: 10px 12px;
+
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: white;
+
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+
+/* END - stripe css */
+
+/* START - checkout progress bar css */
+
+.container {
+  width: 600px;
+  margin: 100px auto;
+}
+.progressbar {
+  counter-reset: step;
+}
+.progressbar li {
+  list-style-type: none;
+  width: 25%;
+  float: left;
+  font-size: 12px;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  color: #7d7d7d;
+}
+.progressbar li:before {
+  width: 30px;
+  height: 30px;
+  content: counter(step);
+  counter-increment: step;
+  line-height: 30px;
+  border: 2px solid #7d7d7d;
+  display: block;
+  text-align: center;
+  margin: 0 auto 10px auto;
+  border-radius: 50%;
+  background-color: white;
+}
+.progressbar li:after {
+  width: 100%;
+  height: 2px;
+  content: '';
+  position: absolute;
+  background-color: #7d7d7d;
+  top: 15px;
+  left: -50%;
+  z-index: -1;
+}
+.progressbar li:first-child:after {
+  content: none;
+}
+.progressbar li.active {
+  color: green;
+}
+.progressbar li.active:before {
+  border-color: #55b776;
+}
+.progressbar li.active + li:after {
+  background-color: #55b776;
+}
+
+/* END - checkout progress bar css */
+
+/* START - landing page image and button*/
+
+/* .landing-page {
+  position: center;
+  width: 100%;
+  max-width: 400px;
+} */
+
+.landing-page img {
+  width: 100%;
+  height: auto;
+}
+
+.link {
+  color: white;
+}
+
+.link:hover {
+  color: yellow;
+}
+
+.landing-page .btn {
+  position: absolute;
+  top: 55%;
+  left: 66%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #555;
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.landing-page .promotion {
+  position: absolute;
+  top: 45%;
+  left: 62%;
+  color: #555;
+  font-size: 16px;
+  /* padding: 12px 24px; */
+
+  text-align: center;
+}
+
+.landing-page .btn:hover {
+  background-color: black;
+}
+
+/* START - landing page image and button*/
+
+/* One product view*/
+.detailed-container {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+  background-color: #ffffff;
+  margin: 10px auto;
+  padding: 15px;
+  max-width: 900px;
+}
+
+.detailed-container img {
+  flex: 1 0 20%;
+  width: 100px;
+  margin-right: 10px;
+}
+
+.detailed-container h1 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.about {
+  flex: 2 0 60%;
+}
+
+/* ALL STUDENTS PAGE */
+.products-container {
+  max-width: 900px;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: stretch;
+  margin: 10px auto;
+}
+
+.products-container h1 {
+  flex: 100%;
+}
+
+.products {
+  flex: 0 0 20%;
+  display: flex;
+  flex-direction: column;
+  min-width: 155px;
+  text-align: center;
+  background-color: #ffffff;
+  padding: 10px;
+  margin: 5px;
+  transition: 0.5s;
+}
+
+.products:hover {
+  background-color: #ffffff;
+}
+
+.products img {
+  width: 100%;
+  margin: auto;
+}
+
+.products h3 {
+  font-weight: bold;
+  font-size: 16px;
+  color: #4b4b4b;
+  margin: 0;
+}
+
+/* Buttons */
+button {
+  padding: 9px;
+  margin: 2px;
+  border: none;
+  font-weight: bold;
+  background: #46a091;
+  color: #fff;
+  border-radius: 10px;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: #44c891;
+}
+
+button a {
+  color: #fff;
+}
+
+.remove {
+  background: #f75e84;
+  transition: 0.2s;
+}
+
+.remove:hover {
+  background: #ff7bad;
 }
