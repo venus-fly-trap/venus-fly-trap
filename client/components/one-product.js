@@ -55,6 +55,7 @@ class OneProduct extends React.Component {
       const buttonClickAction = this.isUserLoggedIn()
         ? this.handleAddToCart
         : this.redirectToLogin
+      console.log('URL!!!', product.imageUrl)
       return (
         <div>
           <div className="detailed-container">
