@@ -199,7 +199,7 @@ table {
 
 .container {
   width: 600px;
-  margin: 100px auto;
+  margin: auto;
 }
 .progressbar {
   counter-reset: step;
@@ -322,11 +322,9 @@ table {
   background-color: black;
 }
 
-
 /* START - landing page image and button*/
 
 /* ONE PRODUCT VIEW*/
-
 .detailed-container {
   display: flex;
   flex-flow: row wrap;
