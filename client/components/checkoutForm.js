@@ -3,7 +3,7 @@
 import React from 'react'
 import {CardElement, injectStripe} from 'react-stripe-elements'
 
-class CheckoutForm extends React.Component {
+export class CheckoutForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -28,19 +28,79 @@ class CheckoutForm extends React.Component {
   render() {
     return (
       <div className="checkout">
-        <p>Would you like to complete the purchase?</p>
+        <br />
+        <h3>PAYMENT</h3>
+
+        <div className="card">
+          <form action="#">
+            <label>Credit Card Number </label>
+            <input type="text" name="number" />
+
+            <label>Expiration</label>
+            <input type="text" placeholder="MM/YY" name="expiry" />
+
+            <label>Name</label>
+            <input type="text" name="name" />
+
+            <label>CVV </label>
+            <input type="text" name="cvv" />
+
+            <button type="button" className="btn btn-success">
+              Submit
+            </button>
+            <button type="button" className="btn btn-info">
+              Clear
+            </button>
+          </form>
+        </div>
+
         <CardElement />
         <button type="button" onClick={this.submit}>
-          Send
+          Submit
         </button>
         <br />
-        {/* add ternary here to display a message if the payment went through successfully */}
-        {this.state.complete
-          ? 'Thank you, your payment was successful!'
-          : 'Your payment was declined'}
       </div>
     )
   }
 }
 
 export default injectStripe(CheckoutForm)
+
+// render() {
+//   return (
+//     <div className="checkout">
+//       <p>Would you like to complete the purchase?</p>
+//       <CardElement />
+
+//       <button type="button" onClick={this.submit}>
+//         Submit
+//       </button>
+//       <br />
+//       {/* add ternary here to display a message if the payment went through successfully */}
+//       {this.state.complete
+//         ? 'Thank you, your payment was successful!'
+//         : 'Your payment was declined'}
+//     </div>
+//   )
+// }
+// }
+
+{
+  /* <form action="/charge" method="post" id="payment-form">
+<div className="form-row">
+  <label className="card-element">Credit or debit card</label>
+  <div id="card-element">
+    <CardElement />
+  </div>
+  <div id="card-errors" role="alert">
+    {this.state.complete
+      ? 'Thank you, your payment was successful!'
+      : 'Your payment was declined'}
+  </div>
+</div>
+<button type="button" onClick={this.submit}>
+  {' '}
+  Submit Payment{' '}
+</button>
+</form> */
+}
