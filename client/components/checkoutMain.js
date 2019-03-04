@@ -15,7 +15,7 @@ class CheckoutMain extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      displayPayment: '',
+      displayPayment: 'active',
       displayReview: '',
       displaySuccess: ''
     }
