@@ -33,7 +33,7 @@ class Cart extends React.Component {
                 <Link to={`/products/${cartItem.id}`}>{cartItem.name}</Link>
               </h4>
               <p>Price: ${cartItem.price / 100}</p>
-              <p>Quantity: {cartItem.quantity}</p>
+              <p>Quantity: {cartItem.orderItem.quantity}</p>
               <button
                 className="remove"
                 id={cartItem.id}
