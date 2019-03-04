@@ -60,6 +60,32 @@ nav .right {
   margin-left: auto;
 }
 
+/* nav .store-nav {
+
+  height: 36px;
+  width: 120px;
+  font-size: 9pt;
+} */
+
+/* button {
+  font-family: Ariel, Arial, Helvetica, sans-serif;
+  display: inline-flex;
+  justify-content: center;
+  height: 36px;
+  width: 120px;
+  font-size: 9pt;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(96, 158, 137);
+  color: white;
+} */
+
+/* button a {
+  color: white
+} */
+
+/* NAV END */
+
 nav h1 {
   color: #e2e2e2;
 }
@@ -67,6 +93,75 @@ nav h1 {
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+table {
+  text-align: left;
+  width: 100%;
+}
+
+/* Review Page */
+.reviewTD {
+  border: 1px solid black;
+}
+
+.reviewData {
+  max-width: 5%;
+}
+
+.productImage {
+  width: 20%;
+}
+
+.productImage img {
+  height: 100px;
+}
+
+.row {
+  display: inline-flex;
+}
+
+#productName {
+  margin-left: 20px;
+}
+
+#productName h4 {
+  margin: 0px;
+  margin-top: 10px;
+  padding: 0px;
+}
+
+#productName #description {
+  margin: 0px;
+  font-size: 8pt;
+  margin-right: 20px;
+  margin-top: 5px;
+}
+
+#continueButton {
+  font-family: Ariel, Arial, Helvetica, sans-serif;
+  display: inline-flex;
+  justify-content: center;
+  height: 36px;
+  width: 120px;
+  font-size: 9pt;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(87, 178, 201);
+  color: white;
+}
+
+#checkOutButton {
+  font-family: Ariel, Arial, Helvetica, sans-serif;
+  display: inline-flex;
+  justify-content: center;
+  height: 36px;
+  width: 120px;
+  font-size: 9pt;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(100, 161, 100);
+  color: white;
 }
 
 /* START - stripe css */
@@ -209,7 +304,9 @@ form div {
 .landing-page .promotion {
   /* position: absolute;
   top: 45%;
+
   left: 69%; */
+
   color: #555;
   font-size: 16px;
   padding: 0px;
@@ -225,7 +322,11 @@ form div {
   background-color: black;
 }
 
-/* One product view*/
+
+/* START - landing page image and button*/
+
+/* ONE PRODUCT VIEW*/
+
 .detailed-container {
   display: flex;
   flex-flow: row wrap;
@@ -251,7 +352,7 @@ form div {
   flex: 2 0 60%;
 }
 
-/* ALL STUDENTS PAGE */
+/* ALL PRODUCTS PAGE */
 .products-container {
   max-width: 900px;
   display: flex;

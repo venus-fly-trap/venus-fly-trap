@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {fetchCartItems} from '../store'
 
-class Checkout extends React.Component {
+class CheckoutReview extends React.Component {
   constructor(props) {
     super(props)
 
@@ -15,13 +15,14 @@ class Checkout extends React.Component {
   }
 
   handleCheckoutButton() {
-    const history = this.props.history
-    history.push('/pay')
+    console.log('thanks for clicking!')
+    // const history = this.props.history
+    // history.push('/pay')
   }
 
   render() {
     const cart = this.props.cart.activeCart
-    console.log('CART', cart)
+    
     if (cart) {
       const totalPrice = cart.reduce(
         (accum, current) => accum + current.price,
@@ -30,35 +31,36 @@ class Checkout extends React.Component {
 
       return (
         <div className="container">
-          <table id="cart" className="table">
+          <table id="reviewCart" className="table">
             <thead>
               <tr>
-                <th style={{width: '50%'}}>Product</th>
-                <th style={{width: '10%'}}>Price</th>
-                <th style={{width: '8%'}}>Quantity</th>
-                <th style={{width: '22%'}} className="text-center">
-                  Subtotal
-                </th>
-                <th style={{width: '10%'}} />
+                <th style={{width: '20%'}}>Product</th>
+                <th style={{width: '2%'}}>Price</th>
+                <th style={{width: '1%'}}>Quantity</th>
+                <th style={{width: '2%'}} />
               </tr>
             </thead>
             <tbody>
               {cart.map(item => {
-                console.log('ITEM', item)
                 return (
                   <tr key={item.id}>
-                    <td data-th="Product">
+                    <td data-th="Product" className="reviewTD">
                       <div className="row">
                         <div className="productImage">
                           <img src={item.imageUrl} />
                         </div>
-                        <div>
+                        <div id="productName">
                           <h4>{item.name}</h4>
+                          <p id="description">{item.description}</p>
                         </div>
                       </div>
                     </td>
-                    <td data-th="Price">{item.price / 100}</td>
-                    <td data-th="Quantity">{item.stock}</td>
+                    <td data-th="Price" className="reviewTD reviewData">
+                      {item.price / 100}
+                    </td>
+                    <td data-th="Quantity" className="reviewTD reviewData">
+                      {item.stock}
+                    </td>
                   </tr>
                 )
               })}
@@ -67,10 +69,12 @@ class Checkout extends React.Component {
               <tr>
                 <td>
                   <a href="/products" className="btn btn-warning">
-                    <i className="fa fa-angle-left" /> Continue Shopping
+                    <button type="button" id="continueButton">
+                      {' '}
+                      Continue Shopping{' '}
+                    </button>
                   </a>
                 </td>
-                <td colSpan="2" className="hidden-xs" />
                 <td className="hidden-xs text-center">
                   <strong>Total: {totalPrice / 100}</strong>
                 </td>
@@ -78,9 +82,9 @@ class Checkout extends React.Component {
                   <button
                     type="button"
                     onClick={this.handleCheckoutButton}
-                    className="btn btn-success btn-block"
+                    id="checkOutButton"
                   >
-                    Checkout <i className="fa fa-angle-right" />
+                    Checkout ❯<i className="fa fa-angle-right" />
                   </button>
                 </td>
               </tr>
@@ -106,6 +110,6 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Checkout)
+export default connect(mapStateToProps, mapDispatchToProps)(CheckoutReview)
 
 //https://bootsnipp.com/snippets/rlKd6
