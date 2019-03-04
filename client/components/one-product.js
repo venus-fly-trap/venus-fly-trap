@@ -59,6 +59,7 @@ class OneProduct extends React.Component {
       const buttonClickAction = this.isUserLoggedIn()
         ? this.handleAddToCart
         : this.redirectToLogin
+      
       return (
         <div>
           <div className="detailed-container">
