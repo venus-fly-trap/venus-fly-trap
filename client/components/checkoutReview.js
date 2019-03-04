@@ -22,7 +22,7 @@ class CheckoutReview extends React.Component {
 
   render() {
     const cart = this.props.cart.activeCart
-    
+
     if (cart) {
       const totalPrice = cart.reduce(
         (accum, current) => accum + current.price,
@@ -98,7 +98,7 @@ class CheckoutReview extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    cart: state.cart.activeCart
+    cart: state.cart
   }
 }
 
