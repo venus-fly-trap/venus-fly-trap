@@ -5,9 +5,11 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {Elements, StripeProvider} from 'react-stripe-elements'
+import {connect} from 'react-redux'
 import CheckoutForm from './CheckoutForm'
 import CheckoutReview from './CheckoutReview'
 import CheckoutSuccess from './CheckoutSuccess'
+import store, {showPayment, closePayment} from '../store'
 
 // import {STRIPE_API_KEY} from '../secrets'
 
@@ -104,10 +106,7 @@ class CheckoutMain extends Component {
             {this.state.displayReview ? <CheckoutReview /> : null}
             {this.state.displaySuccess ? <CheckoutSuccess /> : null}
             <Elements>
-              <CheckoutForm
-                displayPayment={this.state.displayPayment}
-                displayReview={this.displayReview}
-              />
+              <CheckoutForm />
             </Elements>
           </div>
         </StripeProvider>
@@ -116,7 +115,20 @@ class CheckoutMain extends Component {
   }
 }
 
-export default CheckoutMain
+const mapStateToProps = state => {
+  return {
+    payment: state.payment
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    showPayment: () => dispatch(showPayment()),
+    closePayment: () => dispatch(closePayment())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CheckoutMain)
 
 //can delete after:
 //default test key provide from stripe: pk_test_TYooMQauvdEDq54NiTphI7jx

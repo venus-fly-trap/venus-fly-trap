@@ -3,6 +3,8 @@
 import React from 'react'
 import {CardElement, injectStripe} from 'react-stripe-elements'
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
+import store, {showPayment, closePayment} from '../store'
 
 export class CheckoutForm extends React.Component {
   constructor(props) {
@@ -12,6 +14,12 @@ export class CheckoutForm extends React.Component {
     }
 
     this.submit = this.submit.bind(this)
+    this.clickHandler = this.clickHandler.bind(this)
+  }
+
+  clickHandler() {
+    this.props.closePayment()
+    this.props.showReview()
   }
 
   async submit(ev) {
@@ -34,9 +42,9 @@ export class CheckoutForm extends React.Component {
         <br />
         <br />
         <h2>Proceed To Checkout</h2>
-        <button type="button">
+        <button type="button" onClick={this.clickHandler}>
           {' '}
-          <Link to="/review">Checkout</Link>{' '}
+          Checkout{' '}
         </button>
 
         {/*
@@ -74,7 +82,22 @@ export class CheckoutForm extends React.Component {
   }
 }
 
-export default injectStripe(CheckoutForm)
+const mapStateToProps = state => {
+  return {
+    payment: state.payment
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    showPayment: () => dispatch(showPayment()),
+    closePayment: () => dispatch(closePayment())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CheckoutForm)
+
+// export default injectStripe(CheckoutForm)
 
 // render() {
 //   return (
