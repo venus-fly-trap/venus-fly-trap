@@ -33,8 +33,12 @@ export class CheckoutForm extends React.Component {
         <br />
         <br />
         <h2>Proceed To Checkout</h2>
+        <button type="button">
+          {' '}
+          <h3 onClick={this.props.displayReview}> Checkout </h3>{' '}
+        </button>
 
-        {/* 
+        {/*
         <div className="card">
           <form action="#">
             <label>Credit Card Number </label>

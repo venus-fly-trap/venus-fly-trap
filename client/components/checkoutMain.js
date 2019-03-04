@@ -104,12 +104,11 @@ class CheckoutMain extends Component {
             {this.state.displayReview ? <CheckoutReview /> : null}
             {this.state.displaySuccess ? <CheckoutSuccess /> : null}
             <Elements>
-              <CheckoutForm />
+              <CheckoutForm
+                displayPayment={this.state.displayPayment}
+                displayReview={this.displayReview}
+              />
             </Elements>
-            <button type="button">
-              {' '}
-              <h3 onClick={this.displayReview}> Checkout </h3>{' '}
-            </button>
           </div>
         </StripeProvider>
       </div>
