@@ -164,6 +164,39 @@ table {
   color: white;
 }
 
+/* CART */
+#cart {
+  position: absolute;
+  left: 1%;
+}
+
+.cart-container {
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  /* flex-flow: row wrap;
+  align-items: stretch; */
+  margin: 10px auto;
+}
+
+.cart-products {
+  flex: 0 0 20%;
+  /* display: flex; */
+  flex-direction: row;
+  width: 200px;
+  text-align: center;
+  background-color: #ffffff;
+  padding: 10px;
+  margin: 5px;
+  transition: 0.5s;
+}
+
+.cart-products img {
+  width: 90%;
+  height: 100%;
+}
+
 /* START - stripe css */
 .StripeElement {
   box-sizing: border-box;

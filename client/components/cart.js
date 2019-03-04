@@ -24,35 +24,46 @@ class Cart extends React.Component {
   render() {
     if (this.props.cart.id) {
       const cart = this.props.cart.activeCart
-
-      return (
-        <div>
-          <h3>CART</h3>
-          {cart.map(cartItem => (
-            <div key={cartItem.id}>
-              <img src={cartItem.imageUrl} height="300" width="300" />
-              <br />
-              <h4>
-                <Link to={`/products/${cartItem.id}`}>{cartItem.name}</Link>
-              </h4>
-              <p>Price: ${cartItem.price / 100}</p>
-              <p>Quantity: {cartItem.orderItem.quantity}</p>
-              <button
-                className="remove"
-                id={cartItem.id}
-                onClick={this.removeItem}
-              >
-                Remove
-              </button>
-            </div>
-          ))}
-          <br />
-          <button type="button">
-            <Link to="/checkout"> Continue to Checkout </Link>
-          </button>
-          <br />
-        </div>
-      )
+      if (cart.length) {
+        return (
+          <div className="cart-container">
+            <h3>CART</h3>
+            {cart.map(cartItem => (
+              <div key={cartItem.id} className="cart-products">
+                <img src={cartItem.imageUrl} height="300" width="300" />
+                <br />
+                <h4>
+                  <Link to={`/products/${cartItem.id}`}>{cartItem.name}</Link>
+                </h4>
+                <p>Price: ${cartItem.price / 100}</p>
+                <p>Quantity: {cartItem.orderItem.quantity}</p>
+                <button
+                  type="button"
+                  className="remove"
+                  id={cartItem.id}
+                  onClick={this.removeItem}
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
+            <br />
+            <button type="button">
+              <Link to="/checkout"> Continue to Checkout </Link>
+            </button>
+            <br />
+          </div>
+        )
+      } else
+        return (
+          <div id="cart">
+            <h3>CART</h3>
+            <p>Your cart is currently empty.</p>
+            <a href="/products">
+              <button type="button"> Continue Shopping </button>
+            </a>
+          </div>
+        )
     } else return <div />
   }
 }
