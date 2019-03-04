@@ -41,10 +41,9 @@ const AuthForm = props => {
         </p>
 
         <div className="landing-page">
-
           {/* <img src="https://www.bunnings.com.au/-/media/au/diy-advice-house/articles/garden/planters/how%20to%20keep%20potted%20plants%20in%20great%20condition/how%20to%20keep%20potted%20plants%20in%20great%20condition_header.jpg" /> */}
           <video preload="auto" autoPlay="autoplay" loop="loop" id="img">
-            <source src="https://i.imgur.com/jWPMHL6.mp4" type="video/mp4" />
+            <source src="https://i.imgur.com/G6qr5Ek.mp4" type="video/mp4" />
           </video>
           <div id="landingDiv">
             <h4 className="promotion" id="promotion">
@@ -89,7 +88,7 @@ const AuthForm = props => {
         <div className="landing-page">
           {/* <img src="https://www.bunnings.com.au/-/media/au/diy-advice-house/articles/garden/planters/how%20to%20keep%20potted%20plants%20in%20great%20condition/how%20to%20keep%20potted%20plants%20in%20great%20condition_header.jpg" /> */}
           <video preload="auto" autoPlay="autoplay" loop="loop" id="img">
-            <source src="https://i.imgur.com/jWPMHL6.mp4" type="video/mp4" />
+            <source src="https://i.imgur.com/G6qr5Ek.mp4" type="video/mp4" />
           </video>
           <div id="landingDiv">
             <h4 className="promotion" id="promotion">
