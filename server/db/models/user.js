@@ -3,15 +3,15 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const User = db.define('user', {
-  username: {
-    type: Sequelize.STRING,
-    unique: true,
-    allowNull: false,
-    validate: {
-      notEmpty: true
-      // len: [4, 15] I am commenting this out bc Google Oauth sometimes only returns an email (we don't have access to name). In that case, as backup, we will set username as email, which can be longer than 15 characters sometimes.
-    }
-  },
+  // username: {
+  //   type: Sequelize.STRING,
+  //   unique: true,
+  //   allowNull: false,
+  //   validate: {
+  //     notEmpty: true
+  //     // len: [4, 15] I am commenting this out bc Google Oauth sometimes only returns an email (we don't have access to name). In that case, as backup, we will set username as email, which can be longer than 15 characters sometimes.
+  //   }
+  // }, //commenting this entire field out for now (3/4/19) due to an error on sign up page. even if username is set to be the email (in API route) sequelize errors as though username field was null
   password: {
     type: Sequelize.STRING,
     // Making `.password` act like a func hides it when serializing to JSON.

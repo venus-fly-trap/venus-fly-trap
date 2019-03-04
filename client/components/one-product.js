@@ -6,6 +6,7 @@ import {
   fetchCartItems,
   deleteCartItem
 } from '../store'
+import toastr from 'toastr'
 
 class OneProduct extends React.Component {
   constructor(props) {
@@ -43,7 +44,26 @@ class OneProduct extends React.Component {
   }
 
   redirectToLogin() {
-    alert('You must be signed in to shop!')
+    // alert('You must be signed in to shop!')
+    toastr.options = {
+      closeButton: true,
+      debug: false,
+      newestOnTop: false,
+      progressBar: false,
+      positionClass: 'toast-top-center',
+      preventDuplicates: false,
+      onclick: null,
+      showDuration: '300',
+      hideDuration: '1000',
+      timeOut: '5000',
+      extendedTimeOut: '1000',
+      showEasing: 'swing',
+      hideEasing: 'linear',
+      showMethod: 'fadeIn',
+      hideMethod: 'fadeOut'
+    }
+    toastr.info('You must be signed in to shop!', 'Notice:')
+
     const history = this.props.history
     history.push('/login')
   }
