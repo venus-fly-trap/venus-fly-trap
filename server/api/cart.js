@@ -39,7 +39,7 @@ router.put('/:productId', async (req, res, next) => {
   try {
     await OrderItem.update(
       {
-        quantity: quantity++
+        quantity: this.quantity++
       },
       {
         where: {
@@ -55,30 +55,28 @@ router.put('/:productId', async (req, res, next) => {
 })
 
 //utility function for delete route
-function isAuthenticated(req, res, next) {
-  if (req.user.authenticated) {
-    return next()
+function checkAuthentication(req, res, next) {
+  if (req.isAuthenticated()) {
+    next()
+  } else {
+    res.redirect('/login')
   }
-  res.redirect('/')
 }
 
 //delete an item on the current cart
-router.delete(
-  '/:productId',
-  /*isAuthenticated,*/ async (req, res, next) => {
-    try {
-      await OrderItem.destroy({
-        where: {
-          productId: req.params.productId
-        }
-      })
+router.delete('/:productId', checkAuthentication, async (req, res, next) => {
+  try {
+    await OrderItem.destroy({
+      where: {
+        productId: req.params.productId
+      }
+    })
 
-      res.sendStatus(204)
-    } catch (error) {
-      next(error)
-    }
+    res.sendStatus(204)
+  } catch (error) {
+    next(error)
   }
-)
+})
 
 //for order history w/ purchased items
 router.get('/history', async (req, res, next) => {
@@ -87,7 +85,7 @@ router.get('/history', async (req, res, next) => {
 
     const cartItems = await Order.findAll(
       {
-        include: [{model: User, as: 'activeCart'}]
+        include: [{model: Product, as: 'activeCart'}]
       },
       {
         where: {

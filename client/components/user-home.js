@@ -17,7 +17,7 @@ export const UserHome = props => {
         <div className="landing-page">
           {/* <img src="https://i.imgur.com/jWPMHL6.gif" id="img" /> */}
           <video preload="auto" autoPlay="autoplay" loop="loop" id="img">
-            <source src="https://i.imgur.com/jWPMHL6.mp4" type="video/mp4" />
+            <source src="https://i.imgur.com/G6qr5Ek.mp4" type="video/mp4" />
           </video>
           <div id="landingDiv">
             <h4 className="promotion" id="promotion">
