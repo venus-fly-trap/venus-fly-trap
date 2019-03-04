@@ -293,6 +293,10 @@ button:hover {
   background: #44c891;
 }
 
+button a {
+  color: #fff;
+}
+
 .remove {
   background: #f75e84;
   transition: 0.2s;
@@ -301,4 +305,3 @@ button:hover {
 .remove:hover {
   background: #ff7bad;
 }
-
