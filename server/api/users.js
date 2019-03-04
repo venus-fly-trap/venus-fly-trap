@@ -2,13 +2,13 @@ const router = require('express').Router()
 const {User} = require('../db/models')
 module.exports = router
 
-//default route is /api/user
+//default route is /api/users
 router.get('/', async (req, res, next) => {
   try {
     const users = await User.findAll({
       // users' passwords are encrypted, it won't help if we just
       // send everything to anyone who asks!
-      attributes: ['id', 'email', 'username']
+      attributes: ['id', 'email']
     })
 
     res.json(users)
