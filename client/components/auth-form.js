@@ -96,41 +96,47 @@ class AuthForm extends Component {
     if (displayName === 'Login') {
       return (
         <div>
-          <form onSubmit={handleSubmit} name={name}>
-            <div>
-              <label htmlFor="email">
-                <small>Email</small>
-              </label>
-              <input name="email" type="text" />
-            </div>
-            <div>
-              <label htmlFor="password">
-                <small>Password</small>
-              </label>
-              <input name="password" type="password" />
-            </div>
-            <div>
-              <button type="submit">{displayName}</button>{' '}
-              <button type="button" className="googleOAuth">
-                <a href="/auth/google">{displayName} with Google</a>
-              </button>{' '}
-            </div>
-            {error && error.response && <div> {error.response.data} </div>}
-          </form>
-          <p>
-            <button type="button">
-              <a href="/signup">Click Here to Sign Up!</a>
-            </button>
-          </p>
-
+          <div id="signInOrUp">
+            <form onSubmit={handleSubmit} name={name}>
+              <div>
+                <label htmlFor="email">
+                  <small>Email</small>
+                </label>
+                <input name="email" type="text" />
+              </div>
+              <div>
+                <label htmlFor="password">
+                  <small>Password</small>
+                </label>
+                <input name="password" type="password" />
+              </div>
+              <div>
+                <button type="submit">{displayName}</button>{' '}
+                <button type="button" className="googleOAuth">
+                  <a href="/auth/google">{displayName} with Google</a>
+                </button>{' '}
+              </div>
+              {error && error.response && <div> {error.response.data} </div>}
+            </form>
+            <p id="signUpButton">
+              <button type="button">
+                <a href="/signup">Click Here to Sign Up!</a>
+              </button>
+            </p>
+          </div>
+          <br />
           <div className="landing-page">
-            {/* <img src="https://www.bunnings.com.au/-/media/au/diy-advice-house/articles/garden/planters/how%20to%20keep%20potted%20plants%20in%20great%20condition/how%20to%20keep%20potted%20plants%20in%20great%20condition_header.jpg" /> */}
+            {/* <img src="https://i.imgur.com/jWPMHL6.gif" id="img" /> */}
             <video preload="auto" autoPlay="autoplay" loop="loop" id="img">
               <source src="https://i.imgur.com/G6qr5Ek.mp4" type="video/mp4" />
             </video>
+            <img
+              src="https://www.solidbackgrounds.com/images/2560x1600/2560x1600-floral-white-solid-color-background.jpg"
+              id="whiteBG"
+            />
             <div id="landingDiv">
               <h4 className="promotion" id="promotion">
-                This week only, BOGO!
+                To plant a garden <br />is to believe in tomorrow.
               </h4>
               <button type="button" className="btn">
                 {' '}
@@ -146,56 +152,61 @@ class AuthForm extends Component {
     } else {
       return (
         <div>
-          <form onSubmit={handleSubmit} name={name}>
-            <div>
-              <label htmlFor="email">
-                <small>Email</small>
-              </label>
-              <span className={isEmailWarningDisplayed}>
-                Must be a valid email address<br />
-              </span>
-              <input
-                name="email"
-                type="text"
-                onChange={this.handleEmailChange}
-                className={errorDisplay('email') ? 'fieldError' : ''}
-                onBlur={this.handleBlurWhenInteracting('email')}
-              />
-            </div>
-            <div>
-              <label htmlFor="password">
-                <small>Password</small>
-              </label>
-              <span className={isPasswordWarningDisplayed}>
-                Password required<br />
-              </span>
-              <input
-                name="password"
-                type="password"
-                onChange={this.handlePasswordChange}
-                className={errorDisplay('password') ? 'fieldError' : ''}
-                onBlur={this.handleBlurWhenInteracting('password')}
-              />
-            </div>
-            <div>
-              <button type="submit" disabled={!isButtonWorking}>
-                {displayName}
-              </button>{' '}
-              <button type="button" className="googleOAuth">
-                <a href="/auth/google">{displayName} with Google</a>
-              </button>
-            </div>
-            {error && error.response && <div> {error.response.data} </div>}
-          </form>
-
+          <div id="signInOrUp">
+            <form onSubmit={handleSubmit} name={name}>
+              <div>
+                <label htmlFor="email">
+                  <small>Email</small>
+                </label>
+                <span className={isEmailWarningDisplayed}>
+                  Must be a valid email address<br />
+                </span>
+                <input
+                  name="email"
+                  type="text"
+                  onChange={this.handleEmailChange}
+                  className={errorDisplay('email') ? 'fieldError' : ''}
+                  onBlur={this.handleBlurWhenInteracting('email')}
+                />
+              </div>
+              <div>
+                <label htmlFor="password">
+                  <small>Password</small>
+                </label>
+                <span className={isPasswordWarningDisplayed}>
+                  Password required<br />
+                </span>
+                <input
+                  name="password"
+                  type="password"
+                  onChange={this.handlePasswordChange}
+                  className={errorDisplay('password') ? 'fieldError' : ''}
+                  onBlur={this.handleBlurWhenInteracting('password')}
+                />
+              </div>
+              <div>
+                <button type="submit" disabled={!isButtonWorking}>
+                  {displayName}
+                </button>{' '}
+                <button type="button" className="googleOAuth">
+                  <a href="/auth/google">{displayName} with Google</a>
+                </button>
+              </div>
+              {error && error.response && <div> {error.response.data} </div>}
+            </form>
+          </div>
           <div className="landing-page">
-            {/* <img src="https://www.bunnings.com.au/-/media/au/diy-advice-house/articles/garden/planters/how%20to%20keep%20potted%20plants%20in%20great%20condition/how%20to%20keep%20potted%20plants%20in%20great%20condition_header.jpg" /> */}
+            {/* <img src="https://i.imgur.com/jWPMHL6.gif" id="img" /> */}
             <video preload="auto" autoPlay="autoplay" loop="loop" id="img">
               <source src="https://i.imgur.com/G6qr5Ek.mp4" type="video/mp4" />
             </video>
+            <img
+              src="https://www.solidbackgrounds.com/images/2560x1600/2560x1600-floral-white-solid-color-background.jpg"
+              id="whiteBG"
+            />
             <div id="landingDiv">
               <h4 className="promotion" id="promotion">
-                This week only, BOGO!
+                To plant a garden <br />is to believe in tomorrow.
               </h4>
               <button type="button" className="btn">
                 {' '}
