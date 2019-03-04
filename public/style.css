@@ -22,6 +22,7 @@ main:before {
   z-index: -1;
   opacity: 0.6;
   /* background-image: url('https://images.roomstogo.com/images/product/ot_acc_99089229_succulents~Succulents-With-Wood-Bowl.jpeg'); */
+  background-image: url('https://images.unsplash.com/photo-1483794344563-d27a8d18014e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80');
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -290,12 +291,16 @@ table {
 .landing-page .promotion {
   position: absolute;
   top: 45%;
-  left: 62%;
+  left: 69%;
   color: #555;
   font-size: 16px;
   /* padding: 12px 24px; */
 
   text-align: center;
+}
+
+.landing-page button {
+  margin-left: 8%;
 }
 
 .landing-page .btn:hover {
