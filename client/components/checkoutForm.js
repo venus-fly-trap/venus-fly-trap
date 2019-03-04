@@ -2,6 +2,7 @@
 // could not get this to work --- yarn add react-stripe-elements
 import React from 'react'
 import {CardElement, injectStripe} from 'react-stripe-elements'
+import {Link} from 'react-router-dom'
 
 export class CheckoutForm extends React.Component {
   constructor(props) {
@@ -35,7 +36,7 @@ export class CheckoutForm extends React.Component {
         <h2>Proceed To Checkout</h2>
         <button type="button">
           {' '}
-          <h3 onClick={this.props.displayReview}> Checkout </h3>{' '}
+          <Link to="/review">Checkout</Link>{' '}
         </button>
 
         {/*
