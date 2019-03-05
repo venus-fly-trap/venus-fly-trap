@@ -11,8 +11,6 @@ import CheckoutReview from './CheckoutReview'
 import CheckoutSuccess from './CheckoutSuccess'
 import store, {showPayment, closePayment} from '../store'
 
-// import {STRIPE_API_KEY} from '../secrets'
-
 class CheckoutMain extends Component {
   constructor(props) {
     super(props)
@@ -40,24 +38,24 @@ class CheckoutMain extends Component {
 
     return (
       <div>
-        <StripeProvider apiKey="pk_test_TYooMQauvdEDq54NiTphI7jx">
-          <div className="checkout">
-            {/* <br /> */}
-            <div className="container">
-              <ul className="progressbar">
-                <li className="active">Cart</li>
-                <li className={isPaymentActive}>Payment</li>
-                <li className={isReviewActive}>Review Order</li>
-                <li className={isReviewActive}>Confirmation</li>
-              </ul>
-            </div>
-            {/* <br />
+        {/* <StripeProvider apiKey="pk_test_3m2b0a1fAot4GiMEjKhu1fIQ" > */}
+        <div className="checkout">
+          {/* <br /> */}
+          <div className="container">
+            <ul className="progressbar">
+              <li className="active">Cart</li>
+              <li className={isPaymentActive}>Payment</li>
+              <li className={isReviewActive}>Review Order</li>
+              <li className={isReviewActive}>Confirmation</li>
+            </ul>
+          </div>
+          {/* <br />
             <br /> */}
-            <div className="container">
-              <Link to="/products">
-                <button type="button">Back to Shopping</button>
-              </Link>
-              {/* <button type="button">
+          <div className="container">
+            <Link to="/products">
+              <button type="button">Back to Shopping</button>
+            </Link>
+            {/* <button type="button">
                 {' '}
                 <Link to="/cart"> Edit Cart </Link>{' '}
               </button>
@@ -69,46 +67,48 @@ class CheckoutMain extends Component {
                 {' '}
                 Finalize Order{' '}
               </button> */}
-            </div>
-            {/* <br /> */}
-            {/* {this.state.displayPayment ? <CheckoutForm /> : null} */}
-            {(() => {
-              switch (this.state.status) {
-                case 'payment':
-                  return (
-                    <CheckoutForm
-                      setStatus={this.setStatus}
-                      status={this.state.status}
-                    />
-                  )
-                case 'review':
-                  return (
-                    <CheckoutReview
-                      setStatus={this.setStatus}
-                      status={this.state.status}
-                    />
-                  )
-                case 'success':
-                  return <CheckoutSuccess />
-                default:
-                  return (
-                    <CheckoutForm
-                      setStatus={this.setStatus}
-                      status={this.state.status}
-                    />
-                  )
-              }
-            })()}
-            {/*
+          </div>
+          {/* <br /> */}
+          {/* {this.state.displayPayment ? <CheckoutForm /> : null} */}
+          {(() => {
+            switch (this.state.status) {
+              case 'payment':
+                return (
+                  <CheckoutForm
+                    setStatus={this.setStatus}
+                    status={this.state.status}
+                  />
+                )
+              case 'review':
+                return (
+                  <CheckoutReview
+                    setStatus={this.setStatus}
+                    status={this.state.status}
+                  />
+                )
+              case 'success':
+                return <CheckoutSuccess />
+              default:
+                return (
+                  // STRIPE <Elements>
+                  <CheckoutForm
+                    setStatus={this.setStatus}
+                    status={this.state.status}
+                  />
+                  // STRIPE</Elements>
+                )
+            }
+          })()}
+          {/*
             {/* // }
             // {this.state.displayReview ?  : null}
             // {this.state.displaySuccess ? <CheckoutSuccess /> : null}
-            // <Elements>
+                // <Elements>
             //   <CheckoutForm />
             // </Elements>
             // </Switch> */}
-          </div>
-        </StripeProvider>
+        </div>
+        {/* </StripeProvider> */}
       </div>
     )
   }

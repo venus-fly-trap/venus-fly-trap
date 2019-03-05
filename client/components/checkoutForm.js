@@ -5,6 +5,7 @@ import {CardElement, injectStripe} from 'react-stripe-elements'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import store, {showPayment, closePayment} from '../store'
+import StripeCheckout from 'react-stripe-checkout'
 
 export class CheckoutForm extends React.Component {
   constructor(props) {
@@ -13,7 +14,7 @@ export class CheckoutForm extends React.Component {
       complete: false
     }
 
-    this.submit = this.submit.bind(this)
+    // this.submit = this.submit.bind(this)
     this.clickHandler = this.clickHandler.bind(this)
   }
 
@@ -22,17 +23,17 @@ export class CheckoutForm extends React.Component {
     this.props.showReview()
   }
 
-  async submit(ev) {
-    // User clicked submit
-    let {token} = await this.props.stripe.createToken({name: 'Name'})
-    let response = await fetch('/charge', {
-      method: 'POST',
-      headers: {'Content-Type': 'text/plain'},
-      body: token.id
-    })
+  // STRIPE async submit(ev) {
+  //   // User clicked submit
+  //   let {token} = await this.props.stripe.createToken({name: 'Name'})
+  //   let response = await fetch('/charge', {
+  //     method: 'POST',
+  //     headers: {'Content-Type': 'text/plain'},
+  //     body: token.id
+  //   })
 
-    if (response.ok) this.setState({complete: true})
-  }
+  //   if (response.ok) this.setState({complete: true})
+  // }
 
   render() {
     return (
@@ -49,38 +50,48 @@ export class CheckoutForm extends React.Component {
         >
           Continue
         </button>
+        {/* <CardElement /> */}
 
-        {/*
-        <div className="card">
-          <form action="#">
-            <label>Credit Card Number </label>
-            <input type="text" name="number" />
+        <StripeCheckout
+          name="VenusFlyTrap"
+          // description={title}
+          token={onToken}
+          amount={100}
+          stripeKey="pk_test_3m2b0a1fAot4GiMEjKhu1fIQ"
+        >
+          {/* {children || <span {...props} */}
+          <span>PURCHASE</span>}
+        </StripeCheckout>
 
-            <label>Expiration</label>
-            <input type="text" placeholder="MM/YY" name="expiry" />
-
-            <label>Name</label>
-            <input type="text" name="name" />
-
-            <label>CVV </label>
-            <input type="text" name="cvv" />
-
-            <button type="button" className="btn btn-success">
-              Submit
-            </button>
-            <button type="button" className="btn btn-info">
-              Clear
-            </button>
-          </form>
-        </div>
-
-        <CardElement />
-        <button type="button" onClick={this.submit}>
+        {/* <button type="button" onClick={this.submit}>
           Submit
         </button> */}
 
         <br />
       </div>
+
+      // <div className="card">
+      //   <form action="#">
+      //     <label>Credit Card Number </label>
+      //     <input type="text" name="number" />
+
+      //     <label>Expiration</label>
+      //     <input type="text" placeholder="MM/YY" name="expiry" />
+
+      //     <label>Name</label>
+      //     <input type="text" name="name" />
+
+      //     <label>CVV </label>
+      //     <input type="text" name="cvv" />
+
+      //     <button type="button" className="btn btn-success">
+      //       Submit
+      //     </button>
+      //     <button type="button" className="btn btn-info">
+      //       Clear
+      //     </button>
+      //   </form>
+      // </div>
     )
   }
 }
@@ -98,7 +109,14 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CheckoutForm)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+  // mergeProps,
+  // {
+  //   pure: false
+  // }
+)(CheckoutForm)
 
 // export default injectStripe(CheckoutForm)
 
