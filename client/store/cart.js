@@ -20,7 +20,11 @@ const cartState = {}
 const getCart = activeCart => ({type: GET_CART, activeCart})
 const addToCart = newCartItem => ({type: ADD_TO_CART, newCartItem})
 const removeFromCart = productId => ({type: REMOVE_FROM_CART, productId})
-const updateQuantity = quantity => ({type: UPDATE_QUANTITY, quantity})
+const updateQuantity = (productId, quantity) => ({
+  type: UPDATE_QUANTITY,
+  productId,
+  quantity
+})
 
 /**
  * THUNK CREATORS
@@ -68,9 +72,9 @@ export const deleteCartItem = (productId, orderId) => {
 export const updateItemQuantity = (productId, quantity) => {
   return async dispatch => {
     try {
-      await axios.put(`/api/cart/${productId}`, quantity)
+      await axios.put(`/api/cart/${productId}`, {quantity})
 
-      dispatch(fetchCartItems())
+      dispatch(updateQuantity(productId, quantity))
     } catch (error) {
       console.error(error)
     }
@@ -93,7 +97,19 @@ export default function(state = cartState, action) {
       )
       return {...state, activeCart}
     case UPDATE_QUANTITY:
-      return {...state, activeCart}
+      return {
+        ...state,
+        activeCart: state.activeCart.map(item => {
+          if (item.id !== productId) {
+            return item
+          }
+
+          return {
+            ...item,
+            ...(item.orderItem.quantity = action.quantity)
+          }
+        })
+      }
     default:
       return state
   }

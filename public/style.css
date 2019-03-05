@@ -27,12 +27,22 @@ main:before {
   background-size: cover;
 }
 
+hr {
+  border: 1px solid #474747;
+}
+
 a {
   text-decoration: none;
 }
 
 label {
   display: block;
+}
+
+.h2 {
+  font-weight: bold;
+  font-size: 20pt;
+  color: #282828;
 }
 
 /* NAVBAR */
@@ -60,32 +70,6 @@ nav .right {
   margin-left: auto;
 }
 
-/* nav .store-nav {
-
-  height: 36px;
-  width: 120px;
-  font-size: 9pt;
-} */
-
-/* button {
-  font-family: Ariel, Arial, Helvetica, sans-serif;
-  display: inline-flex;
-  justify-content: center;
-  height: 36px;
-  width: 120px;
-  font-size: 9pt;
-  border: none;
-  border-radius: 5px;
-  background-color: rgb(96, 158, 137);
-  color: white;
-} */
-
-/* button a {
-  color: white
-} */
-
-/* NAV END */
-
 nav h1 {
   color: #e2e2e2;
 }
@@ -95,47 +79,63 @@ form div {
   display: inline-block;
 }
 
-table {
-  text-align: left;
-  width: 100%;
+/* CART PAGE */
+.cart-container {
+  max-width: 950px;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: stretch;
+  margin: 10px auto;
+  padding: 20px;
+  background-color: #fff;
 }
 
-/* Review Page */
-.reviewTD {
-  border: 1px solid black;
-}
-
-.reviewData {
-  max-width: 5%;
-}
-
-.productImage {
-  width: 20%;
-}
-
-.productImage img {
-  height: 100px;
-}
-
-.row {
-  display: inline-flex;
-}
-
-#productName {
+.cart-container h1 {
   margin-left: 20px;
 }
 
-#productName h4 {
-  margin: 0px;
-  margin-top: 10px;
-  padding: 0px;
+.cart .right {
+  margin-right: 0;
 }
 
-#productName #description {
-  margin: 0px;
-  font-size: 8pt;
-  margin-right: 20px;
-  margin-top: 5px;
+.cart {
+  width: 90%;
+  margin: 10px;
+  padding: 10px;
+  background-color: #fff;
+  transition: 0.5s;
+}
+
+.cart:hover {
+  background-color: #ececec;
+}
+
+.cart .details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart input {
+  width: 50px;
+  padding: 5px 0 5px 5px;
+  border: 1px solid #d4d4d4;
+}
+
+input[type='number']::-webkit-inner-spin-button {
+  cursor: pointer;
+  height: 26px;
+  opacity: 1;
+}
+
+.cart img {
+  width: 20%;
+  float: left;
+  padding-right: 10px;
+}
+
+.totals-container {
+  background: #fff;
 }
 
 #continueButton {
@@ -406,6 +406,7 @@ button:disabled:hover {
 
 .products-container h1 {
   flex: 100%;
+  margin: 10px;
 }
 
 .products {
@@ -416,7 +417,7 @@ button:disabled:hover {
   text-align: center;
   background-color: #ffffff;
   padding: 10px;
-  margin: 5px;
+  margin: 10px;
   transition: 0.5s;
 }
 
@@ -444,12 +445,13 @@ button {
   font-weight: bold;
   background: #46a091;
   color: #fff;
-  border-radius: 10px;
+  border-radius: 5px;
   transition: 0.2s;
 }
 
 button:hover {
   background: #44c891;
+  cursor: pointer;
 }
 
 button a {
