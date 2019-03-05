@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {fetchCartItems} from '../store'
+import {fetchCartItems, changeOrderToPurchased, createNewCart} from '../store'
 
 class CheckoutReview extends React.Component {
   constructor(props) {
@@ -14,10 +14,13 @@ class CheckoutReview extends React.Component {
     this.props.fetchCart()
   }
 
-  handleCheckoutButton() {
+  async handleCheckoutButton(evt) {
     console.log('thanks for clicking!')
-    // const history = this.props.history
-    // history.push('/pay')
+
+    await this.props.purchaseOrder(this.props.cart.id)
+    console.log('hi')
+    await this.props.createNewCart()
+    this.props.setStatus(evt)
   }
 
   render() {
@@ -25,13 +28,13 @@ class CheckoutReview extends React.Component {
 
     if (cart) {
       const totalPrice = cart.reduce(
-        (accum, current) => accum + current.price,
+        (accum, current) => accum + current.price * current.orderItem.quantity,
         0
       )
 
       return (
         <div className="cart-container">
-          <h1>CART</h1>
+          <h1>REVIEW CART</h1>
           <hr />
           {cart.map(item => (
             <div className="cart" key={item.id}>
@@ -73,7 +76,7 @@ class CheckoutReview extends React.Component {
                 type="button"
                 name="success"
                 value="active"
-                onClick={this.props.setStatus}
+                onClick={this.handleCheckoutButton}
               >
                 Checkout
               </button>
@@ -95,6 +98,12 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchCart: () => {
       dispatch(fetchCartItems())
+    },
+    purchaseOrder: cartId => {
+      dispatch(changeOrderToPurchased(cartId))
+    },
+    createNewCart: () => {
+      dispatch(createNewCart())
     }
   }
 }

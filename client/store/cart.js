@@ -8,6 +8,7 @@ const GET_CART = 'GET_CART'
 const ADD_TO_CART = 'ADD_TO_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 const UPDATE_QUANTITY = 'UPDATE_QUANTITY'
+const ADD_NEW_CART = 'ADD_NEW_CART'
 
 /**
  * INITIAL STATE
@@ -25,6 +26,7 @@ const updateQuantity = (productId, quantity) => ({
   productId,
   quantity
 })
+const addNewCart = newCart => ({type: ADD_NEW_CART, newCart})
 
 /**
  * THUNK CREATORS
@@ -81,6 +83,19 @@ export const updateItemQuantity = (productId, quantity) => {
   }
 }
 
+export const createNewCart = () => {
+  return async dispatch => {
+    try {
+      console.log('the thunk works')
+      const newCart = await axios.post('/api/orders')
+      console.log(newCart)
+      dispatch(addNewCart(newCart.data))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
+
 /**
  * REDUCER
  */
@@ -110,6 +125,8 @@ export default function(state = cartState, action) {
           }
         })
       }
+    case ADD_NEW_CART:
+      return action.newCart
     default:
       return state
   }
