@@ -41,10 +41,13 @@ export class CheckoutForm extends React.Component {
         <h2>Payment Information</h2>
         <br />
         <br />
-        <h2>Proceed To Checkout</h2>
-        <button type="button" onClick={this.clickHandler}>
-          {' '}
-          Checkout{' '}
+        <button
+          type="button"
+          name="review"
+          value="active"
+          onClick={this.props.setStatus}
+        >
+          Continue
         </button>
 
         {/*

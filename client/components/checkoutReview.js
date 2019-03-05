@@ -30,66 +30,55 @@ class CheckoutReview extends React.Component {
       )
 
       return (
-        <div className="container">
-          <table id="reviewCart" className="table">
-            <thead>
-              <tr>
-                <th style={{width: '20%'}}>Product</th>
-                <th style={{width: '2%'}}>Price</th>
-                <th style={{width: '1%'}}>Quantity</th>
-                <th style={{width: '2%'}} />
-              </tr>
-            </thead>
-            <tbody>
-              {cart.map(item => {
-                return (
-                  <tr key={item.id}>
-                    <td data-th="Product" className="reviewTD">
-                      <div className="row">
-                        <div className="productImage">
-                          <img src={item.imageUrl} />
-                        </div>
-                        <div id="productName">
-                          <h4>{item.name}</h4>
-                          <p id="description">{item.description}</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td data-th="Price" className="reviewTD reviewData">
-                      {item.price / 100}
-                    </td>
-                    <td data-th="Quantity" className="reviewTD reviewData">
-                      {item.stock}
-                    </td>
-                  </tr>
-                )
-              })}
-            </tbody>
-            <tfoot>
-              <tr>
-                <td>
-                  <a href="/products" className="btn btn-warning">
-                    <button type="button" id="continueButton">
-                      {' '}
-                      Continue Shopping{' '}
-                    </button>
-                  </a>
-                </td>
-                <td className="hidden-xs text-center">
-                  <strong>Total: {totalPrice / 100}</strong>
-                </td>
-                <td>
-                  <button
-                    type="button"
-                    onClick={this.handleCheckoutButton}
-                    id="checkOutButton"
-                  >
-                    Checkout ❯ <i className="fa fa-angle-right" />
-                  </button>
-                </td>
-              </tr>
-            </tfoot>
-          </table>
+        <div className="cart-container">
+          <h1>CART</h1>
+          <hr />
+          {cart.map(item => (
+            <div className="cart" key={item.id}>
+              <img src={item.imageUrl} />
+              <h2>{item.name}</h2>
+              <div className="details">
+                <b>Price: ${item.price / 100}</b>
+                <b>
+                  Qty:{' '}
+                  <input
+                    type="number"
+                    value={item.orderItem.quantity}
+                    min="1"
+                    max={item.stock}
+                  />
+                </b>
+                <button
+                  className="remove"
+                  id={item.id}
+                  onClick={this.removeItem}
+                >
+                  Remove
+                </button>
+              </div>
+            </div>
+          ))}
+          <div className="cart">
+            <b className="right">Total: {totalPrice / 100}</b>
+            <div className="details">
+              <button
+                type="button"
+                name="payment"
+                value=""
+                onClick={this.props.setStatus}
+              >
+                Back
+              </button>
+              <button
+                type="button"
+                name="success"
+                value="active"
+                onClick={this.props.setStatus}
+              >
+                Checkout
+              </button>
+            </div>
+          </div>
         </div>
       )
     } else return <div />

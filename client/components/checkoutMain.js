@@ -17,49 +17,27 @@ class CheckoutMain extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      displayPayment: 'active',
-      displayReview: '',
-      displaySuccess: ''
+      status: 'payment',
+      payment: '',
+      review: '',
+      success: ''
     }
-    this.displayCart = this.displayCart.bind(this)
-    this.displayPayment = this.displayPayment.bind(this)
-    this.displayReview = this.displayReview.bind(this)
-    this.displaySuccess = this.displaySuccess.bind(this)
+    this.setStatus = this.setStatus.bind(this)
   }
 
-  displayCart() {
-    const history = this.props.history
-    history.push('/cart')
-  }
-
-  displayPayment() {
+  setStatus(evt) {
+    const step = this.state.status
     this.setState({
-      displayPayment: 'active',
-      displayReview: '',
-      displaySuccess: ''
-    })
-  }
-
-  displayReview() {
-    this.setState({
-      displayPayment: 'active',
-      displayReview: 'active',
-      displaySuccess: ''
-    })
-  }
-
-  displaySuccess() {
-    this.setState({
-      displayPayment: 'active',
-      displayReview: 'active',
-      displaySuccess: 'active'
+      status: evt.target.name,
+      [step]: evt.target.value
     })
   }
 
   render() {
-    const isPaymentActive = this.state.displayPayment
-    const isReviewActive = this.state.displayReview
-    const isSuccessActive = this.state.displaySuccess
+    const isPaymentActive = this.state.payment
+    const isReviewActive = this.state.review
+    const isSuccessActive = this.state.success
+
     return (
       <div>
         <StripeProvider apiKey="pk_test_TYooMQauvdEDq54NiTphI7jx">
@@ -67,27 +45,18 @@ class CheckoutMain extends Component {
             {/* <br /> */}
             <div className="container">
               <ul className="progressbar">
-                <li onClick={this.displayCart} className="active">
-                  Cart
-                </li>
-                <li onClick={this.displayPayment} className={isPaymentActive}>
-                  Payment
-                </li>
-                <li onClick={this.displayReview} className={isReviewActive}>
-                  Review Order
-                </li>
-                <li onClick={this.displaySuccess} className={isSuccessActive}>
-                  Confirmation
-                </li>
+                <li className="active">Cart</li>
+                <li className={isPaymentActive}>Payment</li>
+                <li className={isReviewActive}>Review Order</li>
+                <li className={isReviewActive}>Confirmation</li>
               </ul>
             </div>
             {/* <br />
             <br /> */}
             <div className="container">
-              <button type="button">
-                {' '}
-                <Link to="/products"> Back to Shopping </Link>{' '}
-              </button>
+              <Link to="/products">
+                <button type="button">Back to Shopping</button>
+              </Link>
               {/* <button type="button">
                 {' '}
                 <Link to="/cart"> Edit Cart </Link>{' '}
@@ -103,16 +72,33 @@ class CheckoutMain extends Component {
             </div>
             {/* <br /> */}
             {/* {this.state.displayPayment ? <CheckoutForm /> : null} */}
-            {function() {
-              switch (this.state) {
+            {(() => {
+              switch (this.state.status) {
                 case 'payment':
-                  return <CheckoutForm />
+                  return (
+                    <CheckoutForm
+                      setStatus={this.setStatus}
+                      status={this.state.status}
+                    />
+                  )
                 case 'review':
-                  return <CheckoutReview />
+                  return (
+                    <CheckoutReview
+                      setStatus={this.setStatus}
+                      status={this.state.status}
+                    />
+                  )
+                case 'success':
+                  return <CheckoutSuccess />
                 default:
-                  return <CheckoutForm />
+                  return (
+                    <CheckoutForm
+                      setStatus={this.setStatus}
+                      status={this.state.status}
+                    />
+                  )
               }
-            }}
+            })()}
             {/*
             {/* // }
             // {this.state.displayReview ?  : null}
