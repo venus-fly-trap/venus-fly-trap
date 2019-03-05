@@ -122,15 +122,18 @@ class AuthForm extends Component {
               <a href="/signup">Click Here to Sign Up!</a>
             </button>
           </p>
-
           <div className="landing-page">
-            {/* <img src="https://www.bunnings.com.au/-/media/au/diy-advice-house/articles/garden/planters/how%20to%20keep%20potted%20plants%20in%20great%20condition/how%20to%20keep%20potted%20plants%20in%20great%20condition_header.jpg" /> */}
+            {/* <img src="https://i.imgur.com/jWPMHL6.gif" id="img" /> */}
             <video preload="auto" autoPlay="autoplay" loop="loop" id="img">
               <source src="https://i.imgur.com/G6qr5Ek.mp4" type="video/mp4" />
             </video>
+            <img
+              src="https://www.solidbackgrounds.com/images/2560x1600/2560x1600-floral-white-solid-color-background.jpg"
+              id="whiteBG"
+            />
             <div id="landingDiv">
               <h4 className="promotion" id="promotion">
-                This week only, BOGO!
+                To plant a garden <br />is to believe in tomorrow.
               </h4>
               <button type="button" className="btn">
                 {' '}
@@ -187,15 +190,18 @@ class AuthForm extends Component {
             </div>
             {error && error.response && <div> {error.response.data} </div>}
           </form>
-
           <div className="landing-page">
-            {/* <img src="https://www.bunnings.com.au/-/media/au/diy-advice-house/articles/garden/planters/how%20to%20keep%20potted%20plants%20in%20great%20condition/how%20to%20keep%20potted%20plants%20in%20great%20condition_header.jpg" /> */}
+            {/* <img src="https://i.imgur.com/jWPMHL6.gif" id="img" /> */}
             <video preload="auto" autoPlay="autoplay" loop="loop" id="img">
               <source src="https://i.imgur.com/G6qr5Ek.mp4" type="video/mp4" />
             </video>
+            <img
+              src="https://www.solidbackgrounds.com/images/2560x1600/2560x1600-floral-white-solid-color-background.jpg"
+              id="whiteBG"
+            />
             <div id="landingDiv">
               <h4 className="promotion" id="promotion">
-                This week only, BOGO!
+                To plant a garden <br />is to believe in tomorrow.
               </h4>
               <button type="button" className="btn">
                 {' '}

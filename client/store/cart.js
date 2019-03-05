@@ -5,7 +5,9 @@ import axios from 'axios'
  * ACTION TYPES
  */
 const GET_CART = 'GET_CART'
-const REMOVE_ITEM = 'REMOVE_ITEM'
+const ADD_TO_CART = 'ADD_TO_CART'
+const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
+const UPDATE_QUANTITY = 'UPDATE_QUANTITY'
 
 /**
  * INITIAL STATE
@@ -15,8 +17,10 @@ const cartState = {}
 /**
  * ACTION CREATORS
  */
-const getCartItems = activeCart => ({type: GET_CART, activeCart})
-const removeItem = id => ({type: REMOVE_ITEM, id})
+const getCart = activeCart => ({type: GET_CART, activeCart})
+const addToCart = newCartItem => ({type: ADD_TO_CART, newCartItem})
+const removeFromCart = productId => ({type: REMOVE_FROM_CART, productId})
+const updateQuantity = quantity => ({type: UPDATE_QUANTITY, quantity})
 
 /**
  * THUNK CREATORS
@@ -27,7 +31,7 @@ export const fetchCartItems = () => {
     try {
       const {data} = await axios.get('/api/cart')
 
-      dispatch(getCartItems(data))
+      dispatch(getCart(data))
     } catch (error) {
       console.error(error)
     }
@@ -35,24 +39,26 @@ export const fetchCartItems = () => {
 }
 
 //ids are orderId and productId
-export const addCartItem = ids => {
+export const addCartItem = (ids, product) => {
   return async dispatch => {
     try {
-      await axios.post('/api/cart', ids)
+      const orderItem = await axios.post('/api/cart', ids)
 
-      dispatch(fetchCartItems())
+      product.orderItem = orderItem.data
+
+      dispatch(addToCart(product))
     } catch (error) {
       console.error(error)
     }
   }
 }
 
-export const deleteCartItem = productIdToRemove => {
+export const deleteCartItem = (productId, orderId) => {
   return async dispatch => {
     try {
-      await axios.delete(`/api/cart/${productIdToRemove}`)
+      await axios.delete(`/api/cart/${orderId}/${productId}`)
 
-      dispatch(fetchCartItems())
+      dispatch(removeFromCart(productId))
     } catch (error) {
       console.error(error)
     }
@@ -78,6 +84,16 @@ export default function(state = cartState, action) {
   switch (action.type) {
     case GET_CART:
       return action.activeCart
+    case ADD_TO_CART:
+      const newCartItem = action.newCartItem
+      return {...state, activeCart: [...state.activeCart, newCartItem]}
+    case REMOVE_FROM_CART:
+      const activeCart = state.activeCart.filter(
+        item => item.id !== action.productId
+      )
+      return {...state, activeCart}
+    case UPDATE_QUANTITY:
+      return {...state, activeCart}
     default:
       return state
   }

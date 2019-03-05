@@ -64,19 +64,24 @@ function checkAuthentication(req, res, next) {
 }
 
 //delete an item on the current cart
-router.delete('/:productId', checkAuthentication, async (req, res, next) => {
-  try {
-    await OrderItem.destroy({
-      where: {
-        productId: req.params.productId
-      }
-    })
+router.delete(
+  '/:orderId/:productId',
+  checkAuthentication,
+  async (req, res, next) => {
+    try {
+      await OrderItem.destroy({
+        where: {
+          orderId: req.params.orderId,
+          productId: req.params.productId
+        }
+      })
 
-    res.sendStatus(204)
-  } catch (error) {
-    next(error)
+      res.sendStatus(204)
+    } catch (error) {
+      next(error)
+    }
   }
-})
+)
 
 //for order history w/ purchased items
 router.get('/history', async (req, res, next) => {

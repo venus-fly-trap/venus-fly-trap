@@ -19,7 +19,7 @@ main:before {
   top: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
+  z-index: -3;
   opacity: 0.6;
   /* background-image: url('https://images.roomstogo.com/images/product/ot_acc_99089229_succulents~Succulents-With-Wood-Bowl.jpeg'); */
   background-image: url('https://images.unsplash.com/photo-1483794344563-d27a8d18014e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80');
@@ -223,7 +223,7 @@ button:disabled:hover {
 
 .container {
   width: 600px;
-  margin: 100px auto;
+  margin: auto;
 }
 .progressbar {
   counter-reset: step;
@@ -284,12 +284,26 @@ button:disabled:hover {
   max-width: 400px;
 } */
 
+#signInOrUp {
+  position: absolute;
+}
+
+#signUpButton {
+  position: absolute;
+  top: 65%;
+}
+
+#welcome {
+  position: absolute;
+  left: 1%;
+}
+
 #landingDiv {
   position: absolute;
   display: flex;
   flex-direction: column;
-  right: 13%;
-  top: 30%;
+  left: 1%;
+  top: 22%;
 }
 
 .landing-page #img {
@@ -298,7 +312,17 @@ button:disabled:hover {
   position: fixed;
   top: 10%;
   left: 0%;
+  opacity: 0.75;
   z-index: -1;
+}
+
+.landing-page #whiteBG {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
 }
 
 .link {
@@ -326,15 +350,12 @@ button:disabled:hover {
 }
 
 .landing-page .promotion {
-  /* position: absolute;
-  top: 45%;
-
-  left: 69%; */
-
   color: #555;
-  font-size: 16px;
+  font-size: 44px;
+  font-family: 'Times New Roman', Times, serif;
   padding: 0px;
-  text-align: center;
+  text-align: left;
+  font-weight: lighter;
 }
 
 #promotion h4 {
@@ -349,7 +370,6 @@ button:disabled:hover {
 /* START - landing page image and button*/
 
 /* ONE PRODUCT VIEW*/
-
 .detailed-container {
   display: flex;
   flex-flow: row wrap;
