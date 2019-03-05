@@ -96,35 +96,32 @@ class AuthForm extends Component {
     if (displayName === 'Login') {
       return (
         <div>
-          <div id="signInOrUp">
-            <form onSubmit={handleSubmit} name={name}>
-              <div>
-                <label htmlFor="email">
-                  <small>Email</small>
-                </label>
-                <input name="email" type="text" />
-              </div>
-              <div>
-                <label htmlFor="password">
-                  <small>Password</small>
-                </label>
-                <input name="password" type="password" />
-              </div>
-              <div>
-                <button type="submit">{displayName}</button>{' '}
-                <button type="button" className="googleOAuth">
-                  <a href="/auth/google">{displayName} with Google</a>
-                </button>{' '}
-              </div>
-              {error && error.response && <div> {error.response.data} </div>}
-            </form>
-            <p id="signUpButton">
-              <button type="button">
-                <a href="/signup">Click Here to Sign Up!</a>
-              </button>
-            </p>
-          </div>
-          <br />
+          <form onSubmit={handleSubmit} name={name}>
+            <div>
+              <label htmlFor="email">
+                <small>Email</small>
+              </label>
+              <input name="email" type="text" />
+            </div>
+            <div>
+              <label htmlFor="password">
+                <small>Password</small>
+              </label>
+              <input name="password" type="password" />
+            </div>
+            <div>
+              <button type="submit">{displayName}</button>{' '}
+              <button type="button" className="googleOAuth">
+                <a href="/auth/google">{displayName} with Google</a>
+              </button>{' '}
+            </div>
+            {error && error.response && <div> {error.response.data} </div>}
+          </form>
+          <p>
+            <button type="button">
+              <a href="/signup">Click Here to Sign Up!</a>
+            </button>
+          </p>
           <div className="landing-page">
             {/* <img src="https://i.imgur.com/jWPMHL6.gif" id="img" /> */}
             <video preload="auto" autoPlay="autoplay" loop="loop" id="img">
@@ -152,49 +149,47 @@ class AuthForm extends Component {
     } else {
       return (
         <div>
-          <div id="signInOrUp">
-            <form onSubmit={handleSubmit} name={name}>
-              <div>
-                <label htmlFor="email">
-                  <small>Email</small>
-                </label>
-                <span className={isEmailWarningDisplayed}>
-                  Must be a valid email address<br />
-                </span>
-                <input
-                  name="email"
-                  type="text"
-                  onChange={this.handleEmailChange}
-                  className={errorDisplay('email') ? 'fieldError' : ''}
-                  onBlur={this.handleBlurWhenInteracting('email')}
-                />
-              </div>
-              <div>
-                <label htmlFor="password">
-                  <small>Password</small>
-                </label>
-                <span className={isPasswordWarningDisplayed}>
-                  Password required<br />
-                </span>
-                <input
-                  name="password"
-                  type="password"
-                  onChange={this.handlePasswordChange}
-                  className={errorDisplay('password') ? 'fieldError' : ''}
-                  onBlur={this.handleBlurWhenInteracting('password')}
-                />
-              </div>
-              <div>
-                <button type="submit" disabled={!isButtonWorking}>
-                  {displayName}
-                </button>{' '}
-                <button type="button" className="googleOAuth">
-                  <a href="/auth/google">{displayName} with Google</a>
-                </button>
-              </div>
-              {error && error.response && <div> {error.response.data} </div>}
-            </form>
-          </div>
+          <form onSubmit={handleSubmit} name={name}>
+            <div>
+              <label htmlFor="email">
+                <small>Email</small>
+              </label>
+              <span className={isEmailWarningDisplayed}>
+                Must be a valid email address<br />
+              </span>
+              <input
+                name="email"
+                type="text"
+                onChange={this.handleEmailChange}
+                className={errorDisplay('email') ? 'fieldError' : ''}
+                onBlur={this.handleBlurWhenInteracting('email')}
+              />
+            </div>
+            <div>
+              <label htmlFor="password">
+                <small>Password</small>
+              </label>
+              <span className={isPasswordWarningDisplayed}>
+                Password required<br />
+              </span>
+              <input
+                name="password"
+                type="password"
+                onChange={this.handlePasswordChange}
+                className={errorDisplay('password') ? 'fieldError' : ''}
+                onBlur={this.handleBlurWhenInteracting('password')}
+              />
+            </div>
+            <div>
+              <button type="submit" disabled={!isButtonWorking}>
+                {displayName}
+              </button>{' '}
+              <button type="button" className="googleOAuth">
+                <a href="/auth/google">{displayName} with Google</a>
+              </button>
+            </div>
+            {error && error.response && <div> {error.response.data} </div>}
+          </form>
           <div className="landing-page">
             {/* <img src="https://i.imgur.com/jWPMHL6.gif" id="img" /> */}
             <video preload="auto" autoPlay="autoplay" loop="loop" id="img">
