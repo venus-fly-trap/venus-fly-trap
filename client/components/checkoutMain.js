@@ -103,11 +103,24 @@ class CheckoutMain extends Component {
             </div>
             {/* <br /> */}
             {/* {this.state.displayPayment ? <CheckoutForm /> : null} */}
-            {this.state.displayReview ? <CheckoutReview /> : null}
-            {this.state.displaySuccess ? <CheckoutSuccess /> : null}
-            <Elements>
-              <CheckoutForm />
-            </Elements>
+            {function() {
+              switch (this.state) {
+                case 'payment':
+                  return <CheckoutForm />
+                case 'review':
+                  return <CheckoutReview />
+                default:
+                  return <CheckoutForm />
+              }
+            }}
+            {/*
+            {/* // }
+            // {this.state.displayReview ?  : null}
+            // {this.state.displaySuccess ? <CheckoutSuccess /> : null}
+            // <Elements>
+            //   <CheckoutForm />
+            // </Elements>
+            // </Switch> */}
           </div>
         </StripeProvider>
       </div>
@@ -117,7 +130,8 @@ class CheckoutMain extends Component {
 
 const mapStateToProps = state => {
   return {
-    payment: state.payment
+    payment: state.payment,
+    review: state.review
   }
 }
 

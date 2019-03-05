@@ -39,9 +39,9 @@ export const closePayment = () => ({
   type: CLOSE_PAYMENT
 })
 
-// const closeReview = () => ({
-// type: CLOSE_REVIEW
-// })
+const closeReview = () => ({
+  type: CLOSE_REVIEW
+})
 
 // const closeSuccess = () => ({
 // type: CLOSE_SUCCESS
@@ -63,6 +63,10 @@ export default function(state = defaultCheckout, action) {
       return {...state, payment: true}
     case CLOSE_PAYMENT:
       return {...state, payment: false}
+    case SHOW_REVIEW:
+      return {...state, review: true}
+    case CLOSE_REVIEW:
+      return {...state, review: false}
     default:
       return state
   }
