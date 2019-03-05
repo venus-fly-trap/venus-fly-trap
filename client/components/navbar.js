@@ -15,11 +15,13 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           {/* The navbar will show these links after you log in */}
           {/* <Link to="/home">Home</Link> */}
           <Link to="/products">
+            {/* Store */}
             <i className="material-icons">store</i>
           </Link>
           <div className="dropdown">
             <a href="#" className="dropLink">
               <i className="material-icons">account_circle</i>
+              {/* User */}
             </a>
             <div className="dropdown-content">
               <Link to="/orders">Orders</Link>
