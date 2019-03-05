@@ -8,6 +8,7 @@ const GET_CART = 'GET_CART'
 const ADD_TO_CART = 'ADD_TO_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 const UPDATE_QUANTITY = 'UPDATE_QUANTITY'
+const ADD_NEW_CART = 'NEW_CART'
 
 /**
  * INITIAL STATE
@@ -20,11 +21,8 @@ const cartState = {}
 const getCart = activeCart => ({type: GET_CART, activeCart})
 const addToCart = newCartItem => ({type: ADD_TO_CART, newCartItem})
 const removeFromCart = productId => ({type: REMOVE_FROM_CART, productId})
-const updateQuantity = (productId, quantity) => ({
-  type: UPDATE_QUANTITY,
-  productId,
-  quantity
-})
+const updateQuantity = quantity => ({type: UPDATE_QUANTITY, quantity})
+const addNewCart = () => ({type: ADD_NEW_CART})
 
 /**
  * THUNK CREATORS
@@ -72,9 +70,20 @@ export const deleteCartItem = (productId, orderId) => {
 export const updateItemQuantity = (productId, quantity) => {
   return async dispatch => {
     try {
-      await axios.put(`/api/cart/${productId}`, {quantity})
+      await axios.put(`/api/cart/${productId}`, quantity)
 
-      dispatch(updateQuantity(productId, quantity))
+      dispatch(fetchCartItems())
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
+
+export const createNewCart = () => {
+  return async dispatch => {
+    try {
+      await axios.post('/api/orders')
+      dispatch(addNewCart())
     } catch (error) {
       console.error(error)
     }
@@ -88,28 +97,20 @@ export default function(state = cartState, action) {
   switch (action.type) {
     case GET_CART:
       return action.activeCart
-    case ADD_TO_CART:
+    case ADD_TO_CART: {
       const newCartItem = action.newCartItem
       return {...state, activeCart: [...state.activeCart, newCartItem]}
-    case REMOVE_FROM_CART:
+    }
+    case REMOVE_FROM_CART: {
       const activeCart = state.activeCart.filter(
         item => item.id !== action.productId
       )
       return {...state, activeCart}
+    }
     case UPDATE_QUANTITY:
-      return {
-        ...state,
-        activeCart: state.activeCart.map(item => {
-          if (item.id !== productId) {
-            return item
-          }
-
-          return {
-            ...item,
-            ...(item.orderItem.quantity = action.quantity)
-          }
-        })
-      }
+      return {...state, activeCart: action.activeCart}
+    case ADD_NEW_CART:
+      return {...state, activeCart: []}
     default:
       return state
   }
