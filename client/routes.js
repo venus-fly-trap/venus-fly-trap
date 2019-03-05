@@ -12,7 +12,7 @@ import {
   CheckoutMain,
   CheckoutForm,
   CheckoutReview,
-  AllOrders
+  CheckoutSuccess
 } from './components'
 import {me} from './store'
 
@@ -36,7 +36,6 @@ class Routes extends Component {
         <Route path="/cart" component={Cart} />
         <Route exact path="/products" component={AllProducts} />
         <Route path="/products/:productId" component={OneProduct} />
-        <Route path="/review" component={CheckoutReview} />
 
         {isLoggedIn && (
           <Switch>
@@ -44,7 +43,9 @@ class Routes extends Component {
             <Route exact path="/" component={UserHome} />
             <Route path="/home" component={UserHome} />
             <Route path="/checkout" component={CheckoutMain} />
-            <Route path="/orders" component={AllOrders} />
+            <Route path="/payment" component={CheckoutForm} />
+            <Route path="/review" component={CheckoutReview} />
+            <Route path="/confirmation" component={CheckoutSuccess} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

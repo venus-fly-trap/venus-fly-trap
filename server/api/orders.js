@@ -2,31 +2,15 @@ const router = require('express').Router()
 const {Order} = require('../db/models')
 module.exports = router
 
-//returns all order history -- purchased orders and non purchased aka cart
-router.get('/', async (req, res, next) => {
-  try {
-    const userId = req.user.id
-
-    const allOrders = await Order.findAll({
-      where: {
-        userId
-      }
-    })
-    res.json(allOrders)
-  } catch (error) {
-    next(error)
-  }
-})
-
 //return all order history --- purchased orders
 router.get('/history', async (req, res, next) => {
   try {
-    // const userId = req.user.id;
+    const userId = req.user.id
 
     const orderHistory = await Order.findAll({
       where: {
-        purchased: true
-        // userId
+        purchased: true,
+        userId
       }
     })
     res.json(orderHistory)
@@ -56,8 +40,7 @@ router.get('/:orderId', async (req, res, next) => {
 router.put('/', async (req, res, next) => {
   try {
     const userId = req.user.id
-
-    await Order.update(
+    const updatedOrder = await Order.update(
       {
         purchased: true
       },
@@ -68,7 +51,7 @@ router.put('/', async (req, res, next) => {
         }
       }
     )
-    res.sendStatus(204)
+    res.status(204).json(updatedOrder)
   } catch (error) {
     next(error)
   }
@@ -77,10 +60,10 @@ router.put('/', async (req, res, next) => {
 //make a new order aka "cart" instance
 router.post('/', async (req, res, next) => {
   try {
-    const newCart = await Order.create()
-    res.json(newCart)
+    const userId = req.user.id
 
-    //do we need to return new cart?? or just res.sendStatus(204)?
+    const newCart = await Order.create(userId)
+    res.json(newCart)
   } catch (error) {
     next(error)
   }

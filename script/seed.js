@@ -8,6 +8,7 @@ const products = [
     name: 'Jade',
     description:
       'Crassula ovata, commonly known as jade plant, lucky plant, money plant or money tree, is a succulent plant with small pink or white flowers. It is native to South Africa and Mozambique, and is common as a houseplant worldwide.',
+    stock: 10,
     imageUrl: 'https://i.imgur.com/7bKsgIq.png',
     price: 525
   },
