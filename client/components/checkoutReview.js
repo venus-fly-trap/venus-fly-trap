@@ -42,15 +42,7 @@ class CheckoutReview extends React.Component {
               <h2>{item.name}</h2>
               <div className="details">
                 <b>Price: ${item.price / 100}</b>
-                <b>
-                  Qty:{' '}
-                  <input
-                    type="number"
-                    value={item.orderItem.quantity}
-                    min="1"
-                    max={item.stock}
-                  />
-                </b>
+                <b>Qty: {item.orderItem.quantity}</b>
                 <button
                   className="remove"
                   id={item.id}
@@ -67,6 +59,7 @@ class CheckoutReview extends React.Component {
               <button
                 type="button"
                 name="payment"
+                className="remove"
                 value=""
                 onClick={this.props.setStatus}
               >
