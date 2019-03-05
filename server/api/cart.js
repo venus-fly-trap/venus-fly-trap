@@ -69,12 +69,17 @@ router.delete(
   checkAuthentication,
   async (req, res, next) => {
     try {
-      await OrderItem.destroy({
-        where: {
-          orderId: req.params.orderId,
-          productId: req.params.productId
-        }
-      })
+      let order = await Order.findById(req.params.orderId)
+      if (req.user.id === order.userId) {
+        await OrderItem.destroy({
+          where: {
+            orderId: req.params.orderId,
+            productId: req.params.productId
+          }
+        })
+      } else {
+        res.sendStatus(403)
+      }
 
       res.sendStatus(204)
     } catch (error) {
