@@ -5,8 +5,7 @@ import axios from 'axios'
  * ACTION TYPES
  */
 const GET_ORDERS = 'GET_ORDERS'
-const UPDATE_ORDERS = 'UPDATE_ORDERS'
-const ADD_NEW_CART = 'NEW_CART'
+const PURCHASE_ORDER = 'PURCHASE_ORDER'
 
 /**
  * INITIAL STATE
@@ -20,8 +19,7 @@ const orderState = {
  * ACTION CREATORS
  */
 const getOrders = orderHistory => ({type: GET_ORDERS, orderHistory})
-const updateOrders = () => ({type: UPDATE_ORDERS})
-const addNewCart = newCart => ({type: ADD_NEW_CART, newCart})
+const purchaseOrder = order => ({type: PURCHASE_ORDER, order})
 
 /**
  * THUNK CREATORS
@@ -39,22 +37,11 @@ export const getOrderHistory = () => {
 }
 
 //update order history with purchases as true
-export const updateOrderHistory = cartId => {
+export const changeOrderToPurchased = cartId => {
   return async dispatch => {
     try {
-      await axios.update('/api/orders', cartId)
-      dispatch(updateOrders())
-    } catch (error) {
-      console.error(error)
-    }
-  }
-}
-
-export const createNewOrder = () => {
-  return async dispatch => {
-    try {
-      const newCart = await axios.post('/api/orders') //necesesary to pass something through?? like req.body? we just want a empty order instance with default values right?
-      dispatch(addNewCart(newCart))
+      const order = await axios.put('/api/orders', cartId)
+      dispatch(purchaseOrder(order.data))
     } catch (error) {
       console.error(error)
     }
@@ -67,9 +54,9 @@ export const createNewOrder = () => {
 export default function(state = orderState, action) {
   switch (action.type) {
     case GET_ORDERS:
-      return {...state, orderState: action.orderHistory}
-    case ADD_NEW_CART:
-      return {...state, orderState: action.newCart}
+      return {...state, orderHistory: action.orderHistory}
+    case PURCHASE_ORDER:
+      return {...state, orderHistory: [...state.orderHistory, action.order]}
     default:
       return state
   }

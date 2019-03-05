@@ -8,6 +8,7 @@ const GET_CART = 'GET_CART'
 const ADD_TO_CART = 'ADD_TO_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 const UPDATE_QUANTITY = 'UPDATE_QUANTITY'
+const ADD_NEW_CART = 'NEW_CART'
 
 /**
  * INITIAL STATE
@@ -21,6 +22,7 @@ const getCart = activeCart => ({type: GET_CART, activeCart})
 const addToCart = newCartItem => ({type: ADD_TO_CART, newCartItem})
 const removeFromCart = productId => ({type: REMOVE_FROM_CART, productId})
 const updateQuantity = quantity => ({type: UPDATE_QUANTITY, quantity})
+const addNewCart = newCart => ({type: ADD_NEW_CART, newCart})
 
 /**
  * THUNK CREATORS
@@ -77,6 +79,17 @@ export const updateItemQuantity = (productId, quantity) => {
   }
 }
 
+export const createNewCart = () => {
+  return async dispatch => {
+    try {
+      const newCart = await axios.post('/api/orders')
+      dispatch(addNewCart(newCart))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+}
+
 /**
  * REDUCER
  */
@@ -84,16 +97,20 @@ export default function(state = cartState, action) {
   switch (action.type) {
     case GET_CART:
       return action.activeCart
-    case ADD_TO_CART:
+    case ADD_TO_CART: {
       const newCartItem = action.newCartItem
       return {...state, activeCart: [...state.activeCart, newCartItem]}
-    case REMOVE_FROM_CART:
+    }
+    case REMOVE_FROM_CART: {
       const activeCart = state.activeCart.filter(
         item => item.id !== action.productId
       )
       return {...state, activeCart}
+    }
     case UPDATE_QUANTITY:
-      return {...state, activeCart}
+      return {...state, activeCart: action.activeCart}
+    case ADD_NEW_CART:
+      return {...state, activeCart: action.newCart}
     default:
       return state
   }
