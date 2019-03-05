@@ -13,7 +13,9 @@ const ADD_NEW_CART = 'NEW_CART'
 /**
  * INITIAL STATE
  */
-const cartState = {}
+const cartState = {
+  activeCart: []
+}
 
 /**
  * ACTION CREATORS
@@ -22,7 +24,7 @@ const getCart = activeCart => ({type: GET_CART, activeCart})
 const addToCart = newCartItem => ({type: ADD_TO_CART, newCartItem})
 const removeFromCart = productId => ({type: REMOVE_FROM_CART, productId})
 const updateQuantity = quantity => ({type: UPDATE_QUANTITY, quantity})
-const addNewCart = newCart => ({type: ADD_NEW_CART, newCart})
+const addNewCart = () => ({type: ADD_NEW_CART})
 
 /**
  * THUNK CREATORS
@@ -82,8 +84,8 @@ export const updateItemQuantity = (productId, quantity) => {
 export const createNewCart = () => {
   return async dispatch => {
     try {
-      const newCart = await axios.post('/api/orders')
-      dispatch(addNewCart(newCart))
+      await axios.post('/api/orders')
+      dispatch(addNewCart())
     } catch (error) {
       console.error(error)
     }
@@ -110,7 +112,7 @@ export default function(state = cartState, action) {
     case UPDATE_QUANTITY:
       return {...state, activeCart: action.activeCart}
     case ADD_NEW_CART:
-      return {...state, activeCart: action.newCart}
+      return {...state, activeCart: []}
     default:
       return state
   }
