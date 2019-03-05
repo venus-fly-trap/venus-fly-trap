@@ -13,15 +13,13 @@ const Navbar = ({handleClick, isLoggedIn}) => (
       {isLoggedIn ? (
         <div className="right">
           {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
-          <Link to="/products">Store</Link>
-          {/* <a href="#" onClick={handleClick}>
-            Logout
-          </a>
-          <Link to="/orders">Orders</Link> */}
+          {/* <Link to="/home">Home</Link> */}
+          <Link to="/products">
+            <i className="material-icons">store</i>
+          </Link>
           <div className="dropdown">
             <a href="#" className="dropLink">
-              User ⌄
+              <i className="material-icons">account_circle</i>
             </a>
             <div className="dropdown-content">
               <Link to="/orders">Orders</Link>
@@ -30,14 +28,28 @@ const Navbar = ({handleClick, isLoggedIn}) => (
               </a>
             </div>
           </div>
-          <Link to="/cart">Cart</Link>
+          <Link to="/cart">
+            <i className="material-icons">shopping_cart</i>
+          </Link>
         </div>
       ) : (
         <div className="right">
           {/* The navbar will show these links before you log in */}
-          <Link to="/products">Store</Link>
+          {/* <Link to="/products">Store</Link>
           <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
+          <Link to="/signup">Sign Up</Link> */}
+          <Link to="/products">
+            <i className="material-icons">store</i>
+          </Link>
+          <div className="dropdown">
+            <a href="#" className="dropLink">
+              <i className="material-icons">account_circle</i>
+            </a>
+            <div className="dropdown-content">
+              <Link to="/login">Login</Link>
+              <Link to="/signup">Sign Up</Link>
+            </div>
+          </div>
         </div>
       )}
     </nav>

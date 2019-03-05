@@ -11,14 +11,15 @@ export const UserHome = props => {
 
   return (
     <div>
-      <h3 id="welcome">Welcome, {email}</h3>
+      {/* <h3 id="welcome">Welcome, {email}</h3> */}
       <br />
       <center>
         <div className="landing-page">
-          {/* <img src="https://i.imgur.com/jWPMHL6.gif" id="img" /> */}
-          <video preload="auto" autoPlay="autoplay" loop="loop" id="img">
+          {/* <img src="https://i.imgur.com/PJzxcIe.jpg" id="img" /> */}
+          <img src="https://i.imgur.com/shGnbj3.jpg" id="img" />
+          {/* <video preload="auto" autoPlay="autoplay" loop="loop" id="img">
             <source src="https://i.imgur.com/G6qr5Ek.mp4" type="video/mp4" />
-          </video>
+          </video> */}
           <img
             src="https://www.solidbackgrounds.com/images/2560x1600/2560x1600-floral-white-solid-color-background.jpg"
             id="whiteBG"

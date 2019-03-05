@@ -53,6 +53,7 @@ nav {
   background-color: #282828;
   z-index: 2;
   padding: 5px 10px;
+  margin-right: 10px;
 }
 
 nav a {
@@ -60,10 +61,12 @@ nav a {
   padding: 6px;
   transition: 0.5s;
   font-weight: bold;
+  font-size: 20px;
+  /* font-family: 'Times New Roman', Times, serif */
 }
 
 nav a:hover {
-  color: #e9f1f7;
+  color: #d0ffb1;
 }
 
 nav .right {
@@ -72,6 +75,17 @@ nav .right {
 
 nav h1 {
   color: #e2e2e2;
+  font-size: 18pt;
+  padding: 0;
+  margin: 4px;
+  transition: 0.5s;
+  /* font-family: cursive; */
+  /* font-weight: lighter; */
+  /* letter-spacing: 6px; */
+}
+
+nav h1:hover {
+  color: #c9ff97;
 }
 
 form div {
@@ -124,6 +138,11 @@ form div {
 
 .dropdown:hover .dropdown-content {
   display: block;
+}
+
+.material-icons {
+  color: #e2e2e2;
+  font-size: 8px;
 }
 
 /* CART PAGE */
@@ -352,19 +371,19 @@ button:disabled:hover {
 
 #landingDiv {
   position: absolute;
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
   left: 1%;
   top: 22%;
+  z-index: -1;
 }
 
 .landing-page #img {
   width: 100vw;
   height: auto;
   position: fixed;
-  top: 10%;
-  left: 0%;
-  opacity: 0.75;
+  top: 0;
+  left: 0;
   z-index: -1;
 }
 
@@ -388,7 +407,7 @@ button:disabled:hover {
 .landing-page .btn {
   position: absolute;
   top: 75%;
-  /*left: 66%; */
+  left: 0;
   /* transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%); */
   background-color: #555;
@@ -675,7 +694,7 @@ button.toast-close-button {
   background-color: #030303;
 }
 .toast-success {
-  background-color: #51a351;
+  background-color: #56ca94;
 }
 .toast-error {
   background-color: #bd362f;

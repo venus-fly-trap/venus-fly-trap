@@ -6,9 +6,9 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {Elements, StripeProvider} from 'react-stripe-elements'
 import {connect} from 'react-redux'
-import CheckoutForm from './CheckoutForm'
-import CheckoutReview from './CheckoutReview'
-import CheckoutSuccess from './CheckoutSuccess'
+import CheckoutForm from './checkoutFormPage'
+import CheckoutReview from './checkoutReviewPage'
+import CheckoutSuccess from './checkoutSuccessPage'
 import store, {showPayment, closePayment} from '../store'
 
 // import {STRIPE_API_KEY} from '../secrets'
@@ -97,7 +97,7 @@ class CheckoutMain extends Component {
                     />
                   )
                 case 'success':
-                  return <CheckoutSuccess />
+                  return <CheckoutSuccess history={this.props.history} />
                 default:
                   return (
                     <CheckoutForm

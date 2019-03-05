@@ -1,13 +1,13 @@
 import React from 'react'
 import toastr from 'toastr'
 
-const CheckoutSuccess = () => {
+const CheckoutSuccess = props => {
   toastr.options = {
     closeButton: true,
     debug: false,
     newestOnTop: false,
     progressBar: false,
-    positionClass: 'toast-top-center',
+    positionClass: 'toast-bottom-left',
     preventDuplicates: false,
     onclick: null,
     showDuration: '300',
@@ -19,11 +19,11 @@ const CheckoutSuccess = () => {
     showMethod: 'fadeIn',
     hideMethod: 'fadeOut'
   }
-  toastr.info(
+  toastr.success(
     'Your payment successfully went through and your order is on its way!',
     'Thank You'
   )
-
+  props.history.push('/')
   return <div />
 }
 

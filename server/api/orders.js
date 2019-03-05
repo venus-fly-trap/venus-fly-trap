@@ -42,12 +42,16 @@ router.put('/', async (req, res, next) => {
     const userId = req.user.id
     const updatedOrder = await Order.update(
       {
-        purchased: true
+        purchased: req.body.purchased,
+        shippingStatus: req.body.shippingStatus,
+        totalPrice: req.body.totalPrice,
+        purchaseDate: req.body.purchaseDate
       },
       {
         where: {
           purchased: false,
-          userId
+          userId,
+          id: req.body.id
         }
       }
     )
