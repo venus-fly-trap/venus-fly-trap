@@ -97,21 +97,6 @@ const users = [
   }
 ]
 
-// const orders = [
-//   { id: 1,
-//     totalPrice: 0,
-//     purchased: true,
-//     purchasedDate: null,
-//     shippingStatus: null
-//   },
-//   { id: 2,
-//     totalPrice: 0,
-//     purchased: false,
-//     purchasedDate: null,
-//     shippingStatus: null
-//   }
-// ]
-
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
@@ -136,16 +121,9 @@ async function seed() {
     })
   )
 
-  // await Promise.all(
-  //   orders.map(order => {
-  //     return Order.create(order)
-  //   })
-  // )
-
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${users.length} orders`)
   console.log(`seeded ${products.length} products`)
-  // console.log(`seeded ${orders.length} orders`)
   console.log(`seeded successfully`)
 }
 
