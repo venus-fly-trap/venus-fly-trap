@@ -29,6 +29,25 @@ class OneProduct extends React.Component {
     const orderId = this.props.order.id
 
     this.props.addItem({productId, orderId}, product)
+
+    toastr.options = {
+      closeButton: true,
+      debug: false,
+      newestOnTop: false,
+      progressBar: false,
+      positionClass: 'toast-bottom-left',
+      preventDuplicates: false,
+      onclick: null,
+      showDuration: '300',
+      hideDuration: '1000',
+      timeOut: '5000',
+      extendedTimeOut: '1000',
+      showEasing: 'swing',
+      hideEasing: 'linear',
+      showMethod: 'fadeIn',
+      hideMethod: 'fadeOut'
+    }
+    toastr.success('Product added to cart.', 'Success!')
   }
 
   handleRemoveFromCart() {
@@ -36,6 +55,25 @@ class OneProduct extends React.Component {
     const orderId = this.props.order.id
 
     this.props.deleteCartItem(productId, orderId)
+
+    toastr.options = {
+      closeButton: true,
+      debug: false,
+      newestOnTop: false,
+      progressBar: false,
+      positionClass: 'toast-bottom-left',
+      preventDuplicates: false,
+      onclick: null,
+      showDuration: '300',
+      hideDuration: '1000',
+      timeOut: '5000',
+      extendedTimeOut: '1000',
+      showEasing: 'swing',
+      hideEasing: 'linear',
+      showMethod: 'fadeIn',
+      hideMethod: 'fadeOut'
+    }
+    toastr.error('Product removed from cart.', 'Success!')
   }
 
   isUserLoggedIn() {
@@ -51,7 +89,7 @@ class OneProduct extends React.Component {
       debug: false,
       newestOnTop: false,
       progressBar: false,
-      positionClass: 'toast-top-center',
+      positionClass: 'toast-bottom-left',
       preventDuplicates: false,
       onclick: null,
       showDuration: '300',
@@ -63,7 +101,7 @@ class OneProduct extends React.Component {
       showMethod: 'fadeIn',
       hideMethod: 'fadeOut'
     }
-    toastr.info('You must be signed in to shop!', 'Notice:')
+    toastr.warning('You must be signed in to shop!', 'Notice:')
 
     const history = this.props.history
     history.push('/login')

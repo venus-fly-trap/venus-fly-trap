@@ -29,7 +29,7 @@ export class CheckoutForm extends React.Component {
                 <div className="row">
                   <div className="col-50">
                     {' '}
-                    <h1>SHIPPING CART </h1>
+                    <h1>SHIPPING ADDRESS </h1>
                     <label htmlFor="fname">
                       <i className="fa fa-user" /> Full Name
                     </label>
@@ -120,44 +120,3 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CheckoutForm)
-
-// export default injectStripe(CheckoutForm)
-
-// render() {
-//   return (
-//     <div className="checkout">
-//       <p>Would you like to complete the purchase?</p>
-//       <CardElement />
-
-//       <button type="button" onClick={this.submit}>
-//         Submit
-//       </button>
-//       <br />
-//       {/* add ternary here to display a message if the payment went through successfully */}
-//       {this.state.complete
-//         ? 'Thank you, your payment was successful!'
-//         : 'Your payment was declined'}
-//     </div>
-//   )
-// }
-// }
-
-{
-  /* <form action="/charge" method="post" id="payment-form">
-<div className="form-row">
-  <label className="card-element">Credit or debit card</label>
-  <div id="card-element">
-    <CardElement />
-  </div>
-  <div id="card-errors" role="alert">
-    {this.state.complete
-      ? 'Thank you, your payment was successful!'
-      : 'Your payment was declined'}
-  </div>
-</div>
-<button type="button" onClick={this.submit}>
-  {' '}
-  Submit Payment{' '}
-</button>
-</form> */
-}

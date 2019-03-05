@@ -53,6 +53,7 @@ nav {
   background-color: #282828;
   z-index: 2;
   padding: 5px 10px;
+  margin-right: 10px;
 }
 
 nav a {
@@ -60,10 +61,12 @@ nav a {
   padding: 6px;
   transition: 0.5s;
   font-weight: bold;
+  font-size: 20px;
+  /* font-family: 'Times New Roman', Times, serif */
 }
 
 nav a:hover {
-  color: #e9f1f7;
+  color: #d0ffb1;
 }
 
 nav .right {
@@ -72,6 +75,17 @@ nav .right {
 
 nav h1 {
   color: #e2e2e2;
+  font-size: 18pt;
+  padding: 0;
+  margin: 4px;
+  transition: 0.5s;
+  /* font-family: cursive; */
+  /* font-weight: lighter; */
+  /* letter-spacing: 6px; */
+}
+
+nav h1:hover {
+  color: #c9ff97;
 }
 
 form div {
@@ -124,6 +138,11 @@ form div {
 
 .dropdown:hover .dropdown-content {
   display: block;
+}
+
+.material-icons {
+  color: #e2e2e2;
+  font-size: 8px;
 }
 
 /* CART PAGE */
@@ -214,6 +233,18 @@ input[type='number']::-webkit-inner-spin-button {
   border-radius: 5px;
   background-color: rgb(100, 161, 100);
   color: white;
+}
+
+/* ORDER HISTORY PAGE */
+.orderHistory-container {
+  max-width: 360px;
+  margin: auto;
+}
+
+.orderItem {
+  background-color: rgb(255, 255, 255);
+  margin: 15px;
+  padding: 15px;
 }
 
 /* START - stripe css */
@@ -352,19 +383,19 @@ button:disabled:hover {
 
 #landingDiv {
   position: absolute;
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
   left: 1%;
   top: 22%;
+  z-index: -1;
 }
 
 .landing-page #img {
   width: 100vw;
   height: auto;
   position: fixed;
-  top: 10%;
-  left: 0%;
-  opacity: 0.75;
+  top: 0;
+  left: 0;
   z-index: -1;
 }
 
@@ -388,7 +419,7 @@ button:disabled:hover {
 .landing-page .btn {
   position: absolute;
   top: 75%;
-  /*left: 66%; */
+  left: 0;
   /* transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%); */
   background-color: #555;
@@ -651,7 +682,7 @@ button.toast-close-button {
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGwSURBVEhLtZa9SgNBEMc9sUxxRcoUKSzSWIhXpFMhhYWFhaBg4yPYiWCXZxBLERsLRS3EQkEfwCKdjWJAwSKCgoKCcudv4O5YLrt7EzgXhiU3/4+b2ckmwVjJSpKkQ6wAi4gwhT+z3wRBcEz0yjSseUTrcRyfsHsXmD0AmbHOC9Ii8VImnuXBPglHpQ5wwSVM7sNnTG7Za4JwDdCjxyAiH3nyA2mtaTJufiDZ5dCaqlItILh1NHatfN5skvjx9Z38m69CgzuXmZgVrPIGE763Jx9qKsRozWYw6xOHdER+nn2KkO+Bb+UV5CBN6WC6QtBgbRVozrahAbmm6HtUsgtPC19tFdxXZYBOfkbmFJ1VaHA1VAHjd0pp70oTZzvR+EVrx2Ygfdsq6eu55BHYR8hlcki+n+kERUFG8BrA0BwjeAv2M8WLQBtcy+SD6fNsmnB3AlBLrgTtVW1c2QN4bVWLATaIS60J2Du5y1TiJgjSBvFVZgTmwCU+dAZFoPxGEEs8nyHC9Bwe2GvEJv2WXZb0vjdyFT4Cxk3e/kIqlOGoVLwwPevpYHT+00T+hWwXDf4AJAOUqWcDhbwAAAAASUVORK5CYII=') !important;
 }
 #toast-container > .toast-error {
-  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHOSURBVEhLrZa/SgNBEMZzh0WKCClSCKaIYOED+AAKeQQLG8HWztLCImBrYadgIdY+gIKNYkBFSwu7CAoqCgkkoGBI/E28PdbLZmeDLgzZzcx83/zZ2SSXC1j9fr+I1Hq93g2yxH4iwM1vkoBWAdxCmpzTxfkN2RcyZNaHFIkSo10+8kgxkXIURV5HGxTmFuc75B2RfQkpxHG8aAgaAFa0tAHqYFfQ7Iwe2yhODk8+J4C7yAoRTWI3w/4klGRgR4lO7Rpn9+gvMyWp+uxFh8+H+ARlgN1nJuJuQAYvNkEnwGFck18Er4q3egEc/oO+mhLdKgRyhdNFiacC0rlOCbhNVz4H9FnAYgDBvU3QIioZlJFLJtsoHYRDfiZoUyIxqCtRpVlANq0EU4dApjrtgezPFad5S19Wgjkc0hNVnuF4HjVA6C7QrSIbylB+oZe3aHgBsqlNqKYH48jXyJKMuAbiyVJ8KzaB3eRc0pg9VwQ4niFryI68qiOi3AbjwdsfnAtk0bCjTLJKr6mrD9g8iq/S/B81hguOMlQTnVyG40wAcjnmgsCNESDrjme7wfftP4P7SP4N3CJZdvzoNyGq2c/HWOXJGsvVg+RA/k2MC/wN6I2YA2Pt8GkAAAAASUVORK5CYII=') !important;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADsSURBVEhLY2AYBfQMgf///3P8+/evAIgvA/FsIF+BavYDDWMBGroaSMMBiE8VC7AZDrIFaMFnii3AZTjUgsUUWUDA8OdAH6iQbQEhw4HyGsPEcKBXBIC4ARhex4G4BsjmweU1soIFaGg/WtoFZRIZdEvIMhxkCCjXIVsATV6gFGACs4Rsw0EGgIIH3QJYJgHSARQZDrWAB+jawzgs+Q2UO49D7jnRSRGoEFRILcdmEMWGI0cm0JJ2QpYA1RDvcmzJEWhABhD/pqrL0S0CWuABKgnRki9lLseS7g2AlqwHWQSKH4oKLrILpRGhEQCw2LiRUIa4lwAAAABJRU5ErkJggg==') !important;
 }
 #toast-container > .toast-success {
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADsSURBVEhLY2AYBfQMgf///3P8+/evAIgvA/FsIF+BavYDDWMBGroaSMMBiE8VC7AZDrIFaMFnii3AZTjUgsUUWUDA8OdAH6iQbQEhw4HyGsPEcKBXBIC4ARhex4G4BsjmweU1soIFaGg/WtoFZRIZdEvIMhxkCCjXIVsATV6gFGACs4Rsw0EGgIIH3QJYJgHSARQZDrWAB+jawzgs+Q2UO49D7jnRSRGoEFRILcdmEMWGI0cm0JJ2QpYA1RDvcmzJEWhABhD/pqrL0S0CWuABKgnRki9lLseS7g2AlqwHWQSKH4oKLrILpRGhEQCw2LiRUIa4lwAAAABJRU5ErkJggg==') !important;
@@ -675,7 +706,7 @@ button.toast-close-button {
   background-color: #030303;
 }
 .toast-success {
-  background-color: #51a351;
+  background-color: #56ca94;
 }
 .toast-error {
   background-color: #bd362f;

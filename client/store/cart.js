@@ -115,3 +115,9 @@ export default function(state = cartState, action) {
       return state
   }
 }
+
+/*
+{
+  activeCart: []
+}
+*/
