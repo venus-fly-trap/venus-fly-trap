@@ -11,7 +11,7 @@ export const UserHome = props => {
 
   return (
     <div>
-      <h3>Welcome, {email}</h3>
+      <h3 id="welcome">Welcome, {email}</h3>
       <br />
       <center>
         <div className="landing-page">
@@ -19,9 +19,13 @@ export const UserHome = props => {
           <video preload="auto" autoPlay="autoplay" loop="loop" id="img">
             <source src="https://i.imgur.com/G6qr5Ek.mp4" type="video/mp4" />
           </video>
+          <img
+            src="https://www.solidbackgrounds.com/images/2560x1600/2560x1600-floral-white-solid-color-background.jpg"
+            id="whiteBG"
+          />
           <div id="landingDiv">
             <h4 className="promotion" id="promotion">
-              This week only, BOGO!
+              To plant a garden <br />is to believe in tomorrow.
             </h4>
             <button type="button" className="btn">
               {' '}
