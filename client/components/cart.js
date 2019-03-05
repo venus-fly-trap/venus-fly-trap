@@ -36,11 +36,12 @@ class Cart extends React.Component {
     if (this.props.cart.activeCart) {
       const cart = this.props.cart.activeCart
       if (cart.length) {
-        const totalPrice = cart.reduce(
-          (accum, current) =>
-            accum + current.price * current.orderItem.quantity,
-          0
-        )
+        const totalPrice =
+          cart.reduce(
+            (accum, current) =>
+              accum + current.price * current.orderItem.quantity,
+            0
+          ) / 100
         return (
           <div className="cart-container">
             <h1>CART</h1>
@@ -58,6 +59,7 @@ class Cart extends React.Component {
                     <input
                       type="number"
                       value={item.orderItem.quantity}
+                      onChange={console.log('input changed')}
                       min="1"
                       max={item.stock}
                     />
@@ -73,7 +75,7 @@ class Cart extends React.Component {
               </div>
             ))}
             <div className="cart">
-              <b className="right">Total: {totalPrice / 100}</b>
+              <b className="right">Total: {totalPrice.toFixed(2)}</b>
               <div className="details">
                 <Link to="/products">
                   <button type="button">Continue Shopping</button>

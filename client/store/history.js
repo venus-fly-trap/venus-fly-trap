@@ -20,6 +20,7 @@ const getHistory = history => ({type: GET_HISTORY, history})
  * THUNK CREATORS
  */
 
+//order history with purchased as false aka the activeCart
 export const fetchCartHistory = () => {
   return async dispatch => {
     try {

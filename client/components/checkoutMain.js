@@ -25,11 +25,11 @@ class CheckoutMain extends Component {
     this.setStatus = this.setStatus.bind(this)
   }
 
-  setStatus(evt) {
+  setStatus(name, value) {
     const step = this.state.status
     this.setState({
-      status: evt.target.name,
-      [step]: evt.target.value
+      status: name,
+      [step]: value
     })
   }
 

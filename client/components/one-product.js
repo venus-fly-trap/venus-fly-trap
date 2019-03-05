@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import {
   fetchOneProduct,
   addCartItem,
@@ -86,6 +87,12 @@ class OneProduct extends React.Component {
       return (
         <div>
           <div className="detailed-container">
+            <Link to="/products" className="link">
+              <b>
+                {'⇦ '}
+                <u>Return to Store</u>
+              </b>
+            </Link>
             <img src={product.imageUrl} />
             <div className="about">
               <h1>{product.name}</h1>

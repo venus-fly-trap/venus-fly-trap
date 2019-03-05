@@ -87,26 +87,3 @@ router.delete(
     }
   }
 )
-
-//for order history w/ purchased items
-router.get('/history', async (req, res, next) => {
-  try {
-    const userId = req.user.id
-
-    const cartItems = await Order.findAll(
-      {
-        include: [{model: Product, as: 'activeCart'}]
-      },
-      {
-        where: {
-          purchased: true,
-          userId
-        }
-      }
-    )
-
-    res.json(cartItems)
-  } catch (error) {
-    next(error)
-  }
-})

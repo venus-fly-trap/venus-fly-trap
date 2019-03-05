@@ -79,6 +79,53 @@ form div {
   display: inline-block;
 }
 
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropLink {
+  border: none;
+  outline: none;
+  color: #e2e2e2;
+  background-color: inherit;
+  font-family: inherit; /* Important for vertical align on mobile phones */
+  margin: 0; /* Important for vertical align on mobile phones */
+}
+
+.navbar a:hover,
+.dropdown:hover .dropLink {
+  background-color: #3f8d80;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #ebebeb;
+  min-width: 45px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  font-size: 9pt;
+  padding: 8px 10px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: rgb(173, 173, 173);
+  color: black;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 /* CART PAGE */
 .cart-container {
   max-width: 950px;
@@ -95,7 +142,12 @@ form div {
 }
 
 .cart .right {
-  margin-right: 0;
+  /* margin-right: 0; */
+  display: inline-flex;
+  flex-direction: row;
+  align-items: right;
+  justify-content: flex-end;
+  margin-left: 90%;
 }
 
 .cart {
@@ -378,6 +430,11 @@ button:disabled:hover {
   margin: 10px auto;
   padding: 15px;
   max-width: 900px;
+}
+
+.detailed-container .link {
+  flex: 1 0 100%;
+  color: #4b4b4b;
 }
 
 .detailed-container img {
