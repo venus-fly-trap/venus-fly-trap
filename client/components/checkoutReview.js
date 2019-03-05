@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {fetchCartItems, changeOrderToPurchased, createNewCart} from '../store'
+import StripeCheckout from 'react-stripe-checkout'
 
 class CheckoutReview extends React.Component {
   constructor(props) {
@@ -20,6 +21,11 @@ class CheckoutReview extends React.Component {
     await this.props.purchaseOrder(this.props.cart.id)
     await this.props.createNewCart()
     this.props.setStatus('success', 'active')
+  }
+
+  onToken = (token, addresses) => {
+    console.log('Your Payment has been received!')
+    this.handleCheckoutButton()
   }
 
   render() {
@@ -53,7 +59,7 @@ class CheckoutReview extends React.Component {
             </div>
           ))}
           <div className="cart">
-            <b className="right">Total: {totalPrice / 100}</b>
+            <b className="right">Total: ${totalPrice / 100}</b>
             <div className="details">
               <button
                 type="button"
@@ -62,12 +68,20 @@ class CheckoutReview extends React.Component {
               >
                 Back
               </button>
-              <button
+              {/* <button
                 type="button"
-                onClick={this.handleCheckoutButton}
+
               >
                 Checkout
-              </button>
+              </button> */}
+              <StripeCheckout
+                email={this.props.user.email}
+                amount={totalPrice}
+                billingAddress
+                zipcode
+                stripeKey="pk_test_3m2b0a1fAot4GiMEjKhu1fIQ"
+                token={this.onToken}
+              />
             </div>
           </div>
         </div>
@@ -78,7 +92,8 @@ class CheckoutReview extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    cart: state.cart
+    cart: state.cart,
+    user: state.user
   }
 }
 
