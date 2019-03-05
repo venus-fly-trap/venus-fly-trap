@@ -25,14 +25,6 @@ class CheckoutMain extends Component {
     this.setStatus = this.setStatus.bind(this)
   }
 
-  // setStatus(evt) {
-  //   const step = this.state.status
-  //   this.setState({
-  //     status: evt.target.name,
-  //     [step]: evt.target.value
-  //   })
-  // }
-
   setStatus(name, value) {
     const step = this.state.status
     this.setState({
