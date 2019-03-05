@@ -142,7 +142,12 @@ form div {
 }
 
 .cart .right {
-  margin-right: 0;
+  /* margin-right: 0; */
+  display: inline-flex;
+  flex-direction: row;
+  align-items: right;
+  justify-content: flex-end;
+  margin-left: 90%;
 }
 
 .cart {

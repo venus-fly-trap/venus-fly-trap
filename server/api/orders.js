@@ -62,7 +62,7 @@ router.post('/', async (req, res, next) => {
   try {
     const userId = req.user.id
 
-    const newCart = await Order.create(userId)
+    const newCart = await Order.create({userId})
     res.json(newCart)
   } catch (error) {
     next(error)

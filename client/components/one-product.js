@@ -89,7 +89,7 @@ class OneProduct extends React.Component {
           <div className="detailed-container">
             <Link to="/products" className="link">
               <b>
-                {'☜ '}
+                {'⇦ '}
                 <u>Return to Store</u>
               </b>
             </Link>

@@ -22,7 +22,7 @@ export class CheckoutForm extends React.Component {
     this.props.showReview()
   }
 
-  async submit(ev) {
+  async submit(evt) {
     // User clicked submit
     let {token} = await this.props.stripe.createToken({name: 'Name'})
     let response = await fetch('/charge', {
@@ -45,7 +45,7 @@ export class CheckoutForm extends React.Component {
           type="button"
           name="review"
           value="active"
-          onClick={this.props.setStatus}
+          onClick={() => this.props.setStatus('review', 'active')}
         >
           Continue
         </button>
