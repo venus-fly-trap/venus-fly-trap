@@ -4,7 +4,6 @@
 
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
-import {Elements, StripeProvider} from 'react-stripe-elements'
 import {connect} from 'react-redux'
 import CheckoutForm from './checkoutFormPage'
 import CheckoutReview from './checkoutReviewPage'
@@ -25,14 +24,6 @@ class CheckoutMain extends Component {
     this.setStatus = this.setStatus.bind(this)
   }
 
-  // setStatus(evt) {
-  //   const step = this.state.status
-  //   this.setState({
-  //     status: evt.target.name,
-  //     [step]: evt.target.value
-  //   })
-  // }
-
   setStatus(name, value) {
     const step = this.state.status
     this.setState({
@@ -48,24 +39,24 @@ class CheckoutMain extends Component {
 
     return (
       <div>
-        <StripeProvider apiKey="pk_test_TYooMQauvdEDq54NiTphI7jx">
-          <div className="checkout">
-            {/* <br /> */}
-            <div className="container">
-              <ul className="progressbar">
-                <li className="active">Cart</li>
-                <li className={isPaymentActive}>Payment</li>
-                <li className={isReviewActive}>Review Order</li>
-                <li className={isReviewActive}>Confirmation</li>
-              </ul>
-            </div>
-            {/* <br />
+        {/* <StripeProvider apiKey="pk_test_TYooMQauvdEDq54NiTphI7jx"> */}
+        <div className="checkout">
+          {/* <br /> */}
+          <div className="container">
+            <ul className="progressbar">
+              <li className="active">Cart</li>
+              <li className={isPaymentActive}>Shipping</li>
+              <li className={isReviewActive}>Review Order</li>
+              <li className={isReviewActive}>Confirmation</li>
+            </ul>
+          </div>
+          {/* <br />
             <br /> */}
-            <div className="container">
-              <Link to="/products">
-                <button type="button">Back to Shopping</button>
-              </Link>
-              {/* <button type="button">
+          <div className="container">
+            <Link to="/products">
+              <button type="button">Back to Shopping</button>
+            </Link>
+            {/* <button type="button">
                 {' '}
                 <Link to="/cart"> Edit Cart </Link>{' '}
               </button>
@@ -77,37 +68,37 @@ class CheckoutMain extends Component {
                 {' '}
                 Finalize Order{' '}
               </button> */}
-            </div>
-            {/* <br /> */}
-            {/* {this.state.displayPayment ? <CheckoutForm /> : null} */}
-            {(() => {
-              switch (this.state.status) {
-                case 'payment':
-                  return (
-                    <CheckoutForm
-                      setStatus={this.setStatus}
-                      status={this.state.status}
-                    />
-                  )
-                case 'review':
-                  return (
-                    <CheckoutReview
-                      setStatus={this.setStatus}
-                      status={this.state.status}
-                    />
-                  )
-                case 'success':
-                  return <CheckoutSuccess history={this.props.history} />
-                default:
-                  return (
-                    <CheckoutForm
-                      setStatus={this.setStatus}
-                      status={this.state.status}
-                    />
-                  )
-              }
-            })()}
-            {/*
+          </div>
+          {/* <br /> */}
+          {/* {this.state.displayPayment ? <CheckoutForm /> : null} */}
+          {(() => {
+            switch (this.state.status) {
+              case 'payment':
+                return (
+                  <CheckoutForm
+                    setStatus={this.setStatus}
+                    status={this.state.status}
+                  />
+                )
+              case 'review':
+                return (
+                  <CheckoutReview
+                    setStatus={this.setStatus}
+                    status={this.state.status}
+                  />
+                )
+              case 'success':
+                return <CheckoutSuccess history={this.props.history} />
+              default:
+                return (
+                  <CheckoutForm
+                    setStatus={this.setStatus}
+                    status={this.state.status}
+                  />
+                )
+            }
+          })()}
+          {/*
             {/* // }
             // {this.state.displayReview ?  : null}
             // {this.state.displaySuccess ? <CheckoutSuccess /> : null}
@@ -115,8 +106,7 @@ class CheckoutMain extends Component {
             //   <CheckoutForm />
             // </Elements>
             // </Switch> */}
-          </div>
-        </StripeProvider>
+        </div>
       </div>
     )
   }

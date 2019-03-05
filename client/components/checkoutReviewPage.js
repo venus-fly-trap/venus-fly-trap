@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {fetchCartItems, changeOrderToPurchased, createNewCart} from '../store'
+import StripeCheckout from 'react-stripe-checkout'
 
 class CheckoutReview extends React.Component {
   constructor(props) {
@@ -20,6 +21,11 @@ class CheckoutReview extends React.Component {
     await this.props.purchaseOrder(this.props.cart.id, price)
     await this.props.createNewCart()
     this.props.setStatus('success', 'active')
+  }
+
+  onToken = (token, addresses) => {
+    console.log('Your Payment has been received!')
+    this.handleCheckoutButton()
   }
 
   render() {
@@ -61,18 +67,19 @@ class CheckoutReview extends React.Component {
                 name="payment"
                 className="remove"
                 value=""
-                onClick={this.props.setStatus}
+                onClick={() => this.props.setStatus('payment', '')}
               >
                 Back
               </button>
-              <button
-                type="button"
-                name="success"
-                value="active"
-                onClick={() => this.handleCheckoutButton(totalPrice)}
-              >
-                Submit Final Order
-              </button>
+
+              <StripeCheckout
+                email={this.props.user.email}
+                amount={totalPrice}
+                billingAddress
+                zipcode
+                stripeKey="pk_test_3m2b0a1fAot4GiMEjKhu1fIQ"
+                token={this.onToken}
+              />
             </div>
           </div>
         </div>
@@ -83,7 +90,8 @@ class CheckoutReview extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    cart: state.cart
+    cart: state.cart,
+    user: state.user
   }
 }
 
