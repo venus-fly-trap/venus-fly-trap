@@ -5,9 +5,11 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {Elements, StripeProvider} from 'react-stripe-elements'
+import {connect} from 'react-redux'
 import CheckoutForm from './CheckoutForm'
 import CheckoutReview from './CheckoutReview'
 import CheckoutSuccess from './CheckoutSuccess'
+import store, {showPayment, closePayment} from '../store'
 
 // import {STRIPE_API_KEY} from '../secrets'
 
@@ -101,11 +103,24 @@ class CheckoutMain extends Component {
             </div>
             {/* <br /> */}
             {/* {this.state.displayPayment ? <CheckoutForm /> : null} */}
-            {this.state.displayReview ? <CheckoutReview /> : null}
-            {this.state.displaySuccess ? <CheckoutSuccess /> : null}
-            <Elements>
-              <CheckoutForm />
-            </Elements>
+            {function() {
+              switch (this.state) {
+                case 'payment':
+                  return <CheckoutForm />
+                case 'review':
+                  return <CheckoutReview />
+                default:
+                  return <CheckoutForm />
+              }
+            }}
+            {/*
+            {/* // }
+            // {this.state.displayReview ?  : null}
+            // {this.state.displaySuccess ? <CheckoutSuccess /> : null}
+            // <Elements>
+            //   <CheckoutForm />
+            // </Elements>
+            // </Switch> */}
           </div>
         </StripeProvider>
       </div>
@@ -113,7 +128,21 @@ class CheckoutMain extends Component {
   }
 }
 
-export default CheckoutMain
+const mapStateToProps = state => {
+  return {
+    payment: state.payment,
+    review: state.review
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    showPayment: () => dispatch(showPayment()),
+    closePayment: () => dispatch(closePayment())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CheckoutMain)
 
 //can delete after:
 //default test key provide from stripe: pk_test_TYooMQauvdEDq54NiTphI7jx
