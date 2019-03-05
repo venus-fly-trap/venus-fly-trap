@@ -18,7 +18,6 @@ class CheckoutReview extends React.Component {
     console.log('thanks for clicking!')
 
     await this.props.purchaseOrder(this.props.cart.id)
-    console.log('hi')
     await this.props.createNewCart()
     this.props.setStatus('success', 'active')
   }
