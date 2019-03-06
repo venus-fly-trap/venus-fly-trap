@@ -75,7 +75,7 @@ class Cart extends React.Component {
               </div>
             ))}
             <div className="cart">
-              <b className="right">Total: {totalPrice.toFixed(2)}</b>
+              <b className="right">Total: ${totalPrice.toFixed(2)}</b>
               <div className="details">
                 <Link to="/products">
                   <button type="button">Continue Shopping</button>

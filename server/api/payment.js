@@ -26,3 +26,11 @@ router.post('/payment', async (req, res) => {
     res.status(500).end()
   }
 })
+
+// router.post('/payment', (req, res, next) => {
+//   charge(req).then(data => {
+//     res.render('Thank you. Your payment went through.');
+//   }).catch(error => {
+//     res.render('error', error);
+//   });
+// });
