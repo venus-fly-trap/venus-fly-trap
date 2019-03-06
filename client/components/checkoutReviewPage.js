@@ -15,10 +15,10 @@ class CheckoutReview extends React.Component {
     this.props.fetchCart()
   }
 
-  async handleCheckoutButton(evt) {
+  async handleCheckoutButton(price) {
     console.log('thanks for clicking!')
 
-    await this.props.purchaseOrder(this.props.cart.id)
+    await this.props.purchaseOrder(this.props.cart.id, price)
     await this.props.createNewCart()
     this.props.setStatus('success', 'active')
   }
@@ -49,6 +49,7 @@ class CheckoutReview extends React.Component {
                 <b>Price: ${item.price / 100}</b>
                 <b>Qty: {item.orderItem.quantity}</b>
                 <button
+                  type="button"
                   className="remove"
                   id={item.id}
                   onClick={this.removeItem}
@@ -59,21 +60,17 @@ class CheckoutReview extends React.Component {
             </div>
           ))}
           <div className="cart">
-            <b className="right">Total: ${totalPrice / 100}</b>
+            <b className="right">Total: ${(totalPrice / 100).toFixed(2)}</b>
             <div className="details">
               <button
                 type="button"
+                name="payment"
                 className="remove"
+                value=""
                 onClick={() => this.props.setStatus('payment', '')}
               >
                 Back
               </button>
-              {/* <button
-                type="button"
-
-              >
-                Checkout
-              </button> */}
               <StripeCheckout
                 email={this.props.user.email}
                 amount={totalPrice}
@@ -102,8 +99,8 @@ const mapDispatchToProps = dispatch => {
     fetchCart: () => {
       dispatch(fetchCartItems())
     },
-    purchaseOrder: cartId => {
-      dispatch(changeOrderToPurchased(cartId))
+    purchaseOrder: (cartId, price) => {
+      dispatch(changeOrderToPurchased(cartId, price))
     },
     createNewCart: () => {
       dispatch(createNewCart())

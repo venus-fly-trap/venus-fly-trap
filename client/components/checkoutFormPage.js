@@ -9,15 +9,15 @@ export class CheckoutForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      // complete: false
+      complete: false
     }
-    // this.clickHandler = this.clickHandler.bind(this)
+    this.clickHandler = this.clickHandler.bind(this)
   }
 
-  // clickHandler() {
-  //   this.props.closePayment()
-  //   this.props.showReview()
-  // }
+  clickHandler() {
+    this.props.closePayment()
+    this.props.showReview()
+  }
 
   render() {
     return (
@@ -29,7 +29,7 @@ export class CheckoutForm extends React.Component {
                 <div className="row">
                   <div className="col-50">
                     {' '}
-                    <h1> SHIPPING CART </h1>
+                    <h1>SHIPPING ADDRESS </h1>
                     <label htmlFor="fname">
                       <i className="fa fa-user" /> Full Name
                     </label>
@@ -114,8 +114,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    // showPayment: () => dispatch(showPayment()),
-    // closePayment: () => dispatch(closePayment())
+    showPayment: () => dispatch(showPayment()),
+    closePayment: () => dispatch(closePayment())
   }
 }
 

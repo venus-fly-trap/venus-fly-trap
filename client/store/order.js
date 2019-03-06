@@ -29,7 +29,7 @@ export const getOrderHistory = () => {
   return async dispatch => {
     try {
       const orderHistory = await axios.get('/api/orders/history')
-      dispatch(getOrders(orderHistory))
+      dispatch(getOrders(orderHistory.data))
     } catch (error) {
       console.error(error)
     }
@@ -37,11 +37,18 @@ export const getOrderHistory = () => {
 }
 
 //update order history with purchases as true
-export const changeOrderToPurchased = cartId => {
+export const changeOrderToPurchased = (cartId, price) => {
   return async dispatch => {
     try {
-      const order = await axios.put('/api/orders', cartId)
-
+      const purchaseInfo = {
+        id: cartId,
+        shippingStatus: 'Shipping In Progress',
+        purchaseDate: Date(Date.now()),
+        totalPrice: price,
+        purchased: true
+      }
+      const order = await axios.put('/api/orders', purchaseInfo)
+      console.log('RETURNED ORDER!!!!!', order.data)
       dispatch(purchaseOrder(order.data))
     } catch (error) {
       console.error(error)
@@ -57,7 +64,7 @@ export default function(state = orderState, action) {
     case GET_ORDERS:
       return {...state, orderHistory: action.orderHistory}
     case PURCHASE_ORDER:
-      return {...state, selectedOrder: action.order}
+      return {...state, orderHistory: [...state.orderHistory, action.order]}
     default:
       return state
   }
