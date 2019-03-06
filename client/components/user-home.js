@@ -11,7 +11,6 @@ export const UserHome = props => {
 
   return (
     <div className="landing-page">
-      {/* <h3 id="welcome">Welcome, {email}</h3> */}
       <br />
       <center>
         <div>
@@ -31,11 +30,9 @@ export const UserHome = props => {
               To plant a garden <br />is to believe in tomorrow.
             </h4>
             <button type="button" className="btn">
-              {' '}
               <Link to="/products" className="link">
-                {' '}
-                SHOP{' '}
-              </Link>{' '}
+                SHOP
+              </Link>
             </button>
           </div>
         </div>

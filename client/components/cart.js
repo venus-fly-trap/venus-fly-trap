@@ -74,7 +74,7 @@ class Cart extends React.Component {
                 </div>
               </div>
             ))}
-            <div className="cart">
+            <div className="cart-bottom">
               <b className="right">Total: ${totalPrice.toFixed(2)}</b>
               <div className="details">
                 <Link to="/products">
@@ -89,22 +89,26 @@ class Cart extends React.Component {
         )
       } else
         return (
-          <div className="container">
-            <h3>CART</h3>
-            <p>Your cart is empty.</p>
-            <a href="/products">
+          <div className="cart-container">
+            <h1>CART</h1>
+            <div className="cart">
+              <h3>Your cart is empty.</h3>
+            </div>
+            <Link to="/products">
               <button type="button"> Continue Shopping </button>
-            </a>
+            </Link>
           </div>
         )
     } else
       return (
-        <div className="container">
-          <h3>CART</h3>
-          <p>Your cart is empty.</p>
-          <a href="/products">
+        <div className="cart-container">
+          <h1>CART</h1>
+          <div className="cart">
+            <h3>Your cart is empty.</h3>
+          </div>
+          <Link to="/products">
             <button type="button"> Continue Shopping </button>
-          </a>
+          </Link>
         </div>
       )
   }

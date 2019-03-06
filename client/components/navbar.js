@@ -24,12 +24,12 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
             {/* <Link to="/home">Home</Link> */}
             <Link to="/products">
               {/* Store */}
-              <i className="material-icons">store</i>
+              <i className="material-icons">store</i> Store
             </Link>
             <div className="dropdown">
               <a href="#" className="dropLink">
-                {username + ' '}
                 <i className="material-icons">account_circle</i>
+                {username + ' '}
                 {/* User */}
               </a>
               <div className="dropdown-content">
@@ -40,18 +40,18 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
               </div>
             </div>
             <Link to="/cart">
-              <i className="material-icons">shopping_cart</i>
+              <i className="material-icons">shopping_cart</i> Cart
             </Link>
           </div>
         ) : (
           <div className="right">
             {/* The navbar will show these links before you log in */}
             <Link to="/products">
-              <i className="material-icons">store</i>
+              <i className="material-icons">store</i> Store
             </Link>
             <div className="dropdown">
               <a href="#" className="dropLink">
-                <i className="material-icons">account_circle</i>
+                <i className="material-icons">account_circle</i> User
               </a>
               <div className="dropdown-content">
                 <Link to="/login">Login</Link>

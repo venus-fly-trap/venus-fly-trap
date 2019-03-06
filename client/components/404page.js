@@ -2,11 +2,11 @@ import React from 'react'
 
 const NoMatch = () => {
   return (
-    <div className="center notFound">
+    <div className="center">
       {/* <img src="https://i.imgur.com/fb4mWRN.png"/> */}
-      <img src="https://redroostercoffee.com/assets/329836a3b36a00bdb216e61cdeaddb97.png" />
+      <img src="https://i.imgur.com/YVPyOuL.png" />
 
-      <p>Page Not Found!</p>
+      <h3>{"Sorry, this page doesn\'t exist\!"}</h3>
     </div>
   )
 }
