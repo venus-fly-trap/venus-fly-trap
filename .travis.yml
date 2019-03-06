@@ -16,12 +16,12 @@ install:
 before_script:
   - psql -c 'create database "venus-fly-trap-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
 
-# before_deploy:
-#   - npm run build-client # make the bundle
-#   - rm -rf node_modules # omit from the tarball, since we skip cleanup
-# deploy:
-#   skip_cleanup: true # prevents travis from deleting the build
-#   provider: heroku
-#   app: YOUR-HEROKU-APP-NAME-HERE # see README
-#   api_key:
-#     secure: YOUR-***ENCRYPTED***-API-KEY-HERE # see README
+before_deploy:
+  - npm run build-client # make the bundle
+  - rm -rf node_modules # omit from the tarball, since we skip cleanup
+deploy:
+  skip_cleanup: true # prevents travis from deleting the build
+  provider: heroku
+  app: venus-fly-trap # see README
+  api_key:
+    secure: "ddph+4yiH1VlFk9FF0g01ae1ozUGwEKxDgRdtYNuugb1zcZ29olYlRADfiiO2725/x8iPSa3ur3ROg3oajLpRymjNTnfIcuJgpwXJ5CK8p49WWv/QDr3ajvxOqhewqGAyeIGpRilDKcCj2eGrqgYCh+9lE6neQM8VlSRQmZFnD5/5TCOfWZN97RDrXCWlwXmhtPJ6JlfvdSWVJREfwB0co+ZL7kxUo8Jus6KY1ITY45xl0s2TDKxzu6PQLJEDAh2o/ylnK6du/FHf9e50POfau3cn6gatGtq2MuVy/XaolAzeKKgzEtqeuJi8CuR8QTDJ+GPWPjwnRgV8ZESw8hxQuNIhuBDezSfCBfxA2S5Dt1L4WhFwsaVRMU4PucH6IjO37QxNfBf8KLKQYcp3BmNjMPcKLdJbmlOvqwSlhTgR7pViMB+plzIQlvjXn9rG8vZhJiuyfOObXdkpxLn0qIx8/YZQFsTonDsAauPzrg68OcaDkt+zOpj32xvzyRhyWy0b7P3u5YcqD49uaCcYZjvnu304O79ZFIMvyS/Tp52TNzBxdb8rcKDXFpoM6j3Wevsy1aLeYP+km8fCVH/lsAyhqhquIMVIgk39uyr97VAzXv7MhBbdQRuMWcx2MJMIh5BNGtaz+VPhcHcwoo1snotbVaHgwlLK3NXCRbPhK4XspM=" # see README
