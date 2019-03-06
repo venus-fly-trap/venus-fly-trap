@@ -31,8 +31,9 @@ router.post('/', async (req, res, next) => {
   try {
     const email = req.body.email
     const password = req.body.password
+    const username = req.body.email
 
-    const newUser = await User.create({password, email})
+    const newUser = await User.create({password, email, username})
 
     res.json(newUser)
   } catch (err) {
