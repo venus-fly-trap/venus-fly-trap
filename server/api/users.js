@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const {User, Order} = require('../db/models')
 module.exports = router
 
 //default route is /api/users
@@ -34,7 +34,8 @@ router.post('/', async (req, res, next) => {
     const username = req.body.email
 
     const newUser = await User.create({password, email, username})
-
+    console.log('NEW USER ID', newUser.id)
+    await Order.create({userId: newUser.id})
     res.json(newUser)
   } catch (err) {
     next(err)

@@ -26,7 +26,10 @@ class OneProduct extends React.Component {
   handleAddToCart() {
     const product = this.props.product
     const productId = this.props.product.id
-    const orderId = this.props.order.id
+    let orderId
+    if (this.props.order) {
+      orderId = this.props.order.id
+    } else orderId = 0
 
     this.props.addItem({productId, orderId}, product)
 
@@ -112,7 +115,7 @@ class OneProduct extends React.Component {
       const product = this.props.product
       let inCart = []
 
-      if (this.props.order.id) {
+      if (Array.isArray(this.props.order) && this.props.order.activeCart) {
         inCart = this.props.order.activeCart.filter(
           item => item.id === product.id
         )
