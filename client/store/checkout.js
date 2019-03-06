@@ -4,69 +4,33 @@ import history from '../history'
 /**
  * ACTION TYPES
  */
-const SHOW_PAYMENT = 'SHOW_PAYMENT'
-const SHOW_REVIEW = 'SHOW_REVIEW'
-const SHOW_SUCCESS = 'SHOW_SUCCESS'
-const CLOSE_PAYMENT = 'CLOSE_PAYMENT'
-// const CLOSE_REVIEW = 'CLOSE_REVIEW'
-// const CLOSE_SUCCESS = 'CLOSE_SUCCESS'
+const GET_SHIPPING = 'GET_SHIPPING'
 
 /**
  * INITIAL STATE
  */
-const defaultCheckout = {
-  payment: 'active',
-  review: false,
-  success: false
-}
+const defaultCheckout = {}
 
 /**
  * ACTION CREATORS
  */
-export const showPayment = () => ({
-  type: SHOW_PAYMENT
+export const getShippingAddress = info => ({
+  type: GET_SHIPPING,
+  info
 })
 
-const showReview = () => ({
-  type: SHOW_REVIEW
-})
-
-const showSuccess = () => ({
-  type: SHOW_SUCCESS
-})
-
-export const closePayment = () => ({
-  type: CLOSE_PAYMENT
-})
-
-const closeReview = () => ({
-  type: CLOSE_REVIEW
-})
-
-// const closeSuccess = () => ({
-// type: CLOSE_SUCCESS
-// })
 /**
  * THUNK CREATORS
  */
-
-// export const fetchAllProducts = () => {
-
-// }
 
 /**
  * REDUCER
  */
 export default function(state = defaultCheckout, action) {
   switch (action.type) {
-    case SHOW_PAYMENT:
-      return {...state, payment: true}
-    case CLOSE_PAYMENT:
-      return {...state, payment: false}
-    case SHOW_REVIEW:
-      return {...state, review: true}
-    case CLOSE_REVIEW:
-      return {...state, review: false}
+    case GET_SHIPPING:
+      console.log('SHIPPING ATSTORE: ', action.info)
+      return action.info
     default:
       return state
   }

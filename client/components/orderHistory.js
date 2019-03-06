@@ -51,8 +51,13 @@ class OrderHistory extends React.Component {
           })}
         </div>
       )
-    }
-    return <div />
+    } else
+      return (
+        <div className="orderHistory-container">
+          <h1>Order History</h1>
+          <p>{"You haven\'t placed any orders with us yet!"}</p>
+        </div>
+      )
   }
 }
 

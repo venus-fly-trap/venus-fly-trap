@@ -1,101 +1,112 @@
 //this is code from stripe.com/docs
 // could not get this to work --- yarn add react-stripe-elements
 import React from 'react'
-import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import store, {showPayment, closePayment} from '../store'
+import store, {getShippingAddress} from '../store'
 
 export class CheckoutForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      complete: false
+      name: '',
+      email: this.props.user.email,
+      address: '',
+      city: '',
+      state: '',
+      zip: ''
     }
-    this.clickHandler = this.clickHandler.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
 
-  clickHandler() {
-    this.props.closePayment()
-    this.props.showReview()
+  handleSubmit(event) {
+    event.preventDefault()
+    this.props.setStatus('review', 'active')
+    this.props.sendShippingInfo(this.state)
+    console.log('HANDLE:', this.state)
+  }
+
+  handleChange(event) {
+    console.log(this.state)
+    this.setState({
+      [event.target.name]: event.target.value
+    })
   }
 
   render() {
     return (
       <div className="cart-container">
-        <div className="col-75">
-          <div className="container">
-            <form action="/action_page.php">
-              <div className="row">
-                <div className="col-50">
-                  {' '}
-                  <h1>SHIPPING ADDRESS </h1>
-                  <label htmlFor="fname">
-                    <i className="fa fa-user" /> Full Name
-                  </label>
-                  <input
-                    type="text"
-                    id="fname"
-                    name="firstname"
-                    placeholder="Jane M. Doe"
-                  />
-                  <label htmlFor="email">
-                    <i className="fa fa-envelope" /> Email
-                  </label>
-                  <input
-                    type="text"
-                    id="email"
-                    name="email"
-                    defaultValue={this.props.user.email}
-                  />
-                  <label htmlFor="adr">
-                    <i className="fa fa-address-card-o" /> Address
-                  </label>
-                  <input
-                    type="text"
-                    id="adr"
-                    name="address"
-                    placeholder="542 W. 15th Street"
-                  />
-                  <label htmlFor="city">
-                    <i className="fa fa-institution" /> City
-                  </label>
-                  <input
-                    type="text"
-                    id="city"
-                    name="city"
-                    placeholder="New York"
-                  />
-                  <div className="row">
-                    <div className="col-50">
-                      <label htmlFor="state">State</label>
-                      <input
-                        type="text"
-                        id="state"
-                        name="state"
-                        placeholder="NY"
-                      />
-                    </div>
-                    <div className="col-50">
-                      <label htmlFor="zip">Zip</label>
-                      <input
-                        type="text"
-                        id="zip"
-                        name="zip"
-                        placeholder="10001"
-                      />
+        <div className="row">
+          <div className="col-75">
+            <div className="container">
+              <form onSubmit={this.handleSubmit}>
+                <div className="row">
+                  <div className="col-50">
+                    {' '}
+                    <h1> SHIPPING ADDRESS </h1>
+                    <label htmlFor="fname">
+                      <i className="fa fa-user" /> Full Name
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="Jane M. Doe"
+                      onChange={this.handleChange}
+                    />
+                    <label htmlFor="email">
+                      <i className="fa fa-envelope" /> Email
+                    </label>
+                    <input
+                      type="text"
+                      name="email"
+                      defaultValue={this.props.user.email}
+                      onChange={this.handleChange}
+                    />
+                    <label htmlFor="adr">
+                      <i className="fa fa-address-card-o" /> Address
+                    </label>
+                    <input
+                      type="text"
+                      name="address"
+                      placeholder="542 West 15th Street"
+                      onChange={this.handleChange}
+                    />
+                    <label htmlFor="city">
+                      <i className="fa fa-institution" /> City
+                    </label>
+                    <input
+                      type="text"
+                      name="city"
+                      placeholder="New York"
+                      onChange={this.handleChange}
+                    />
+                    <div className="row">
+                      <div className="col-50">
+                        <label htmlFor="state">State</label>
+                        <input
+                          type="text"
+                          name="state"
+                          placeholder="NY"
+                          onChange={this.handleChange}
+                        />
+                      </div>
+                      <div className="col-50">
+                        <label htmlFor="zip">Zip</label>
+                        <input
+                          type="text"
+                          name="zip"
+                          placeholder="10001"
+                          onChange={this.handleChange}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <button
-                type="button"
-                name="review"
-                value="active"
-                onClick={() => this.props.setStatus('review', 'active')}
-              >
-                Continue
-              </button>
-            </form>
+                <button type="submit" name="review" value="active">
+                  Continue
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
@@ -112,8 +123,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    showPayment: () => dispatch(showPayment()),
-    closePayment: () => dispatch(closePayment())
+    sendShippingInfo: info => dispatch(getShippingAddress(info))
   }
 }
 
