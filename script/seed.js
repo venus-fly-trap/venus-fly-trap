@@ -8,6 +8,7 @@ const products = [
     name: 'Jade',
     description:
       'Crassula ovata, commonly known as jade plant, lucky plant, money plant or money tree, is a succulent plant with small pink or white flowers. It is native to South Africa and Mozambique, and is common as a houseplant worldwide.',
+    stock: 10,
     imageUrl: 'https://i.imgur.com/7bKsgIq.png',
     price: 525
   },
@@ -96,6 +97,21 @@ const users = [
   }
 ]
 
+// const orders = [
+//   { id: 1,
+//     totalPrice: 0,
+//     purchased: true,
+//     purchasedDate: null,
+//     shippingStatus: null
+//   },
+//   { id: 2,
+//     totalPrice: 0,
+//     purchased: false,
+//     purchasedDate: null,
+//     shippingStatus: null
+//   }
+// ]
+
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
@@ -120,9 +136,16 @@ async function seed() {
     })
   )
 
+  // await Promise.all(
+  //   orders.map(order => {
+  //     return Order.create(order)
+  //   })
+  // )
+
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${users.length} orders`)
   console.log(`seeded ${products.length} products`)
+  // console.log(`seeded ${orders.length} orders`)
   console.log(`seeded successfully`)
 }
 

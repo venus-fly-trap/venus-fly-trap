@@ -20,13 +20,15 @@ class AllProducts extends React.Component {
         <div className="products-container">
           <h1>Products</h1>
           {products.map(product => (
-            <div className="products" key={product.id}>
-              <Link to={`/products/${product.id}`}>
-                <img src={product.imageUrl} />
-                <h3>{product.name}</h3>
-              </Link>
+            <Link
+              to={`/products/${product.id}`}
+              className="products"
+              key={product.id}
+            >
+              <img src={product.imageUrl} />
+              <h3>{product.name}</h3>
               ${product.price / 100}
-            </div>
+            </Link>
           ))}
         </div>
       </div>

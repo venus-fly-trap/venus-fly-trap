@@ -1,13 +1,14 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {fetchCartItems, deleteCartItem} from '../store'
+import {fetchCartItems, deleteCartItem, updateItemQuantity} from '../store'
 
 class Cart extends React.Component {
   constructor(props) {
     super(props)
 
     this.removeItem = this.removeItem.bind(this)
+    this.changeQuantity = this.changeQuantity.bind(this)
   }
 
   componentDidMount() {
@@ -15,43 +16,101 @@ class Cart extends React.Component {
   }
 
   removeItem(evt) {
-    const productId = evt.target.id
-    this.props.deleteCartItem(productId)
+    const productId = Number(evt.target.id)
+    const orderId = this.props.cart.id
+
+    this.props.deleteCartItem(productId, orderId)
+  }
+
+  changeQuantity(evt) {
+    if (evt.target.value > evt.target.max) {
+      this.setState()
+    } else if (evt.target.value < evt.target.min) {
+      this.setState()
+    } else {
+      this.props.updateQuantity()
+    }
   }
 
   render() {
-    if (this.props.cart.id) {
+    if (this.props.cart.activeCart) {
       const cart = this.props.cart.activeCart
-
-      return (
-        <div>
-          <h3>CART</h3>
-          {cart.map(cartItem => (
-            <div key={cartItem.id}>
-              <img src={cartItem.imageUrl} height="300" width="300" />
-              <br />
-              <h4>
-                <Link to={`/products/${cartItem.id}`}>{cartItem.name}</Link>
-              </h4>
-              <p>Price: ${cartItem.price / 100}</p>
-              <p>Quantity: {cartItem.orderItem.quantity}</p>
-              <button
-                className="remove"
-                id={cartItem.id}
-                onClick={this.removeItem}
-              >
-                Remove
-              </button>
+      if (cart.length) {
+        const totalPrice =
+          cart.reduce(
+            (accum, current) =>
+              accum + current.price * current.orderItem.quantity,
+            0
+          ) / 100
+        return (
+          <div className="cart-container">
+            <h1>CART</h1>
+            <hr />
+            {cart.map(item => (
+              <div className="cart" key={item.id}>
+                <Link to={`/products/${item.id}`}>
+                  <img src={item.imageUrl} />
+                  <h2>{item.name}</h2>
+                </Link>
+                <div className="details">
+                  <b>Price: ${item.price / 100}</b>
+                  <b>
+                    Qty:{' '}
+                    <input
+                      type="number"
+                      value={item.orderItem.quantity}
+                      onChange={console.log('input changed')}
+                      min="1"
+                      max={item.stock}
+                    />
+                  </b>
+                  <button
+                    className="remove"
+                    id={item.id}
+                    onClick={this.removeItem}
+                  >
+                    Remove
+                  </button>
+                </div>
+              </div>
+            ))}
+            <div className="cart-bottom">
+              <b className="right">Total: ${totalPrice.toFixed(2)}</b>
+              <div className="details">
+                <Link to="/products">
+                  <button type="button">Continue Shopping</button>
+                </Link>
+                <Link to="/checkout">
+                  <button type="button">Checkout</button>
+                </Link>
+              </div>
             </div>
-          ))}
-          <br />
-          <button type="button">
-            <Link to="/checkout"> Continue to Checkout </Link>
-          </button>
-          <br />
+          </div>
+        )
+      } else
+        return (
+          <div className="cart-container">
+            <h1>CART</h1>
+            <div className="cart">
+              <h3>Your cart is empty.</h3>
+            </div>
+            <Link to="/products">
+              <button type="button"> Continue Shopping </button>
+            </Link>
+          </div>
+        )
+    } else
+      return (
+        <div className="cart-container">
+          <h1>CART</h1>
+          <div className="cart">
+            <h3>Your cart is empty.</h3>
+          </div>
+          <Link to="/products">
+            <button type="button"> Continue Shopping </button>
+          </Link>
         </div>
       )
-    } else return <div />
   }
 }
 
@@ -66,8 +125,11 @@ const mapDispatchToProps = dispatch => {
     fetchCart: () => {
       dispatch(fetchCartItems())
     },
-    deleteCartItem: productIdToRemove => {
-      dispatch(deleteCartItem(productIdToRemove))
+    deleteCartItem: (productId, orderId) => {
+      dispatch(deleteCartItem(productId, orderId))
+    },
+    updateQuantity: (productId, quantity) => {
+      dispatch(updateItemQuantity(productId, quantity))
     }
   }
 }

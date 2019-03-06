@@ -1,11 +1,13 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import {
   fetchOneProduct,
   addCartItem,
   fetchCartItems,
   deleteCartItem
 } from '../store'
+import toastr from 'toastr'
 
 class OneProduct extends React.Component {
   constructor(props) {
@@ -22,15 +24,59 @@ class OneProduct extends React.Component {
   }
 
   handleAddToCart() {
+    const product = this.props.product
     const productId = this.props.product.id
-    const orderId = this.props.order.id
+    let orderId
+    if (this.props.order) {
+      orderId = this.props.order.id
+    } else orderId = 0
 
-    this.props.addItem({productId, orderId})
+    this.props.addItem({productId, orderId}, product)
+
+    toastr.options = {
+      closeButton: true,
+      debug: false,
+      newestOnTop: false,
+      progressBar: false,
+      positionClass: 'toast-bottom-left',
+      preventDuplicates: false,
+      onclick: null,
+      showDuration: '300',
+      hideDuration: '1000',
+      timeOut: '5000',
+      extendedTimeOut: '1000',
+      showEasing: 'swing',
+      hideEasing: 'linear',
+      showMethod: 'fadeIn',
+      hideMethod: 'fadeOut'
+    }
+    toastr.success('Product added to cart.', 'Success!')
   }
 
   handleRemoveFromCart() {
     const productId = this.props.product.id
-    this.props.deleteCartItem(productId)
+    const orderId = this.props.order.id
+
+    this.props.deleteCartItem(productId, orderId)
+
+    toastr.options = {
+      closeButton: true,
+      debug: false,
+      newestOnTop: false,
+      progressBar: false,
+      positionClass: 'toast-bottom-left',
+      preventDuplicates: false,
+      onclick: null,
+      showDuration: '300',
+      hideDuration: '1000',
+      timeOut: '5000',
+      extendedTimeOut: '1000',
+      showEasing: 'swing',
+      hideEasing: 'linear',
+      showMethod: 'fadeIn',
+      hideMethod: 'fadeOut'
+    }
+    toastr.error('Product removed from cart.', 'Success!')
   }
 
   isUserLoggedIn() {
@@ -40,7 +86,26 @@ class OneProduct extends React.Component {
   }
 
   redirectToLogin() {
-    alert('You must be signed in to shop!')
+    // alert('You must be signed in to shop!')
+    toastr.options = {
+      closeButton: true,
+      debug: false,
+      newestOnTop: false,
+      progressBar: false,
+      positionClass: 'toast-bottom-left',
+      preventDuplicates: false,
+      onclick: null,
+      showDuration: '300',
+      hideDuration: '1000',
+      timeOut: '5000',
+      extendedTimeOut: '1000',
+      showEasing: 'swing',
+      hideEasing: 'linear',
+      showMethod: 'fadeIn',
+      hideMethod: 'fadeOut'
+    }
+    toastr.warning('You must be signed in to shop!', 'Notice:')
+
     const history = this.props.history
     history.push('/login')
   }
@@ -50,7 +115,7 @@ class OneProduct extends React.Component {
       const product = this.props.product
       let inCart = []
 
-      if (this.props.order.id) {
+      if (Array.isArray(this.props.order) && this.props.order.activeCart) {
         inCart = this.props.order.activeCart.filter(
           item => item.id === product.id
         )
@@ -59,10 +124,16 @@ class OneProduct extends React.Component {
       const buttonClickAction = this.isUserLoggedIn()
         ? this.handleAddToCart
         : this.redirectToLogin
-      
+
       return (
         <div>
           <div className="detailed-container">
+            <Link to="/products" className="link">
+              <b>
+                {'⇦ '}
+                <u>Return to Store</u>
+              </b>
+            </Link>
             <img src={product.imageUrl} />
             <div className="about">
               <h1>{product.name}</h1>
@@ -117,11 +188,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     fetchCart: () => {
       dispatch(fetchCartItems())
     },
-    addItem: ids => {
-      dispatch(addCartItem(ids))
+    addItem: (ids, product) => {
+      dispatch(addCartItem(ids, product))
     },
-    deleteCartItem: productIdToRemove => {
-      dispatch(deleteCartItem(productIdToRemove))
+    deleteCartItem: (productId, orderId) => {
+      dispatch(deleteCartItem(productId, orderId))
     }
   }
 }

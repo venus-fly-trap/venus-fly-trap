@@ -1,14 +1,14 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const {User, Order} = require('../db/models')
 module.exports = router
 
-//default route is /api/user
+//default route is /api/users
 router.get('/', async (req, res, next) => {
   try {
     const users = await User.findAll({
       // users' passwords are encrypted, it won't help if we just
       // send everything to anyone who asks!
-      attributes: ['id', 'email', 'username']
+      attributes: ['id', 'email']
     })
 
     res.json(users)
@@ -31,10 +31,9 @@ router.post('/', async (req, res, next) => {
   try {
     const email = req.body.email
     const password = req.body.password
-    //const username = req.body.username
-    
-    const newUser = await User.create({email, password})
+    const username = req.body.email
 
+    const newUser = await User.create({password, email, username})
     res.json(newUser)
   } catch (err) {
     next(err)
