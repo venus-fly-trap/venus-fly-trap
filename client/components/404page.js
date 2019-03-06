@@ -6,7 +6,7 @@ const NoMatch = () => {
       {/* <img src="https://i.imgur.com/fb4mWRN.png"/> */}
       <img src="https://i.imgur.com/YVPyOuL.png" />
 
-      <h3>Sorry, this page doesn't exist!</h3>
+      <h3>{"Sorry, this page doesn\'t exist\!"}</h3>
     </div>
   )
 }
