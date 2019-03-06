@@ -123,7 +123,7 @@ class AuthForm extends Component {
             </a>
           </p>
           <div className="landing-page">
-            <img src="https://i.imgur.com/shGnbj3.jpg" id="img" />
+            <img src="https://3c1703fe8d.site.internapcdn.net/newman/gfx/news/hires/2018/plantindoor.jpg" />
             {/* <video preload="auto" autoPlay="autoplay" loop="loop" id="img">
               <source src="https://i.imgur.com/G6qr5Ek.mp4" type="video/mp4" />
             </video> */}
@@ -191,7 +191,7 @@ class AuthForm extends Component {
             {error && error.response && <div> {error.response.data} </div>}
           </form>
           <div className="landing-page">
-            <img src="https://i.imgur.com/shGnbj3.jpg" id="img" />{' '}
+            <img src="https://3c1703fe8d.site.internapcdn.net/newman/gfx/news/hires/2018/plantindoor.jpg" />
             {/* <video preload="auto" autoPlay="autoplay" loop="loop" id="img">
               <source src="https://i.imgur.com/G6qr5Ek.mp4" type="video/mp4" />
             </video> */}

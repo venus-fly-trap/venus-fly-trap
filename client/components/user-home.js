@@ -10,20 +10,22 @@ export const UserHome = props => {
   const {email} = props
 
   return (
-    <div>
+    <div className="landing-page">
       {/* <h3 id="welcome">Welcome, {email}</h3> */}
       <br />
       <center>
-        <div className="landing-page">
+        <div>
           {/* <img src="https://i.imgur.com/PJzxcIe.jpg" id="img" /> */}
-          <img src="https://i.imgur.com/shGnbj3.jpg" id="img" />
+          <img src="https://3c1703fe8d.site.internapcdn.net/newman/gfx/news/hires/2018/plantindoor.jpg" />
+          {/* <img src="https://www.trbimg.com/img-5852d971/turbine/ct-parent-like-a-potted-plant-balancing-1215-20161215" /> */}
+          {/* <img src="https://i.imgur.com/qJyfxh8.jpg?1" id="img" /> */}
           {/* <video preload="auto" autoPlay="autoplay" loop="loop" id="img">
             <source src="https://i.imgur.com/G6qr5Ek.mp4" type="video/mp4" />
           </video> */}
-          <img
+          {/* <img
             src="https://www.solidbackgrounds.com/images/2560x1600/2560x1600-floral-white-solid-color-background.jpg"
             id="whiteBG"
-          />
+          /> */}
           <div id="landingDiv">
             <h4 className="promotion" id="promotion">
               To plant a garden <br />is to believe in tomorrow.

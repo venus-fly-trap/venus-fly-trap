@@ -23,9 +23,8 @@ class CheckoutReview extends React.Component {
     this.props.setStatus('success', 'active')
   }
 
-  onToken = (token, addresses) => {
-    console.log('Your Payment has been received!')
-    this.handleCheckoutButton()
+  onToken = price => {
+    this.handleCheckoutButton(price)
   }
 
   render() {
@@ -78,7 +77,7 @@ class CheckoutReview extends React.Component {
                 billingAddress
                 zipcode
                 stripeKey="pk_test_3m2b0a1fAot4GiMEjKhu1fIQ"
-                token={this.onToken}
+                token={() => this.onToken(totalPrice)}
               />
             </div>
           </div>

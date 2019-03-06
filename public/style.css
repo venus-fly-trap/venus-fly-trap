@@ -45,6 +45,24 @@ label {
   color: #282828;
 }
 
+.center {
+  text-align: center;
+  margin: auto;
+  background-color: #b6bea2;
+  height: 100vh;
+}
+
+.notFound img {
+  width: 65%;
+  margin-top: 50px;
+  z-index: -1;
+}
+
+.notFound p {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 20px;
+}
+
 /* NAVBAR */
 nav {
   display: flex;
@@ -53,7 +71,6 @@ nav {
   background-color: #282828;
   z-index: 2;
   padding: 5px 10px;
-  margin-right: 10px;
 }
 
 nav a {
@@ -61,8 +78,7 @@ nav a {
   padding: 6px;
   transition: 0.5s;
   font-weight: bold;
-  font-size: 20px;
-  /* font-family: 'Times New Roman', Times, serif */
+  font-size: 15px;
 }
 
 nav a:hover {
@@ -361,10 +377,14 @@ button:disabled:hover {
 
 /* START - landing page image and button*/
 
-/* .landing-page {
-  position: center;
+/* .landingPage {
+  background-image: url('https://i.imgur.com/shGnbj3.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
   width: 100%;
-  max-width: 400px;
+  height: 100%;
+  top: 0;
+  left; 0;
 } */
 
 #signInOrUp {
@@ -390,16 +410,18 @@ button:disabled:hover {
   z-index: -1;
 }
 
-.landing-page #img {
-  width: 100vw;
-  height: auto;
+.landing-page img {
+  min-height: 100vh;
+  min-width: 100vw;
+  /* object-fit: contain; */
   position: fixed;
-  top: 0;
-  left: 0;
+  top: -100px;
+  left: -100px;
+  /* opacity: 0.75; */
   z-index: -1;
 }
 
-.landing-page #whiteBG {
+#whiteBG {
   position: fixed;
   top: 0;
   left: 0;
