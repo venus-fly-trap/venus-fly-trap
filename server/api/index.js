@@ -1,13 +1,13 @@
 const router = require('express').Router()
 module.exports = router
 
-router.use('*', (req, res) => {
-  if(req.isAuthenticated()) {
-    res.send('you hit the authentication endpoint\n')
-  } else {
-    res.redirect('/nomatch')
-  }
-})
+// router.use('*', (req, res) => {
+//   if(req.isAuthenticated()) {
+//     res.send('you hit the authentication endpoint\n')
+//   } else {
+//     res.redirect('/nomatch')
+//   }
+// })
 
 
 router.use('/users', require('./users'))
