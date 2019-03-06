@@ -43,7 +43,7 @@ export class CheckoutForm extends React.Component {
                 <div className="row">
                   <div className="col-50">
                     {' '}
-                    <h1> SHIPPING CART </h1>
+                    <h1> SHIPPING ADDRESS </h1>
                     <label htmlFor="fname">
                       <i className="fa fa-user" /> Full Name
                     </label>
