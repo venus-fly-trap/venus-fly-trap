@@ -24,8 +24,11 @@ class CheckoutMain extends Component {
     this.setStatus = this.setStatus.bind(this)
   }
 
-  setStatus(name, value) {
-    const step = this.state.status
+  setStatus(name, value, back) {
+    let step
+    if (!back) step = this.state.status
+    else step = back
+
     this.setState({
       status: name,
       [step]: value
@@ -35,7 +38,6 @@ class CheckoutMain extends Component {
   render() {
     const isPaymentActive = this.state.payment
     const isReviewActive = this.state.review
-    const isSuccessActive = this.state.success
 
     return (
       <div>

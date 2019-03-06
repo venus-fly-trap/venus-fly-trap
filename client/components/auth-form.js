@@ -95,67 +95,51 @@ class AuthForm extends Component {
 
     if (displayName === 'Login') {
       return (
-        <div>
-          <form onSubmit={handleSubmit} name={name}>
-            <div>
-              <label htmlFor="email">
-                <small>Email</small>
-              </label>
-              <input name="email" type="text" />
-            </div>
-            <div>
-              <label htmlFor="password">
-                <small>Password</small>
-              </label>
-              <input name="password" type="password" />
-            </div>
-            <div>
-              <button type="submit">{displayName}</button>{' '}
+        <div className="login">
+          <img src="https://i.imgur.com/4u1JR3R.png" />
+          <div className="form-container">
+            <h1>Login</h1>
+            <a href="/auth/google">
               <button type="button" className="googleOAuth">
-                <a href="/auth/google">{displayName} with Google</a>
-              </button>{' '}
-            </div>
-            {error && error.response && <div> {error.response.data} </div>}
-          </form>
-          <p>
-            <a href="/signup">
-              <button type="button">Click Here to Sign Up!</button>
-            </a>
-          </p>
-          <div className="landing-page">
-            <img src="https://3c1703fe8d.site.internapcdn.net/newman/gfx/news/hires/2018/plantindoor.jpg" />
-            {/* <video preload="auto" autoPlay="autoplay" loop="loop" id="img">
-              <source src="https://i.imgur.com/G6qr5Ek.mp4" type="video/mp4" />
-            </video> */}
-            <img
-              src="https://www.solidbackgrounds.com/images/2560x1600/2560x1600-floral-white-solid-color-background.jpg"
-              id="whiteBG"
-            />
-            <div id="landingDiv">
-              <h4 className="promotion" id="promotion">
-                To plant a garden <br />is to believe in tomorrow.
-              </h4>
-              <button type="button" className="btn">
-                {' '}
-                <Link to="/products" className="link">
-                  {' '}
-                  SHOP{' '}
-                </Link>{' '}
+                <img src="https://www.searchpng.com/wp-content/uploads/2018/11/google_icon_2048.png" />
+                {displayName} with Google
               </button>
-            </div>
+            </a>
+            <h4>or</h4>
+            <form onSubmit={handleSubmit} name={name}>
+              <label htmlFor="email">Email</label>
+              <input name="email" type="text" />
+
+              <label htmlFor="password">Password</label>
+              <input name="password" type="password" />
+              <button type="submit">{displayName}</button>
+              <Link to="/signup">
+                <button type="button" className="remove">
+                  Click Here to Sign Up
+                </button>
+              </Link>
+              {error && error.response && <div> {error.response.data} </div>}
+            </form>
           </div>
         </div>
       )
     } else {
       return (
-        <div>
-          <form onSubmit={handleSubmit} name={name}>
-            <div>
-              <label htmlFor="email">
-                <small>Email</small>
-              </label>
+        <div className="login">
+          <img src="https://i.imgur.com/EGDGlCn.png" />
+          <div className="form-container">
+            <h1>Sign Up</h1>
+            <a href="/auth/google">
+              <button type="button" className="googleOAuth">
+                <img src="https://www.searchpng.com/wp-content/uploads/2018/11/google_icon_2048.png" />
+                {displayName} with Google
+              </button>
+            </a>
+            <h4>or</h4>
+            <form onSubmit={handleSubmit} name={name}>
+              <label htmlFor="email">Email</label>
               <span className={isEmailWarningDisplayed}>
-                Must be a valid email address<br />
+                Must be a valid email address
               </span>
               <input
                 name="email"
@@ -164,11 +148,7 @@ class AuthForm extends Component {
                 className={errorDisplay('email') ? 'fieldError' : ''}
                 onBlur={this.handleBlurWhenInteracting('email')}
               />
-            </div>
-            <div>
-              <label htmlFor="password">
-                <small>Password</small>
-              </label>
+              <label htmlFor="password">Password</label>
               <span className={isPasswordWarningDisplayed}>
                 Password required<br />
               </span>
@@ -179,38 +159,11 @@ class AuthForm extends Component {
                 className={errorDisplay('password') ? 'fieldError' : ''}
                 onBlur={this.handleBlurWhenInteracting('password')}
               />
-            </div>
-            <div>
               <button type="submit" disabled={!isButtonWorking}>
                 {displayName}
-              </button>{' '}
-              <button type="button" className="googleOAuth">
-                <a href="/auth/google">{displayName} with Google</a>
               </button>
-            </div>
-            {error && error.response && <div> {error.response.data} </div>}
-          </form>
-          <div className="landing-page">
-            <img src="https://3c1703fe8d.site.internapcdn.net/newman/gfx/news/hires/2018/plantindoor.jpg" />
-            {/* <video preload="auto" autoPlay="autoplay" loop="loop" id="img">
-              <source src="https://i.imgur.com/G6qr5Ek.mp4" type="video/mp4" />
-            </video> */}
-            <img
-              src="https://www.solidbackgrounds.com/images/2560x1600/2560x1600-floral-white-solid-color-background.jpg"
-              id="whiteBG"
-            />
-            <div id="landingDiv">
-              <h4 className="promotion" id="promotion">
-                To plant a garden <br />is to believe in tomorrow.
-              </h4>
-              <button type="button" className="btn">
-                {' '}
-                <Link to="/products" className="link">
-                  {' '}
-                  SHOP{' '}
-                </Link>{' '}
-              </button>
-            </div>
+              {error && error.response && <div> {error.response.data} </div>}
+            </form>
           </div>
         </div>
       )

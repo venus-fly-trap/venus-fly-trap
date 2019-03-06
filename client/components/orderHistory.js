@@ -18,29 +18,37 @@ class OrderHistory extends React.Component {
     console.log('ORDER HISTORY: ', orderHistory)
     if (orderHistory.length) {
       return (
-        <div>
-          <div className="orderHistory-container">
-            <h1>Order History</h1>
-            {orderHistory.map(order => {
-              if (order.activeCart) {
-                return (
-                  <div className="orderItem" key={order.id}>
-                    <ul>
-                      <li>
-                        Items:{' '}
-                        {order.activeCart.map(item => item.name).join(', ')}
-                      </li>
-                      <li>Date: {order.purchaseDate.slice(0, 10)}</li>
-                      <li>Shipping Status: {order.shippingStatus}</li>
-                      <li>
-                        Total Price: ${(order.totalPrice / 100).toFixed(2)}
-                      </li>
-                    </ul>
+        <div className="orderHistory-container">
+          <h1>Order History</h1>
+          {orderHistory.map(order => {
+            if (order.activeCart) {
+              return (
+                <div className="orderItem" key={order.id}>
+                  <div className="column">
+                    <div>
+                      <b>Purchase Date</b>: {order.purchaseDate.slice(0, 10)}
+                    </div>
+                    <div>
+                      <b>Shipping Status</b>: {order.shippingStatus}
+                    </div>
+                    <div>
+                      <b>Total Price</b>: ${(order.totalPrice / 100).toFixed(2)}
+                    </div>
                   </div>
-                )
-              } else return <div />
-            })}
-          </div>
+                  {order.activeCart.map(item => (
+                    <div className="boughtProduct">
+                      <img src={item.imageUrl} />
+                      <h3>{item.name}</h3>
+                      <div className="details">
+                        <b>Qty: {item.orderItem.quantity}</b>
+                        <b>Price: ${(item.price / 100).toFixed(2)}</b>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )
+            } else return <div />
+          })}
         </div>
       )
     }

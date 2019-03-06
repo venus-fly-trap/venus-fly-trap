@@ -66,7 +66,7 @@ class CheckoutReview extends React.Component {
                 name="payment"
                 className="remove"
                 value=""
-                onClick={() => this.props.setStatus('payment', '')}
+                onClick={() => this.props.setStatus('payment', '', 'payment')}
               >
                 Back
               </button>

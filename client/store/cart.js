@@ -22,7 +22,7 @@ const getCart = activeCart => ({type: GET_CART, activeCart})
 const addToCart = newCartItem => ({type: ADD_TO_CART, newCartItem})
 const removeFromCart = productId => ({type: REMOVE_FROM_CART, productId})
 const updateQuantity = quantity => ({type: UPDATE_QUANTITY, quantity})
-const addNewCart = () => ({type: ADD_NEW_CART})
+const addNewCart = newCart => ({type: ADD_NEW_CART, newCart})
 
 /**
  * THUNK CREATORS
@@ -110,7 +110,7 @@ export default function(state = cartState, action) {
     case UPDATE_QUANTITY:
       return {...state, activeCart: action.activeCart}
     case ADD_NEW_CART:
-      return {...state, activeCart: []}
+      return action.newCart
     default:
       return state
   }
