@@ -48,7 +48,6 @@ export const changeOrderToPurchased = (cartId, price) => {
         purchased: true
       }
       const order = await axios.put('/api/orders', purchaseInfo)
-      console.log('RETURNED ORDER!!!!!', order.data)
       dispatch(purchaseOrder(order.data))
     } catch (error) {
       console.error(error)

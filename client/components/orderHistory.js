@@ -15,7 +15,6 @@ class OrderHistory extends React.Component {
   render() {
     const orderHistory = this.props.orderHistory
 
-    console.log('ORDER HISTORY: ', orderHistory)
     if (orderHistory.length) {
       return (
         <div className="orderHistory-container">
@@ -36,7 +35,7 @@ class OrderHistory extends React.Component {
                     </div>
                   </div>
                   {order.activeCart.map(item => (
-                    <div className="boughtProduct">
+                    <div className="boughtProduct" key={item.id}>
                       <img src={item.imageUrl} />
                       <h3>{item.name}</h3>
                       <div className="details">
@@ -55,7 +54,7 @@ class OrderHistory extends React.Component {
       return (
         <div className="orderHistory-container">
           <h1>Order History</h1>
-          <p>{"You haven\'t placed any orders with us yet!"}</p>
+          <p>You haven't placed any orders with us yet!</p>
         </div>
       )
   }

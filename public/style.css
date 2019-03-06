@@ -9,6 +9,7 @@ body {
   margin: 0;
   width: 100vw;
   font-size: 10pt;
+  z-index: -1;
 }
 
 main:before {
@@ -435,19 +436,21 @@ button:disabled:hover {
   flex-direction: column; */
   left: 1%;
   top: 22%;
-  z-index: -1;
+  z-index: 0;
 }
 
-.landing-page #img {
-  width: 100vw;
-  height: auto;
+.landing-page img {
+  min-height: 100vh;
+  min-width: 100vw;
+  /* object-fit: contain; */
   position: fixed;
-  top: 0;
-  left: 0;
+  top: -100px;
+  left: -100px;
+  /* opacity: 0.75; */
   z-index: -1;
 }
 
-.landing-page #whiteBG {
+#whiteBG {
   position: fixed;
   top: 0;
   left: 0;
@@ -466,8 +469,10 @@ button:disabled:hover {
 
 .landing-page .btn {
   position: absolute;
-  top: 75%;
-  left: 0;
+  top: 100%;
+  left: 5%;
+  /* transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%); */
   background-color: #555;
   color: white;
   font-size: 16px;

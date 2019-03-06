@@ -8,7 +8,7 @@ const GET_CART = 'GET_CART'
 const ADD_TO_CART = 'ADD_TO_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 const UPDATE_QUANTITY = 'UPDATE_QUANTITY'
-const ADD_NEW_CART = 'NEW_CART'
+const ADD_NEW_CART = 'ADD_NEW_CART'
 
 /**
  * INITIAL STATE
@@ -82,8 +82,8 @@ export const updateItemQuantity = (productId, quantity) => {
 export const createNewCart = () => {
   return async dispatch => {
     try {
-      await axios.post('/api/orders')
-      dispatch(addNewCart())
+      const newCart = await axios.post('/api/orders')
+      dispatch(addNewCart(newCart.data))
     } catch (error) {
       console.error(error)
     }

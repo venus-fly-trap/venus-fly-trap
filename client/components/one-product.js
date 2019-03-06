@@ -115,11 +115,11 @@ class OneProduct extends React.Component {
       const product = this.props.product
       let inCart = []
 
-      if (Array.isArray(this.props.order) && this.props.order.activeCart) {
+      if (this.props.order.activeCart) {
         inCart = this.props.order.activeCart.filter(
           item => item.id === product.id
         )
-      }
+      } else inCart = []
 
       const buttonClickAction = this.isUserLoggedIn()
         ? this.handleAddToCart
