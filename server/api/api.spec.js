@@ -83,3 +83,23 @@ describe('Product routes', () => {
     })
   }) // end describe ('/api/products')
 }) // end describe('Product routes')
+
+describe('loading express', function () {
+  var server;
+  beforeEach(function () {
+    server = require('../');
+  });
+  afterEach(function () {
+    server = require('../');
+  });
+  it('responds to /', function testSlash(done) {
+  request(server)
+    .get('/')
+    .expect(200, done);
+  });
+  // it('404 everything else', function testPath(done) {
+  //   request(server)
+  //     .get('/random')
+  //     .expect(404, done);
+  // }); still working on getting this to properly run
+});
