@@ -23,11 +23,9 @@ export class CheckoutForm extends React.Component {
     event.preventDefault()
     this.props.setStatus('review', 'active')
     this.props.sendShippingInfo(this.state)
-    console.log('HANDLE:', this.state)
   }
 
   handleChange(event) {
-    console.log(this.state)
     this.setState({
       [event.target.name]: event.target.value
     })

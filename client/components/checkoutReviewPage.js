@@ -31,8 +31,6 @@ class CheckoutReview extends React.Component {
     const cart = this.props.cart.activeCart
     const shipping = this.props.checkout
 
-    console.log('SHIPPING: ', shipping)
-
     if (cart) {
       const totalPrice = cart.reduce(
         (accum, current) => accum + current.price * current.orderItem.quantity,
