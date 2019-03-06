@@ -34,8 +34,6 @@ router.post('/', async (req, res, next) => {
     const username = req.body.email
 
     const newUser = await User.create({password, email, username})
-    console.log('NEW USER ID', newUser.id)
-    await Order.create({userId: newUser.id})
     res.json(newUser)
   } catch (err) {
     next(err)
